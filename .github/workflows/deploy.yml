@@ -40,14 +40,16 @@ jobs:
         run: bun run build
 
       - name: Add SPA fallback (404.html) and .nojekyll
+        # TanStack Start's SPA build emits the static site under dist/client/
+        # (dist/server/ holds the prerender helper and isn't served).
         run: |
-          cp dist/index.html dist/404.html
-          touch dist/.nojekyll
+          cp dist/client/index.html dist/client/404.html
+          touch dist/client/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/client
 
   deploy:
     needs: build

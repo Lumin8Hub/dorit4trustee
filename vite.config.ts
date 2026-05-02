@@ -23,6 +23,17 @@ export default defineConfig({
           prerender: {
             enabled: true,
             crawlLinks: true,
+            // Explicit list so every route gets its own pre-rendered HTML
+            // (real SEO per page). Deep links not in this list still resolve
+            // via the 404.html SPA fallback the workflow generates.
+            pages: [
+              { path: "/" },
+              { path: "/meet-dorit" },
+              { path: "/priorities" },
+              { path: "/community" },
+              { path: "/get-involved" },
+              { path: "/contact" },
+            ],
           },
         },
       }

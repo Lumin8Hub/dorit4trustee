@@ -1,53 +1,84 @@
-## Dorit Smali for YRDSB Trustee 2026 — Campaign Website
+## Goal
 
-Build the campaign website exactly to the reference: warm cream backgrounds, mustard/turquoise/taupe palette, Anton display + Montserrat body + Caveat script, "OUR KIDS" mega hero with stacked text-shadow, and the signature mustard underline accent bar under every section heading.
+Deploy this site to **https://lumin8hub.github.io/dorit4trustee/** via GitHub Actions, while keeping the Lovable preview (which runs the TanStack Start dev server) working exactly as it does today.
 
-### Pages (separate routes for SEO/SSR)
+## Why this needs more than a workflow file
 
-- `/` — Home: Hero ("MAKE OUR SCHOOLS WORK FOR / OUR KIDS"), inline Join form (desktop) / standalone form section (mobile), 3 Pillars block, brief teasers + CTA links to deeper pages.
-- `/meet-dorit` — Portrait, "from one mom to another" script tag, full bio, "Why I'm Running" pull quote section.
-- `/priorities` — Three numbered priority cards (Students First, Responsible Stewardship, A Voice for Families).
-- `/community` — "Showing Up Where It Matters" — bio of community work + the four community-work items (food insecurity, women experiencing abuse, homelessness, B.A.M. Organization).
-- `/get-involved` — Volunteer / Donate / Endorse action cards + the full Join form.
-- `/contact` — Contact section with email, social links, and Join form on a dark background.
+The project is built on **TanStack Start** — a full-stack SSR framework that, by default, produces a Cloudflare Worker bundle. GitHub Pages only serves **static files** (no Node, no Workers, no server-side rendering). Two things must change before a workflow can deploy anything:
 
-Each route gets its own `head()` with unique title, description, og:title, og:description.
+1. The production build must emit static HTML/JS/CSS instead of a Worker bundle.
+2. All asset URLs must be prefixed with `/dorit4trustee/` so they resolve under the project-page subpath, but only for the GitHub Pages build — not in the Lovable preview.
 
-### Shared shell
+The good news: the site has no server functions, no loaders, and no API routes, so it converts cleanly to a static SPA. TanStack Start has a built-in `spa` mode that does exactly this (renders an SPA shell + optionally pre-renders each known route to HTML for SEO and fast first paint).
 
-- **Header** (overlay on hero, solid cream on inner pages): logo lockup ("DORIT SMALI" mustard / "YRDSB TRUSTEE 2026" turquoise), nav links, Volunteer (turquoise) + Donate (mustard) buttons. Mobile: hamburger → full-screen ink-colored slide-down menu.
-- **Footer**: 3-column (brand + url, nav, legal/authorization line, © 2026).
+## What changes
 
-### Design system implementation
+### 1. `vite.config.ts` — add a Pages-only static build mode
 
-- Replace `src/styles.css` with: Tailwind import + CSS custom properties for the full token set (mustard `#FFDB58`, turquoise `#6EFAFB`, taupe `#968E85`, cream `#F5EFE4`, cream-deep `#EDE5D6`, ink `#1A1A1A`, plus all `-deep` variants).
-- Load Anton, Montserrat, Caveat from Google Fonts via `head().links`.
-- Map design tokens into Tailwind's `@theme inline` so utilities (`bg-mustard`, `text-turquoise-deep`, `font-display`, etc.) work alongside hand-written component classes.
-- Type scale: `--fs-mega: clamp(72px, 10vw, 168px)` for hero, display/h1/h2/h3 per spec.
-- Section heading pattern: turquoise eyebrow → Anton uppercase headline → 96px × 4px mustard accent bar.
+Pass options to the Lovable wrapper so that **only when building for GitHub Pages**:
+- Cloudflare Worker plugin is disabled (`cloudflare: false`)
+- TanStack Start runs in `spa` mode with `prerender.enabled = true` and `crawlLinks = true` (so `/`, `/meet-dorit`, `/priorities`, `/community`, `/get-involved`, `/contact` each get a real HTML file)
+- Vite `base` is set from a `BASE_PATH` env var (defaults to `/` so the Lovable preview is unaffected)
 
-### Reusable components (`src/components/`)
+The Lovable preview and dev server keep their current behavior because the new branch is gated on `process.env.DEPLOY_TARGET === 'github-pages'`.
 
-`Header`, `MobileMenu`, `Logo`, `Footer`, `JoinForm`, `Hero`, `Pillars`, `SectionHeading` (eyebrow + headline + accent bar), `PriorityCard`, `ActionCard`, `CommunityItem`.
+### 2. `src/router.tsx` — make the router base-path aware
 
-### Assets
+Add `basepath: import.meta.env.BASE_URL` to `createRouter(...)`. Vite injects `BASE_URL` from the `base` config, so this is `/` in preview/dev and `/dorit4trustee/` in the GitHub Pages build. All `<Link to="/contact">` calls keep working unchanged.
 
-Use the uploaded portrait + landscape mockup as visual reference only — substitute high-quality stock placeholders (the Unsplash URLs already in `app.jsx`: hero composite + portrait) until real photography is provided. Add a `// TODO` note in the hero/portrait files.
+### 3. `public/.nojekyll` and `public/404.html` strategy
 
-### Form behavior
+- Add an empty `public/.nojekyll` so GitHub Pages serves files/folders that start with `_`.
+- The workflow copies the built `index.html` to `404.html` after the build. This is the standard GitHub-Pages SPA fallback so any unknown deep link still boots the React app, which then routes client-side. (Pre-rendered routes will serve their own HTML directly; this only matters for edge cases.)
 
-`JoinForm` is presentational with local submitting state (mock 800ms delay + success toast via existing `sonner`). Backend integration (NationBuilder/Mailchimp) flagged as TODO. Same form is reused in hero, mobile section, get-involved, and contact.
+### 4. `.github/workflows/deploy.yml` — the workflow
 
-### Out of scope (flag as TODOs)
+A standard GitHub Pages deploy workflow:
+- Trigger: push to `main` + manual `workflow_dispatch`
+- Permissions: `pages: write`, `id-token: write`
+- Steps: checkout → setup Bun → `bun install --frozen-lockfile` → `DEPLOY_TARGET=github-pages BASE_PATH=/dorit4trustee/ bun run build` → copy `dist/index.html` → `dist/404.html` → touch `dist/.nojekyll` → `actions/upload-pages-artifact` → `actions/deploy-pages`
+- Concurrency group `pages` so overlapping pushes don't race.
 
-- Real backend for form submissions
-- Real Donate flow / payment processor
-- Privacy policy page (linked from form disclaimer)
-- Real social URLs and headshot
+### 5. `package.json` — no new dependencies
 
-### Technical notes
+All needed pieces (`@tanstack/react-start` SPA mode, the existing Lovable wrapper, Vite) are already installed. No new packages.
 
-- TanStack Start file-based routing under `src/routes/`. Each section file declares its own `head()`.
-- Hash-anchor `href="#..."` links from `app.jsx` rewritten to `<Link to="/...">`.
-- Mobile breakpoint at 767px swaps hero layout (form moves out, mobile CTAs + scroll indicator appear), per design spec.
-- All styles via global `styles.css` component classes (matching the provided `styles.css` from instructions.md), not inline Tailwind, to preserve fidelity to the design system.
+### 6. `README.md` — short "Deploying" section
+
+One paragraph explaining: pushing to `main` triggers GitHub Actions, which builds the static SPA at base path `/dorit4trustee/` and publishes to Pages. Note that the Lovable preview is unaffected because it doesn't set `DEPLOY_TARGET`.
+
+## What does NOT change
+
+- `src/routes/__root.tsx`, every page route, components, styles — untouched.
+- The Lovable preview build path, sandbox config, port 8080 — untouched.
+- `wrangler.jsonc` stays (it's only consulted by the Cloudflare plugin, which is disabled in the Pages build).
+- No conversion to React Router DOM, no `BrowserRouter`/`HashRouter`, no `_redirects` file.
+
+## Caveats / things to know
+
+- The `JoinForm` currently fakes a submit with `setTimeout` — it will keep working on Pages because there is no real backend yet. Wiring it to Mailchimp/NationBuilder is out of scope for this change.
+- First Pages deployment requires a one-time manual step in the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**. The workflow itself doesn't need to do anything — just toggling the source. I'll mention this in the README.
+- Pre-rendering runs the React app in Node during the build; if any route references `window`/`document` at module top level it would crash. A quick scan of the current routes shows none do, so this should be clean.
+
+## Technical reference (for implementation)
+
+```text
+vite.config.ts
+  defineConfig({
+    cloudflare: process.env.DEPLOY_TARGET === 'github-pages' ? false : undefined,
+    tanstackStart: process.env.DEPLOY_TARGET === 'github-pages'
+      ? { spa: { enabled: true, prerender: { enabled: true, crawlLinks: true } } }
+      : undefined,
+    vite: { base: process.env.BASE_PATH ?? '/' },
+  })
+
+src/router.tsx
+  createRouter({ ..., basepath: import.meta.env.BASE_URL })
+
+.github/workflows/deploy.yml
+  env:
+    DEPLOY_TARGET: github-pages
+    BASE_PATH: /dorit4trustee/
+```
+
+Approve this and I'll implement everything in one pass.

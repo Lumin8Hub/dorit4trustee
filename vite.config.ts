@@ -6,4 +6,28 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+// When DEPLOY_TARGET=github-pages is set (by .github/workflows/deploy.yml), we build a
+// fully-static SPA suitable for GitHub Pages: the Cloudflare Worker plugin is disabled
+// and TanStack Start runs in `spa` mode with prerender + crawl-links so each route
+// gets a real HTML file. In every other context (Lovable preview, local dev, default
+// production build) behavior is unchanged.
+const isGithubPages = process.env.DEPLOY_TARGET === "github-pages";
+const basePath = process.env.BASE_PATH ?? "/";
+
+export default defineConfig({
+  cloudflare: isGithubPages ? false : undefined,
+  tanstackStart: isGithubPages
+    ? {
+        spa: {
+          enabled: true,
+          prerender: {
+            enabled: true,
+            crawlLinks: true,
+          },
+        },
+      }
+    : undefined,
+  vite: {
+    base: basePath,
+  },
+});

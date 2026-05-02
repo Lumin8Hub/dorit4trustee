@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrioritiesRouteImport } from './routes/priorities'
+import { Route as MeetDoritRouteImport } from './routes/meet-dorit'
+import { Route as GetInvolvedRouteImport } from './routes/get-involved'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PrioritiesRoute = PrioritiesRouteImport.update({
+  id: '/priorities',
+  path: '/priorities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeetDoritRoute = MeetDoritRouteImport.update({
+  id: '/meet-dorit',
+  path: '/meet-dorit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetInvolvedRoute = GetInvolvedRouteImport.update({
+  id: '/get-involved',
+  path: '/get-involved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,102 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
+  '/get-involved': typeof GetInvolvedRoute
+  '/meet-dorit': typeof MeetDoritRoute
+  '/priorities': typeof PrioritiesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
+  '/get-involved': typeof GetInvolvedRoute
+  '/meet-dorit': typeof MeetDoritRoute
+  '/priorities': typeof PrioritiesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
+  '/get-involved': typeof GetInvolvedRoute
+  '/meet-dorit': typeof MeetDoritRoute
+  '/priorities': typeof PrioritiesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/community'
+    | '/contact'
+    | '/get-involved'
+    | '/meet-dorit'
+    | '/priorities'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/community'
+    | '/contact'
+    | '/get-involved'
+    | '/meet-dorit'
+    | '/priorities'
+  id:
+    | '__root__'
+    | '/'
+    | '/community'
+    | '/contact'
+    | '/get-involved'
+    | '/meet-dorit'
+    | '/priorities'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunityRoute: typeof CommunityRoute
+  ContactRoute: typeof ContactRoute
+  GetInvolvedRoute: typeof GetInvolvedRoute
+  MeetDoritRoute: typeof MeetDoritRoute
+  PrioritiesRoute: typeof PrioritiesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/priorities': {
+      id: '/priorities'
+      path: '/priorities'
+      fullPath: '/priorities'
+      preLoaderRoute: typeof PrioritiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meet-dorit': {
+      id: '/meet-dorit'
+      path: '/meet-dorit'
+      fullPath: '/meet-dorit'
+      preLoaderRoute: typeof MeetDoritRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-involved': {
+      id: '/get-involved'
+      path: '/get-involved'
+      fullPath: '/get-involved'
+      preLoaderRoute: typeof GetInvolvedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunityRoute: CommunityRoute,
+  ContactRoute: ContactRoute,
+  GetInvolvedRoute: GetInvolvedRoute,
+  MeetDoritRoute: MeetDoritRoute,
+  PrioritiesRoute: PrioritiesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -58,9 +58,10 @@ export const getRouter = () => {
   const router = createRouter({
     routeTree,
     context: {},
-    // BASE_URL is injected by Vite from the `base` config option. It is "/" in the
-    // Lovable preview / local dev, and "/dorit4trustee/" in the GitHub Pages build.
-    // This keeps every <Link to="/..."> working in both environments unchanged.
+    // BASE_URL is injected by Vite from the `base` config option. It is "/" in
+    // both the Lovable preview / local dev AND the GitHub Pages build (the site
+    // is served from the apex of the custom domain dorit4trustee.com), so this
+    // keeps every <Link to="/..."> working everywhere unchanged.
     basepath: import.meta.env.BASE_URL,
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,

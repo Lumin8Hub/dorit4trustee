@@ -1,56 +1,42 @@
-## What went wrong
+I found the likely cause of the repeat failure: the workflow is trying to copy `dist/client/index.html`, but the current TanStack Start config puts `pages` inside `spa.prerender`, where TanStack Start does not read it. That means the build can produce only the SPA shell (`_shell.html`) instead of the expected route HTML files, so the fallback-copy step fails.
 
-Two issues, one fatal and one cosmetic:
+I will fix the deployment process as follows:
 
-**1. Build output path (the actual failure).** TanStack Start's SPA build emits two folders:
+1. Correct the TanStack Start static config in `vite.config.ts`
+   - Move `prerender` and `pages` to the top-level `tanstackStart` options where TanStack Start expects them.
+   - Keep SPA mode enabled so GitHub Pages can still handle deep links through a fallback page.
+   - Explicitly prerender the existing content routes:
+     - `/`
+     - `/meet-dorit`
+     - `/priorities`
+     - `/community`
+     - `/get-involved`
+     - `/contact`
 
-```text
-dist/
-├── client/   ← static SPA (index.html + assets)  ← THIS is what Pages needs
-└── server/   ← prerender helper (not used at runtime)
-```
+2. Switch GitHub Pages build paths for the custom domain
+   - Change the GitHub Actions build from `BASE_PATH=/dorit4trustee/` to `BASE_PATH=/` because `dorit4trustee.com` serves the Pages site at the domain root.
+   - Keep Lovable preview behavior unchanged, still using `/` automatically outside the GitHub Pages build.
 
-The workflow assumed the old single-folder layout (`dist/index.html`) and crashed at the `cp` step. The build itself succeeded — the log shows `dist/client/assets/...` being written. We just need to point the fallback copy and the Pages upload at `dist/client/`.
+3. Make the workflow fallback step robust
+   - Update `.github/workflows/deploy.yml` so it does not assume `dist/client/index.html` is always present.
+   - Prefer TanStack Start’s SPA shell (`dist/client/_shell.html`) for `404.html` when it exists.
+   - Fall back to `dist/client/index.html` if needed.
+   - If neither exists, print the contents of `dist/` and fail with a clear error so future failures are easy to diagnose.
 
-**2. Only `/` got prerendered.** The log says `Prerendered 1 pages: /`. The crawler starts at `/` and follows `<a href>`/`<Link>` tags, but the homepage's nav is rendered inside the `Header` component which the crawler may not have walked deeply enough to discover. The site will still work — `404.html` is the SPA fallback so deep links like `/meet-dorit` boot the React app and route client-side — but we lose per-page SEO.
+4. Add custom-domain support to the deployed artifact
+   - Add a `CNAME` file containing `dorit4trustee.com` so GitHub Pages preserves the custom domain.
+   - Also have the workflow write/copy `CNAME` into `dist/client` after build for reliability.
+   - Ensure `.nojekyll` is included so GitHub Pages serves TanStack’s underscore-prefixed `_build` assets correctly.
 
-The cheap, deterministic fix: pass an explicit `pages` list to TanStack Start's SPA prerender config so all six routes get their own static HTML.
+5. Update GitHub Actions versions
+   - Update actions to Node 24-compatible versions to remove the deprecation warning:
+     - `actions/checkout@v5`
+     - `actions/upload-pages-artifact@v5`
+     - `actions/deploy-pages@v5`
+     - `oven-sh/setup-bun@v2.2.0`
+   - Set `include-hidden-files: true` on `upload-pages-artifact` so `.nojekyll` is actually uploaded.
 
-## Changes
+6. Update documentation/comments
+   - Update `README.md`, workflow comments, and router comments so they reference `https://dorit4trustee.com/` instead of the old `/dorit4trustee/` project-path deployment.
 
-### `.github/workflows/deploy.yml`
-Update the two paths after the build:
-- `cp dist/client/index.html dist/client/404.html`
-- `touch dist/client/.nojekyll`
-- `actions/upload-pages-artifact@v3` `with: path: dist/client`
-
-### `vite.config.ts`
-Extend the `tanstackStart.spa.prerender` block with an explicit page list so the crawler doesn't have to discover them:
-
-```ts
-spa: {
-  enabled: true,
-  prerender: {
-    enabled: true,
-    crawlLinks: true,
-    pages: [
-      { path: "/" },
-      { path: "/meet-dorit" },
-      { path: "/priorities" },
-      { path: "/community" },
-      { path: "/get-involved" },
-      { path: "/contact" },
-    ],
-  },
-},
-```
-
-Each route ends up at `dist/client/<route>/index.html` (or `<route>.html` depending on `autoSubfolderIndex`), giving real SEO for every page. Deep links that aren't in the list still work via `404.html`.
-
-Nothing else changes — Lovable preview, dev server, all source files stay as-is.
-
-## Note on the unrelated warning
-
-The "Node.js 20 actions are deprecated" warning at the bottom is GitHub's own deprecation notice for `actions/checkout@v4`'s runtime. It's not an error and doesn't affect this deployment; GitHub will auto-upgrade these actions before the September 2026 cutoff.
-
-Approve and I'll apply both fixes.
+After approval, I’ll make these edits directly.

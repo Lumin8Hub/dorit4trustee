@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@v2.2.0
         with:
           bun-version: latest
 
@@ -34,22 +34,49 @@ jobs:
       - name: Build static SPA for GitHub Pages
         env:
           DEPLOY_TARGET: github-pages
-          # Project page URL is https://lumin8hub.github.io/dorit4trustee/
-          # so every asset must be served from /dorit4trustee/.
-          BASE_PATH: /dorit4trustee/
+          # The site is served from the apex of the custom domain
+          # (https://dorit4trustee.com/), so assets must be served from "/".
+          BASE_PATH: /
         run: bun run build
 
-      - name: Add SPA fallback (404.html) and .nojekyll
-        # TanStack Start's SPA build emits the static site under dist/client/
-        # (dist/server/ holds the prerender helper and isn't served).
+      - name: Prepare GitHub Pages output
+        # TanStack Start's SPA build emits the static site under dist/client/.
+        # We copy the SPA shell to 404.html so client-side routes still resolve
+        # on a hard refresh, write a CNAME for the custom domain, and add
+        # .nojekyll so GitHub Pages serves underscore-prefixed asset folders
+        # like _build/.
         run: |
-          cp dist/client/index.html dist/client/404.html
-          touch dist/client/.nojekyll
+          set -eu
+          OUT=dist/client
+          if [ ! -d "$OUT" ]; then
+            echo "Build output not found at $OUT. Contents of dist:" >&2
+            ls -la dist || true
+            exit 1
+          fi
+
+          if [ -f "$OUT/_shell.html" ]; then
+            cp "$OUT/_shell.html" "$OUT/404.html"
+          elif [ -f "$OUT/index.html" ]; then
+            cp "$OUT/index.html" "$OUT/404.html"
+          else
+            echo "Neither _shell.html nor index.html exist in $OUT." >&2
+            ls -la "$OUT"
+            exit 1
+          fi
+
+          touch "$OUT/.nojekyll"
+          echo "dorit4trustee.com" > "$OUT/CNAME"
+
+          echo "Final $OUT contents:"
+          ls -la "$OUT"
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist/client
+          # Required so .nojekyll (and any other dotfile we ship) makes it into
+          # the artifact — upload-pages-artifact v5 excludes hidden files by default.
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -60,4 +87,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

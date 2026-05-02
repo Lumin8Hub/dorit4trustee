@@ -15,18 +15,23 @@ The dev server runs on http://localhost:8080.
 
 ## Deploying to GitHub Pages
 
-The site auto-deploys to **https://lumin8hub.github.io/dorit4trustee/** on every push to `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+The site auto-deploys to **https://dorit4trustee.com/** on every push to `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
 How it works:
 
-1. The workflow runs `bun run build` with `DEPLOY_TARGET=github-pages` and `BASE_PATH=/dorit4trustee/`.
-2. `vite.config.ts` reads those env vars and switches TanStack Start into static SPA mode (no Cloudflare Worker), pre-rendering each route to its own HTML file under `dist/`.
-3. The workflow copies `dist/index.html` → `dist/404.html` (the standard GitHub Pages SPA fallback so deep links still work) and adds `.nojekyll`.
+1. The workflow runs `bun run build` with `DEPLOY_TARGET=github-pages` and `BASE_PATH=/` (the site is served from the apex of the custom domain).
+2. `vite.config.ts` reads those env vars and switches TanStack Start into static SPA mode (no Cloudflare Worker), pre-rendering each route to its own HTML file under `dist/client/`.
+3. The workflow copies the SPA shell (`dist/client/_shell.html`, falling back to `index.html`) to `dist/client/404.html` so client-side deep links still work, writes a `CNAME` file for the custom domain, and adds `.nojekyll`.
 4. The artifact is published with `actions/deploy-pages`.
 
 ### One-time setup
 
-In the GitHub repo, go to **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**. After that, every push to `main` deploys automatically.
+In the GitHub repo:
+
+1. Go to **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**.
+2. Under **Custom domain**, set `dorit4trustee.com` and enable **Enforce HTTPS** once the certificate is issued.
+
+After that, every push to `main` deploys automatically.
 
 ### Lovable preview
 

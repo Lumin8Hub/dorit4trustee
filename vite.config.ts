@@ -8,34 +8,40 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // When DEPLOY_TARGET=github-pages is set (by .github/workflows/deploy.yml), we build a
 // fully-static SPA suitable for GitHub Pages: the Cloudflare Worker plugin is disabled
-// and TanStack Start runs in `spa` mode with prerender + crawl-links so each route
-// gets a real HTML file. In every other context (Lovable preview, local dev, default
+// and TanStack Start runs in `spa` mode with prerender enabled so each route gets a
+// real HTML file. In every other context (Lovable preview, local dev, default
 // production build) behavior is unchanged.
 const isGithubPages = process.env.DEPLOY_TARGET === "github-pages";
+// The site is served from the root of the custom domain (dorit4trustee.com),
+// so BASE_PATH defaults to "/". The workflow can still override it if ever
+// publishing to a project page like https://<user>.github.io/<repo>/.
 const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
   cloudflare: isGithubPages ? false : undefined,
   tanstackStart: isGithubPages
     ? {
+        // SPA mode emits a `_shell.html` shell that we use as the GitHub Pages
+        // 404 fallback so client-side routes still work on a hard refresh.
         spa: {
           enabled: true,
-          prerender: {
-            enabled: true,
-            crawlLinks: true,
-            // Explicit list so every route gets its own pre-rendered HTML
-            // (real SEO per page). Deep links not in this list still resolve
-            // via the 404.html SPA fallback the workflow generates.
-            pages: [
-              { path: "/" },
-              { path: "/meet-dorit" },
-              { path: "/priorities" },
-              { path: "/community" },
-              { path: "/get-involved" },
-              { path: "/contact" },
-            ],
-          },
         },
+        // Top-level prerender: this is where TanStack Start actually reads
+        // `pages` from. Each listed route is rendered to its own HTML file
+        // under `dist/client/<route>/index.html` for real per-page SEO.
+        prerender: {
+          enabled: true,
+          crawlLinks: true,
+          autoSubfolderIndex: true,
+        },
+        pages: [
+          { path: "/" },
+          { path: "/meet-dorit" },
+          { path: "/priorities" },
+          { path: "/community" },
+          { path: "/get-involved" },
+          { path: "/contact" },
+        ],
       }
     : undefined,
   vite: {

@@ -15,7 +15,7 @@ export function Footer() {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           <Logo />
-          <p className="site-footer__url">doritsmali.ca</p>
+          <p className="site-footer__url">dorit4trustee.com</p>
         </div>
 
         <nav className="site-footer__nav" aria-label="Footer">

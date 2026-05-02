@@ -895,6 +895,28 @@ a { color: inherit; }
 .page-hero .accent-bar { margin-left: auto; margin-right: auto; }
 
 /* =========================================================================
+   LEGAL
+   ========================================================================= */
+.legal { background: var(--c-cream); padding: var(--sp-8) 0 var(--sp-9); }
+.legal__inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+.legal h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  margin: var(--sp-5) 0 var(--sp-2);
+}
+.legal p { color: var(--c-ink-soft); margin-bottom: var(--sp-3); }
+.legal a { color: var(--c-turquoise-deep); font-weight: 700; }
+
+/* =========================================================================
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 1023px) {

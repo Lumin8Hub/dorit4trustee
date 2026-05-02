@@ -21,7 +21,7 @@ How it works:
 
 1. The workflow runs `bun run build` with `DEPLOY_TARGET=github-pages` and `BASE_PATH=/` (the site is served from the apex of the custom domain).
 2. `vite.config.ts` reads those env vars and switches TanStack Start into static SPA mode (no Cloudflare Worker), pre-rendering each route to its own HTML file under `dist/client/`.
-3. The workflow copies the SPA shell (`dist/client/_shell.html`, falling back to `index.html`) to `dist/client/404.html` so client-side deep links still work, writes a `CNAME` file for the custom domain, and adds `.nojekyll`.
+3. The workflow uses the SPA shell (`dist/client/_shell.html`, falling back to `index.html`) to ensure both `dist/client/index.html` and `dist/client/404.html` exist, writes a `CNAME` file for the custom domain, and adds `.nojekyll`.
 4. The artifact is published with `actions/deploy-pages`.
 
 ### One-time setup
@@ -39,6 +39,6 @@ The Lovable preview is unaffected: it doesn't set `DEPLOY_TARGET`, so the dev se
 
 ## Project structure
 
-- `src/routes/` — file-based routes (`index.tsx`, `meet-dorit.tsx`, `priorities.tsx`, `community.tsx`, `get-involved.tsx`, `contact.tsx`)
+- `src/routes/` — file-based routes (`index.tsx`, `meet-dorit.tsx`, `priorities.tsx`, `community.tsx`, `get-involved.tsx`, `contact.tsx`, `privacy.tsx`)
 - `src/components/` — reusable UI (`Header`, `Footer`, `Hero`, `JoinForm`, `SectionHeading`, …)
 - `src/styles.css` — design tokens (Mustard / Turquoise / Taupe / Cream palette) and Tailwind theme

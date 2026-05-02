@@ -41,10 +41,10 @@ jobs:
 
       - name: Prepare GitHub Pages output
         # TanStack Start's SPA build emits the static site under dist/client/.
-        # We copy the SPA shell to 404.html so client-side routes still resolve
-        # on a hard refresh, write a CNAME for the custom domain, and add
-        # .nojekyll so GitHub Pages serves underscore-prefixed asset folders
-        # like _build/.
+        # It may emit _shell.html instead of a root index.html, so we ensure
+        # Pages has both index.html for the site root and 404.html for SPA
+        # fallback navigation. We also write CNAME for the custom domain and
+        # add .nojekyll so GitHub Pages serves underscore-prefixed files.
         run: |
           set -eu
           OUT=dist/client
@@ -55,14 +55,19 @@ jobs:
           fi
 
           if [ -f "$OUT/_shell.html" ]; then
-            cp "$OUT/_shell.html" "$OUT/404.html"
+            SHELL="$OUT/_shell.html"
           elif [ -f "$OUT/index.html" ]; then
-            cp "$OUT/index.html" "$OUT/404.html"
+            SHELL="$OUT/index.html"
           else
             echo "Neither _shell.html nor index.html exist in $OUT." >&2
             ls -la "$OUT"
             exit 1
           fi
+
+          if [ ! -f "$OUT/index.html" ]; then
+            cp "$SHELL" "$OUT/index.html"
+          fi
+          cp "$SHELL" "$OUT/404.html"
 
           touch "$OUT/.nojekyll"
           echo "dorit4trustee.com" > "$OUT/CNAME"

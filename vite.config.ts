@@ -41,6 +41,7 @@ export default defineConfig({
           { path: "/community" },
           { path: "/get-involved" },
           { path: "/contact" },
+          { path: "/privacy" },
         ],
       }
     : undefined,

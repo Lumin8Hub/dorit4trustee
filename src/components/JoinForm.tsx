@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 interface JoinFormProps {
@@ -62,18 +63,14 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="btn btn--mustard btn--lg btn--full"
-        disabled={submitting}
-      >
+      <button type="submit" className="btn btn--mustard btn--lg btn--full" disabled={submitting}>
         {submitting ? "Joining…" : "Join Team Dorit"}
       </button>
 
       <p className="join-form__disclaimer">
-        By providing your phone number you consent to receive periodic campaign
-        updates from Dorit Smali for Trustee. Text HELP for help, STOP to end.
-        Msg &amp; data rates may apply. <a href="/privacy">doritsmali.ca/privacy</a>
+        By providing your phone number you consent to receive periodic campaign updates from Dorit
+        Smali for Trustee. Text HELP for help, STOP to end. Msg &amp; data rates may apply.{" "}
+        <Link to="/privacy">dorit4trustee.com/privacy</Link>
       </p>
     </form>
   );

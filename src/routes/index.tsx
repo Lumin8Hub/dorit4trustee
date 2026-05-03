@@ -58,28 +58,28 @@ function HomePage() {
         <section className="hero">
           <div className="hero__scrim" aria-hidden="true" />
           <div className="hero__inner">
-            <div className="hero__media" aria-hidden="true" />
+            <div className="hero__panel">
+              <div className="hero__copy">
+                <p className="t-eyebrow hero__eyebrow">Make Our Schools Work For</p>
+                <h1 className="hero__headline">
+                  Our Kids
+                  <span className="hero__underline" aria-hidden="true" />
+                </h1>
+                <p className="hero__subtitle">A fresh voice for King and Vaughan Ward 1 families.</p>
+              </div>
 
-            <div className="hero__copy">
-              <p className="t-eyebrow hero__eyebrow">Make Our Schools Work For</p>
-              <h1 className="hero__headline">
-                Our Kids
-                <span className="hero__underline" aria-hidden="true" />
-              </h1>
-              <p className="hero__subtitle">A fresh voice for King and Vaughan Ward 1 families.</p>
-            </div>
+              <div className="hero__mobile-ctas">
+                <Link to="/get-involved" className="btn btn--turquoise btn--lg">
+                  Volunteer
+                </Link>
+                <Link to="/get-involved" className="btn btn--mustard btn--lg">
+                  Donate
+                </Link>
+              </div>
 
-            <div className="hero__mobile-ctas">
-              <Link to="/get-involved" className="btn btn--turquoise btn--lg">
-                Volunteer
-              </Link>
-              <Link to="/get-involved" className="btn btn--mustard btn--lg">
-                Donate
-              </Link>
-            </div>
-
-            <div className="hero__form">
-              <JoinForm id="hero-join" />
+              <div className="hero__form">
+                <JoinForm id="hero-join" />
+              </div>
             </div>
           </div>
 

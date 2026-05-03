@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
 
-const HERO_DESKTOP = "/images/hero-desktop.png";
+const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
 const PILLARS = [
   {
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "A fresh voice for King and Vaughan Ward 1 families.",
       },
-      { property: "og:image", content: HERO_DESKTOP },
+      { property: "og:image", content: HERO_DESKTOP_OG },
     ],
   }),
   component: HomePage,

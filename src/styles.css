@@ -438,6 +438,7 @@ a { color: inherit; }
   box-shadow: var(--shadow-lg);
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.55);
+  grid-column: 2;
 }
 .hero__scroll {
   position: absolute;
@@ -982,6 +983,7 @@ a { color: inherit; }
     padding: var(--sp-5);
     background: var(--c-paper);
     backdrop-filter: none;
+    grid-column: auto;
   }
   .hero__scroll { display: flex; }
   .hero__eyebrow { font-size: 16px; }

@@ -985,7 +985,7 @@ a { color: inherit; }
     backdrop-filter: none;
     grid-column: auto;
   }
-  .hero__scroll { display: flex; }
+  .hero__scroll { display: flex; color: var(--c-ink); }
   .hero__eyebrow { font-size: 16px; }
   .hero__headline {
     font-size: clamp(64px, 18vw, 92px);

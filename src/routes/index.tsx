@@ -4,9 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
 
-// TODO: replace with the official composite hero photo (Dorit + York Region landscape)
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80";
+const HERO_DESKTOP = "/images/hero-desktop.png";
 
 const PILLARS = [
   {
@@ -46,7 +44,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "A fresh voice for King and Vaughan Ward 1 families.",
       },
-      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:image", content: HERO_DESKTOP },
     ],
   }),
   component: HomePage,
@@ -57,10 +55,7 @@ function HomePage() {
     <div className="page">
       <Header variant="overlay" />
       <main>
-        <section
-          className="hero"
-          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
-        >
+        <section className="hero">
           <div className="hero__scrim" aria-hidden="true" />
           <div className="hero__inner">
             <div className="hero__copy">

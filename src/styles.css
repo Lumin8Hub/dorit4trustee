@@ -1017,13 +1017,14 @@ a { color: inherit; }
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
   }
   .hero__headline {
-    font-size: clamp(64px, 18vw, 92px);
+    font-size: clamp(48px, 13vw, 68px);
     line-height: 0.92;
-    max-width: 4ch;
+    max-width: none;
+    white-space: nowrap;
   }
   .hero__subtitle {
     font-size: 17px;
-    max-width: 14ch;
+    max-width: 28ch;
     padding: 0;
     background: transparent;
     border-radius: 0;

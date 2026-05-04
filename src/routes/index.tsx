@@ -69,9 +69,9 @@ function HomePage() {
               </div>
 
               <div className="hero__mobile-ctas">
-                <Link to="/get-involved" className="btn btn--turquoise btn--lg">
+                <a href="#hero-join-section" className="btn btn--turquoise btn--lg">
                   Volunteer
-                </Link>
+                </a>
                 <Link to="/get-involved" className="btn btn--mustard btn--lg">
                   Donate
                 </Link>
@@ -103,7 +103,7 @@ function HomePage() {
           })}
         </section>
 
-        <section className="mobile-join">
+        <section id="hero-join-section" className="mobile-join">
           <JoinForm id="mobile-join-form" />
         </section>
       </main>

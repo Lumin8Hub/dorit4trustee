@@ -2,9 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-// TODO: replace with official portrait of Dorit Smali
-const PORTRAIT_IMAGE =
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&q=80";
+const PORTRAIT_IMAGE = "/images/dorit-portrait.png";
+const PORTRAIT_IMAGE_OG = "https://dorit4trustee.com/images/dorit-portrait.png";
 
 export const Route = createFileRoute("/meet-dorit")({
   head: () => ({
@@ -20,7 +19,7 @@ export const Route = createFileRoute("/meet-dorit")({
         property: "og:description",
         content: "A mom, a leader, a neighbour — running to put students first.",
       },
-      { property: "og:image", content: PORTRAIT_IMAGE },
+      { property: "og:image", content: PORTRAIT_IMAGE_OG },
     ],
   }),
   component: MeetDoritPage,

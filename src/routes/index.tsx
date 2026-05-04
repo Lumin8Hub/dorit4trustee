@@ -4,9 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
 
-// TODO: replace with the official composite hero photo (Dorit + York Region landscape)
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80";
+const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
 const PILLARS = [
   {
@@ -46,7 +44,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "A fresh voice for King and Vaughan Ward 1 families.",
       },
-      { property: "og:image", content: HERO_IMAGE },
+      { property: "og:image", content: HERO_DESKTOP_OG },
     ],
   }),
   component: HomePage,
@@ -57,21 +55,18 @@ function HomePage() {
     <div className="page">
       <Header variant="overlay" />
       <main>
-        <section
-          className="hero"
-          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
-        >
+        <section className="hero">
           <div className="hero__scrim" aria-hidden="true" />
           <div className="hero__inner">
-            <div className="hero__copy">
-              <p className="t-eyebrow hero__eyebrow">Make Our Schools Work For</p>
-              <h1 className="hero__headline">
-                Our Kids
-                <span className="hero__underline" aria-hidden="true" />
-              </h1>
-              <p className="hero__subtitle">
-                A fresh voice for King and Vaughan Ward 1 families.
-              </p>
+            <div className="hero__panel">
+              <div className="hero__copy">
+                <p className="t-eyebrow hero__eyebrow">Make Our Schools Work For</p>
+                <h1 className="hero__headline">
+                  Our Kids
+                  <span className="hero__underline" aria-hidden="true" />
+                </h1>
+                <p className="hero__subtitle">A fresh voice for King and Vaughan Ward 1 families.</p>
+              </div>
 
               <div className="hero__mobile-ctas">
                 <Link to="/get-involved" className="btn btn--turquoise btn--lg">
@@ -81,10 +76,10 @@ function HomePage() {
                   Donate
                 </Link>
               </div>
-            </div>
 
-            <div className="hero__form">
-              <JoinForm id="hero-join" />
+              <div className="hero__form">
+                <JoinForm id="hero-join" />
+              </div>
             </div>
           </div>
 

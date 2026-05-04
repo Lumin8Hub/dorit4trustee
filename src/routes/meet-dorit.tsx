@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 const PORTRAIT_IMAGE = "/images/dorit-portrait.png";
+const PORTRAIT_IMAGE_OG = "https://dorit4trustee.com/images/dorit-portrait.png";
 
 export const Route = createFileRoute("/meet-dorit")({
   head: () => ({
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/meet-dorit")({
         property: "og:description",
         content: "A mom, a leader, a neighbour — running to put students first.",
       },
-      { property: "og:image", content: PORTRAIT_IMAGE },
+      { property: "og:image", content: PORTRAIT_IMAGE_OG },
     ],
   }),
   component: MeetDoritPage,

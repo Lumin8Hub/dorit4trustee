@@ -34,7 +34,7 @@ function MeetDoritPage() {
           <div className="meet__inner">
             <div className="meet__photo">
               <img src={PORTRAIT_IMAGE} alt="Portrait of Dorit Smali" />
-              <div className="meet__photo-tag t-script">from one mom to another</div>
+
             </div>
 
             <div className="meet__copy">

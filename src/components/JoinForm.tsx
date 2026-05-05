@@ -26,6 +26,33 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
     <form id={id} className="join-form" onSubmit={handleSubmit}>
       <h3 className="join-form__title t-eyebrow">Join the Campaign</h3>
 
+      <div className="join-form__row">
+        <div>
+          <label className="visually-hidden" htmlFor={`${id}-first`}>
+            First name
+          </label>
+          <input
+            id={`${id}-first`}
+            type="text"
+            placeholder="First Name"
+            className="join-form__input"
+            required
+          />
+        </div>
+        <div>
+          <label className="visually-hidden" htmlFor={`${id}-last`}>
+            Last name
+          </label>
+          <input
+            id={`${id}-last`}
+            type="text"
+            placeholder="Last Name"
+            className="join-form__input"
+            required
+          />
+        </div>
+      </div>
+
       <label className="visually-hidden" htmlFor={`${id}-email`}>
         Email address
       </label>
@@ -37,31 +64,15 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
         required
       />
 
-      <div className="join-form__row">
-        <div>
-          <label className="visually-hidden" htmlFor={`${id}-postal`}>
-            Postal code
-          </label>
-          <input
-            id={`${id}-postal`}
-            type="text"
-            placeholder="Your Postal Code"
-            className="join-form__input"
-            required
-          />
-        </div>
-        <div>
-          <label className="visually-hidden" htmlFor={`${id}-phone`}>
-            Phone number
-          </label>
-          <input
-            id={`${id}-phone`}
-            type="tel"
-            placeholder="Your Phone Number"
-            className="join-form__input"
-          />
-        </div>
-      </div>
+      <label className="visually-hidden" htmlFor={`${id}-phone`}>
+        Phone number
+      </label>
+      <input
+        id={`${id}-phone`}
+        type="tel"
+        placeholder="Your Phone Number"
+        className="join-form__input"
+      />
 
       <button type="submit" className="btn btn--mustard btn--lg btn--full" disabled={submitting}>
         {submitting ? "Joining…" : "Join Team Dorit"}

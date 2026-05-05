@@ -1,5 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronDown, Megaphone, Sprout, HeartHandshake } from "lucide-react";
+import {
+  ChevronDown,
+  HandHelping,
+  Heart,
+  Target,
+  Award,
+  Users,
+  BookOpen,
+  GraduationCap,
+} from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
@@ -8,26 +17,60 @@ const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
 const PILLARS = [
   {
-    icon: Megaphone,
+    icon: HandHelping,
     variant: "mustard" as const,
-    title: "A Fresh Voice for Every Family",
-    body:
-      "Dorit Smali is a Vaughan-and-King mom, community builder, and lifelong public-school advocate running to bring real visibility, real accountability, and real results to our YRDSB schools.",
+    title: "Volunteer",
+    body: "Join the movement and help elect a trustee who puts kids first. Your time and energy can make a real difference in our schools.",
+    cta: { label: "Get Involved", to: "/get-involved" },
   },
   {
-    icon: Sprout,
+    icon: Heart,
     variant: "turquoise" as const,
-    title: "Rooted in Our Communities",
-    body:
-      "From Kleinburg to Schomberg, from Maple to King City — every family deserves a trustee who listens, shows up, and puts kids first.",
+    title: "Donate to the Campaign",
+    body: "Every contribution helps us reach more families across King and Vaughan Ward 1. Support the campaign for better schools.",
+    cta: { label: "Donate Now", to: "/get-involved" },
   },
   {
-    icon: HeartHandshake,
+    icon: Target,
     variant: "taupe" as const,
-    title: "Together, We Can Build Better Schools",
-    body:
-      "Strong schools start with strong communities. Join the campaign and help create inclusive, safe, and inspiring places for every student to learn and grow.",
+    title: "Our Mission",
+    body: "To bring merit-based excellence, genuine inclusivity, and focused academics back to our YRDSB schools — putting students first in every decision.",
   },
+];
+
+const PRIORITIES = [
+  {
+    icon: Award,
+    title: "Excellence Through Merit",
+    body: "I believe that every child deserves the highest quality of instruction. I will advocate to hire all teachers based on merit, ensuring that the most qualified, capable, and passionate educators are at the front of our classrooms. Our focus should always be on professional excellence to drive student success.",
+  },
+  {
+    icon: Users,
+    title: "Unity and Equality for All",
+    body: "Our schools should be places that bring us together, not pull us apart. I will work to promote unity and oppose all forms of discrimination, division, and segregation. Every student must be treated as an individual with unique potential, ensuring a school environment that is genuinely inclusive and respectful of all backgrounds without creating new barriers.",
+  },
+  {
+    icon: BookOpen,
+    title: "Neutral Learning Environments",
+    body: "The classroom should be a sanctuary for academic growth, skill-building, and critical thinking. I promise to keep politics out of schools, ensuring that the curriculum remains focused on core academic subjects. By removing political activism from the learning environment, we allow students to focus on what matters most: their education and their future.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Enhancing Special Education and Individualized Support",
+    body: "I am committed to ensuring that every exceptional student in our region has the resources necessary to reach their full potential. I will advocate for increased funding and targeted resources for Special Education.",
+    bullets: [
+      { label: "Targeted Interventions", text: "Expanding access to specialized staff and smaller, focused learning groups to provide the intensive support students with learning challenges require." },
+      { label: "Resource Alignment", text: "Ensuring that Individual Education Plans (IEPs) are backed by the actual personnel and specialists needed to drive measurable developmental progress." },
+      { label: "Early & Consistent Support", text: "Working to reduce wait times for assessments so that students receive early, expert intervention that sets them up for lifelong success." },
+    ],
+  },
+];
+
+const WHY_THIS_MATTERS = [
+  { label: "Academic Integrity", text: "Putting the focus back on learning." },
+  { label: "True Inclusivity", text: "Treating everyone fairly without forced categorization." },
+  { label: "Professional Standards", text: "Ensuring our tax dollars go toward the best possible educators." },
+  { label: "Ensuring No Child is Left Behind", text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress." },
 ];
 
 export const Route = createFileRoute("/")({
@@ -65,7 +108,7 @@ function HomePage() {
                   Our Kids
                   <span className="hero__underline" aria-hidden="true" />
                 </h1>
-                <p className="hero__subtitle">A fresh voice for King and Vaughan Ward 1 families.</p>
+                <p className="hero__subtitle">Raising the Bar, Removing the Noise.</p>
               </div>
 
               <div className="hero__mobile-ctas">
@@ -98,9 +141,68 @@ function HomePage() {
                 </div>
                 <h3 className="pillar__title t-pillar">{p.title}</h3>
                 <p className="pillar__body">{p.body}</p>
+                {"cta" in p && p.cta && (
+                  <Link to={p.cta.to} className="btn btn--ink btn--sm pillar__cta">
+                    {p.cta.label}
+                  </Link>
+                )}
               </article>
             );
           })}
+        </section>
+
+        <section className="priorities--home" aria-label="Priorities for Our Schools">
+          <div className="priorities__inner">
+            <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
+            <h2 className="priorities__heading t-section">
+              A "Back to Basics" Approach
+            </h2>
+            <p className="priorities__intro">
+              As your future trustee, I am committed to a "back to basics" approach that prioritizes
+              student achievement and community harmony. My platform is built on the following core
+              promises:
+            </p>
+
+            <div className="priorities__grid">
+              {PRIORITIES.map((p, i) => {
+                const Icon = p.icon;
+                return (
+                  <article key={p.title} className="priority-card">
+                    <span className="priority-card__number">{i + 1}</span>
+                    <div className="priority-card__icon">
+                      <Icon size={24} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="priority-card__title">{p.title}</h3>
+                    <p className="priority-card__body">{p.body}</p>
+                    {"bullets" in p && p.bullets && (
+                      <ul className="priority-card__bullets">
+                        {p.bullets.map((b) => (
+                          <li key={b.label}>
+                            <strong>{b.label}:</strong> {b.text}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+
+            <div className="why-matters">
+              <h3 className="why-matters__title t-pillar">Why This Matters</h3>
+              <p className="why-matters__intro">
+                By reframing these issues, we move the conversation away from divisive labels and
+                back to the fundamental values that most parents share:
+              </p>
+              <ul className="why-matters__list">
+                {WHY_THIS_MATTERS.map((item) => (
+                  <li key={item.label}>
+                    <strong>{item.label}:</strong> {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </section>
 
         <section id="hero-join-section" className="mobile-join">

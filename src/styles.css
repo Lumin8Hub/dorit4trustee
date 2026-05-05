@@ -565,22 +565,22 @@ a { color: inherit; }
 .pillar__cta { margin-top: auto; align-self: flex-start; }
 
 /* =========================================================================
-   PRIORITIES
+   HOMEPAGE PRIORITIES
    ========================================================================= */
-.priorities {
+.priorities--home {
   background: var(--c-paper);
   padding: var(--sp-9) 0;
 }
-.priorities__inner {
+.priorities--home .priorities__inner {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-pad);
 }
-.priorities__eyebrow {
+.priorities--home .priorities__eyebrow {
   color: var(--c-turquoise-deep);
   margin: 0 0 var(--sp-2);
 }
-.priorities__heading {
+.priorities--home .priorities__heading {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(36px, 5vw, 56px);
@@ -590,20 +590,20 @@ a { color: inherit; }
   color: var(--c-ink);
   margin: 0 0 var(--sp-4);
 }
-.priorities__intro {
+.priorities--home .priorities__intro {
   font-size: 17px;
   line-height: 1.65;
   color: var(--c-ink-soft);
   max-width: 68ch;
   margin: 0 0 var(--sp-7);
 }
-.priorities__grid {
+.priorities--home .priorities__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-5);
   margin-bottom: var(--sp-8);
 }
-.priority-card {
+.priorities--home .priority-card {
   background: var(--c-cream);
   border-radius: var(--radius-lg);
   padding: var(--sp-6);
@@ -613,7 +613,7 @@ a { color: inherit; }
   gap: var(--sp-3);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
-.priority-card__number {
+.priorities--home .priority-card__number {
   font-family: var(--font-display);
   font-size: 48px;
   line-height: 1;
@@ -623,7 +623,7 @@ a { color: inherit; }
   top: var(--sp-4);
   right: var(--sp-5);
 }
-.priority-card__icon {
+.priorities--home .priority-card__icon {
   width: 44px; height: 44px;
   border-radius: 50%;
   display: flex;
@@ -631,8 +631,9 @@ a { color: inherit; }
   justify-content: center;
   background: var(--c-mustard);
   color: var(--c-ink);
+  border: none;
 }
-.priority-card__title {
+.priorities--home .priority-card__title {
   font-family: var(--font-body);
   font-weight: 800;
   font-size: 18px;
@@ -643,13 +644,13 @@ a { color: inherit; }
   margin: 0;
   max-width: 24ch;
 }
-.priority-card__body {
+.priorities--home .priority-card__body {
   font-size: 15px;
   line-height: 1.6;
   color: var(--c-ink-soft);
   margin: 0;
 }
-.priority-card__bullets {
+.priorities--home .priority-card__bullets {
   list-style: none;
   padding: 0;
   margin: var(--sp-2) 0 0;
@@ -657,14 +658,14 @@ a { color: inherit; }
   flex-direction: column;
   gap: var(--sp-3);
 }
-.priority-card__bullets li {
+.priorities--home .priority-card__bullets li {
   font-size: 14px;
   line-height: 1.55;
   color: var(--c-ink-soft);
   padding-left: var(--sp-4);
   position: relative;
 }
-.priority-card__bullets li::before {
+.priorities--home .priority-card__bullets li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -674,7 +675,7 @@ a { color: inherit; }
   border-radius: 50%;
   background: var(--c-turquoise);
 }
-.priority-card__bullets strong {
+.priorities--home .priority-card__bullets strong {
   color: var(--c-ink);
 }
 
@@ -1253,7 +1254,7 @@ a { color: inherit; }
   .priorities { padding: var(--sp-8) 0; }
   .priorities__list { grid-template-columns: 1fr; gap: var(--sp-4); }
   .priorities__list > :nth-child(3) { grid-column: span 1; max-width: none; }
-  .priorities__grid { grid-template-columns: 1fr; }
+  .priorities--home .priorities__grid { grid-template-columns: 1fr; }
   .why-matters__list { grid-template-columns: 1fr; }
 
   .community { padding: var(--sp-8) 0; }

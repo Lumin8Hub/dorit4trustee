@@ -151,7 +151,7 @@ function HomePage() {
           })}
         </section>
 
-        <section className="priorities" aria-label="Priorities for Our Schools">
+        <section className="priorities--home" aria-label="Priorities for Our Schools">
           <div className="priorities__inner">
             <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
             <h2 className="priorities__heading t-section">

@@ -29,14 +29,19 @@ function doPost(e) {
       timeZone: "America/Toronto",
     });
 
+    // Prefix values starting with =, +, -, @ to prevent formula injection
+    var safe = function (v) {
+      return typeof v === "string" && /^[=+\-@]/.test(v) ? "'" + v : v;
+    };
+
     // Append row to sheet
     sheet.appendRow([
       timestamp,
-      data.firstName || "",
-      data.lastName || "",
-      data.email || "",
-      data.phone || "",
-      data.source || "unknown",
+      safe(data.firstName || ""),
+      safe(data.lastName || ""),
+      safe(data.email || ""),
+      safe(data.phone || ""),
+      safe(data.source || "unknown"),
     ]);
 
     // Send email notification

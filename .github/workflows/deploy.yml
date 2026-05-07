@@ -37,6 +37,7 @@ jobs:
           # The site is served from the apex of the custom domain
           # (https://dorit4trustee.com/), so assets must be served from "/".
           BASE_PATH: /
+          VITE_FORM_ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT }}
         run: bun run build
 
       - name: Prepare GitHub Pages output

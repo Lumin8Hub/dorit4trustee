@@ -46,10 +46,9 @@ function CommunityPage() {
                 <span className="accent-bar" aria-hidden="true" />
               </h1>
               <p>
-                Long before this campaign, Dorit has been an active volunteer
-                across York Region. Her commitment to community service isn't a
-                campaign talking point — it's a lifelong pattern of showing up
-                where help is needed.
+                Long before this campaign, Dorit has been an active volunteer across York Region.
+                Her commitment to community service isn't a campaign talking point — it's a lifelong
+                pattern of showing up where help is needed.
               </p>
             </div>
 

@@ -899,6 +899,146 @@ a { color: inherit; }
   margin: 0 0 var(--sp-2);
 }
 .priority-card__body { font-size: 15px; margin: 0; }
+.priority-card__bullets {
+  list-style: none;
+  padding: 0;
+  margin: var(--sp-2) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.priority-card__bullets li {
+  font-size: 14px;
+  line-height: 1.5;
+  padding-left: 1.2em;
+  position: relative;
+}
+.priority-card__bullets li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: var(--c-turquoise);
+  font-weight: 700;
+}
+.priority-card__bullets strong {
+  color: var(--c-ink);
+}
+
+.priorities__list--four {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.priorities__why {
+  margin-top: var(--sp-8);
+  text-align: center;
+}
+.priorities__why .section-heading--sm {
+  font-size: 28px;
+  margin-bottom: var(--sp-3);
+}
+.priorities__why-lede {
+  max-width: 62ch;
+  margin: 0 auto var(--sp-5);
+}
+.priorities__why-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+  text-align: left;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.priorities__why-list li {
+  background: var(--c-cream-deep);
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.priorities__why-list strong {
+  color: var(--c-ink);
+}
+
+/* =========================================================================
+   WARD MAP
+   ========================================================================= */
+.ward-map {
+  padding: var(--sp-9) 0;
+  background: var(--c-cream);
+}
+.ward-map__head {
+  text-align: center;
+  margin-bottom: var(--sp-7);
+}
+.ward-map__lede {
+  max-width: 62ch;
+  margin: var(--sp-3) auto 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.ward-map__image-wrap {
+  margin-bottom: var(--sp-8);
+}
+.ward-map__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.ward-map__caption {
+  margin-top: var(--sp-3);
+  font-size: 13px;
+  color: var(--c-muted);
+  text-align: center;
+}
+.ward-map__caption a {
+  color: var(--c-turquoise);
+  text-decoration: underline;
+}
+.ward-map__schools {
+  margin-top: var(--sp-6);
+}
+.ward-map__schools .section-heading--sm {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: var(--sp-5);
+}
+.ward-map__school-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.ward-map__school-type {
+  font-family: var(--font-display);
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--c-turquoise);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--sp-3);
+}
+.ward-map__school-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.ward-map__school-list li {
+  font-size: 15px;
+  padding-left: 1.2em;
+  position: relative;
+}
+.ward-map__school-list li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: var(--c-mustard);
+  font-weight: 700;
+}
 
 /* =========================================================================
    COMMUNITY
@@ -1149,7 +1289,15 @@ a { color: inherit; }
 
 @media (max-width: 767px) {
   .site-header {
+    position: fixed;
     padding: var(--sp-4) 0;
+  }
+  .site-header--solid {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+  }
+  .site-header--solid + main {
+    padding-top: 72px;
   }
   .site-header__inner {
     align-items: center;
@@ -1253,9 +1401,14 @@ a { color: inherit; }
 
   .priorities { padding: var(--sp-8) 0; }
   .priorities__list { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .priorities__list--four { grid-template-columns: 1fr; }
   .priorities__list > :nth-child(3) { grid-column: span 1; max-width: none; }
   .priorities--home .priorities__grid { grid-template-columns: 1fr; }
+  .priorities__why-list { grid-template-columns: 1fr; }
   .why-matters__list { grid-template-columns: 1fr; }
+
+  .ward-map { padding: var(--sp-8) 0; }
+  .ward-map__school-grid { grid-template-columns: 1fr; }
 
   .community { padding: var(--sp-8) 0; }
   .community__inner { grid-template-columns: 1fr; gap: var(--sp-6); }

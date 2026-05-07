@@ -38,6 +38,7 @@ export default defineConfig({
           { path: "/" },
           { path: "/meet-dorit" },
           { path: "/priorities" },
+          { path: "/ward-1" },
           { path: "/community" },
           { path: "/get-involved" },
           { path: "/contact" },

@@ -59,9 +59,18 @@ const PRIORITIES = [
     title: "Enhancing Special Education and Individualized Support",
     body: "I am committed to ensuring that every exceptional student in our region has the resources necessary to reach their full potential. I will advocate for increased funding and targeted resources for Special Education.",
     bullets: [
-      { label: "Targeted Interventions", text: "Expanding access to specialized staff and smaller, focused learning groups to provide the intensive support students with learning challenges require." },
-      { label: "Resource Alignment", text: "Ensuring that Individual Education Plans (IEPs) are backed by the actual personnel and specialists needed to drive measurable developmental progress." },
-      { label: "Early & Consistent Support", text: "Working to reduce wait times for assessments so that students receive early, expert intervention that sets them up for lifelong success." },
+      {
+        label: "Targeted Interventions",
+        text: "Expanding access to specialized staff and smaller, focused learning groups to provide the intensive support students with learning challenges require.",
+      },
+      {
+        label: "Resource Alignment",
+        text: "Ensuring that Individual Education Plans (IEPs) are backed by the actual personnel and specialists needed to drive measurable developmental progress.",
+      },
+      {
+        label: "Early & Consistent Support",
+        text: "Working to reduce wait times for assessments so that students receive early, expert intervention that sets them up for lifelong success.",
+      },
     ],
   },
 ];
@@ -69,8 +78,14 @@ const PRIORITIES = [
 const WHY_THIS_MATTERS = [
   { label: "Academic Integrity", text: "Putting the focus back on learning." },
   { label: "True Inclusivity", text: "Treating everyone fairly without forced categorization." },
-  { label: "Professional Standards", text: "Ensuring our tax dollars go toward the best possible educators." },
-  { label: "Ensuring No Child is Left Behind", text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress." },
+  {
+    label: "Professional Standards",
+    text: "Ensuring our tax dollars go toward the best possible educators.",
+  },
+  {
+    label: "Ensuring No Child is Left Behind",
+    text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress.",
+  },
 ];
 
 export const Route = createFileRoute("/")({
@@ -154,9 +169,7 @@ function HomePage() {
         <section className="priorities--home" aria-label="Priorities for Our Schools">
           <div className="priorities__inner">
             <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
-            <h2 className="priorities__heading t-section">
-              A "Back to Basics" Approach
-            </h2>
+            <h2 className="priorities__heading t-section">A "Back to Basics" Approach</h2>
             <p className="priorities__intro">
               As your future trustee, I am committed to a "back to basics" approach that prioritizes
               student achievement and community harmony. My platform is built on the following core

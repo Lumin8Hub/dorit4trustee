@@ -39,8 +39,8 @@ function ContactPage() {
                 <span className="accent-bar" aria-hidden="true" />
               </h1>
               <p>
-                Have an idea, a concern, or a story about our schools? The
-                campaign inbox is open — and Dorit reads every message.
+                Have an idea, a concern, or a story about our schools? The campaign inbox is open —
+                and Dorit reads every message.
               </p>
               <ul className="contact__details">
                 <li>

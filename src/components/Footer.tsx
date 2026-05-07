@@ -3,7 +3,8 @@ import { Logo } from "./Logo";
 
 const NAV_LINKS = [
   { label: "Meet Dorit", to: "/meet-dorit" },
-  { label: "Priorities", to: "/priorities" },
+  { label: "My Priorities", to: "/priorities" },
+  { label: "Ward 1", to: "/ward-1" },
   { label: "Community", to: "/community" },
   { label: "Get Involved", to: "/get-involved" },
   { label: "Contact", to: "/contact" },

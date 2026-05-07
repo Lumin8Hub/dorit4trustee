@@ -40,8 +40,7 @@ export const Route = createFileRoute("/get-involved")({
       { property: "og:title", content: "Get Involved — Join the Movement" },
       {
         property: "og:description",
-        content:
-          "This campaign is powered by people who care about our schools and our community.",
+        content: "This campaign is powered by people who care about our schools and our community.",
       },
     ],
   }),
@@ -66,9 +65,8 @@ function GetInvolvedPage() {
                 />
               </h1>
               <p className="get-involved__lede">
-                This campaign is powered by people who care about our schools
-                and our community. Whether you have five minutes or five hours,
-                there's a way to help.
+                This campaign is powered by people who care about our schools and our community.
+                Whether you have five minutes or five hours, there's a way to help.
               </p>
             </div>
 

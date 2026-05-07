@@ -33,12 +33,12 @@ export function JoinForm({ id = "join-form", source = "unknown" }: JoinFormProps
       await fetch(FORM_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(data),
       });
 
-      toast.success("Welcome to Team Dorit!", {
-        description: "We'll be in touch with campaign updates soon.",
+      toast.success("Thanks for joining Team Dorit!", {
+        description: "If you don't hear from us soon, email info@dorit4trustee.com.",
       });
       form.reset();
     } catch {

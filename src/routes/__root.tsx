@@ -6,12 +6,24 @@ import appCss from "../styles.css?url";
 function NotFoundComponent() {
   return (
     <div className="page">
-      <main style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "120px 24px" }}>
+      <main
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "120px 24px",
+        }}
+      >
         <div style={{ maxWidth: 480, textAlign: "center" }}>
           <p className="t-eyebrow">404</p>
           <h1 className="section-heading" style={{ margin: "16px 0" }}>
             Page Not Found
-            <span className="accent-bar" aria-hidden="true" style={{ marginLeft: "auto", marginRight: "auto" }} />
+            <span
+              className="accent-bar"
+              aria-hidden="true"
+              style={{ marginLeft: "auto", marginRight: "auto" }}
+            />
           </h1>
           <p style={{ marginBottom: 24 }}>
             The page you're looking for doesn't exist or has been moved.

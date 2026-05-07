@@ -62,12 +62,12 @@ function doPost(e) {
       body: body,
     });
 
-    return ContentService.createTextOutput(
-      JSON.stringify({ result: "success" })
-    ).setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(
+      ContentService.MimeType.JSON,
+    );
   } catch (err) {
     return ContentService.createTextOutput(
-      JSON.stringify({ result: "error", message: err.toString() })
+      JSON.stringify({ result: "error", message: err.toString() }),
     ).setMimeType(ContentService.MimeType.JSON);
   }
 }
@@ -75,6 +75,6 @@ function doPost(e) {
 // Required for CORS preflight (browser sends OPTIONS before POST)
 function doGet(e) {
   return ContentService.createTextOutput(
-    JSON.stringify({ status: "ok", message: "Dorit4Trustee form endpoint is live." })
+    JSON.stringify({ status: "ok", message: "Dorit4Trustee form endpoint is live." }),
   ).setMimeType(ContentService.MimeType.JSON);
 }

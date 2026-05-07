@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Ward1RouteImport } from './routes/ward-1'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as MeetDoritRouteImport } from './routes/meet-dorit'
@@ -17,6 +18,11 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
 
+const Ward1Route = Ward1RouteImport.update({
+  id: '/ward-1',
+  path: '/ward-1',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/ward-1': typeof Ward1Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/ward-1': typeof Ward1Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/ward-1': typeof Ward1Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/ward-1'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/ward-1'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/ward-1'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,10 +131,18 @@ export interface RootRouteChildren {
   MeetDoritRoute: typeof MeetDoritRoute
   PrioritiesRoute: typeof PrioritiesRoute
   PrivacyRoute: typeof PrivacyRoute
+  Ward1Route: typeof Ward1Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ward-1': {
+      id: '/ward-1'
+      path: '/ward-1'
+      fullPath: '/ward-1'
+      preLoaderRoute: typeof Ward1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   MeetDoritRoute: MeetDoritRoute,
   PrioritiesRoute: PrioritiesRoute,
   PrivacyRoute: PrivacyRoute,
+  Ward1Route: Ward1Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

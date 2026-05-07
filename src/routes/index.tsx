@@ -121,7 +121,7 @@ function HomePage() {
               </div>
 
               <div className="hero__form">
-                <JoinForm id="hero-join" />
+                <JoinForm id="hero-join" source="homepage" />
               </div>
             </div>
           </div>
@@ -206,7 +206,7 @@ function HomePage() {
         </section>
 
         <section id="hero-join-section" className="mobile-join">
-          <JoinForm id="mobile-join-form" />
+          <JoinForm id="mobile-join-form" source="homepage-mobile" />
         </section>
       </main>
       <Footer />

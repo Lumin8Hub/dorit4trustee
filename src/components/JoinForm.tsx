@@ -2,24 +2,52 @@ import { useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 
+const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
+
 interface JoinFormProps {
   id?: string;
+  source?: string;
 }
 
-export function JoinForm({ id = "join-form" }: JoinFormProps) {
+export function JoinForm({ id = "join-form", source = "unknown" }: JoinFormProps) {
   const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
-    // TODO: POST to mailing-list backend (NationBuilder, Mailchimp, etc.)
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success("Welcome to Team Dorit!", {
-        description: "We'll be in touch with campaign updates soon.",
+
+    const form = e.target as HTMLFormElement;
+    const data = {
+      firstName: (form.elements.namedItem(`${id}-first`) as HTMLInputElement).value,
+      lastName: (form.elements.namedItem(`${id}-last`) as HTMLInputElement).value,
+      email: (form.elements.namedItem(`${id}-email`) as HTMLInputElement).value,
+      phone: (form.elements.namedItem(`${id}-phone`) as HTMLInputElement).value,
+      source,
+    };
+
+    try {
+      if (!FORM_ENDPOINT) {
+        throw new Error("Form endpoint not configured");
+      }
+
+      await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(data),
       });
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+
+      toast.success("Thanks for joining Team Dorit!", {
+        description: "If you don't hear from us soon, email info@dorit4trustee.com.",
+      });
+      form.reset();
+    } catch {
+      toast.error("Something went wrong.", {
+        description: "Please try again or email us directly.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -33,6 +61,7 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
           </label>
           <input
             id={`${id}-first`}
+            name={`${id}-first`}
             type="text"
             placeholder="First Name"
             className="join-form__input"
@@ -45,6 +74,7 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
           </label>
           <input
             id={`${id}-last`}
+            name={`${id}-last`}
             type="text"
             placeholder="Last Name"
             className="join-form__input"
@@ -58,6 +88,7 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
       </label>
       <input
         id={`${id}-email`}
+        name={`${id}-email`}
         type="email"
         placeholder="Your Email Address"
         className="join-form__input"
@@ -69,6 +100,7 @@ export function JoinForm({ id = "join-form" }: JoinFormProps) {
       </label>
       <input
         id={`${id}-phone`}
+        name={`${id}-phone`}
         type="tel"
         placeholder="Your Phone Number"
         className="join-form__input"

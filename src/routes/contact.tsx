@@ -59,7 +59,7 @@ function ContactPage() {
             </div>
 
             <div className="contact__form">
-              <JoinForm id="contact-join" />
+              <JoinForm id="contact-join" source="contact" />
             </div>
           </div>
         </section>

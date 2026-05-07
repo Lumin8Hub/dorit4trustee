@@ -95,7 +95,7 @@ function GetInvolvedPage() {
         </section>
 
         <section id="join" className="mobile-join" style={{ display: "block" }}>
-          <JoinForm id="involved-join" />
+          <JoinForm id="involved-join" source="get-involved" />
         </section>
       </main>
       <Footer />

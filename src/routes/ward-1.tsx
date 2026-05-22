@@ -47,22 +47,11 @@ function Ward1Page() {
 
             <div className="ward-map__image-wrap">
               <img
-                src="/images/yrdsb-ward1-map.jpg"
-                alt="YRDSB Trustee Determination and Distribution map showing Trustee Area 4 (King and Vaughan Ward 1) highlighted in teal"
+                src="/images/ward1-map.png"
+                alt="Trustee Electoral Area 2026–2030: King and Vaughan, Ward 1 — showing ward boundaries K1 through K6 and V1 with elementary and secondary school locations"
                 className="ward-map__image"
                 loading="lazy"
               />
-              <p className="ward-map__caption">
-                Source:{" "}
-                <a
-                  href="https://www2.yrdsb.ca/about-us/board-trustees/trustee-determination-and-distribution"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  YRDSB Trustee Determination and Distribution Review
-                </a>{" "}
-                — Trustee Area 4 (teal) represents King and Vaughan Ward 1.
-              </p>
             </div>
 
             <div className="ward-map__schools">

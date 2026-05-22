@@ -1,5 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import { DonateModal } from "@/components/DonateModal";
 
 import appCss from "../styles.css?url";
 
@@ -81,6 +82,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <DonateModal />
         <Toaster />
         <Scripts />
       </body>

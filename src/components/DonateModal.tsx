@@ -112,10 +112,14 @@ export function DonateModal() {
     }
   }
 
-  function handleCopy() {
-    navigator.clipboard.writeText(ETRANSFER_EMAIL);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(ETRANSFER_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("Failed to copy. Please copy the email address manually.");
+    }
   }
 
   return (

@@ -38,6 +38,7 @@ jobs:
           # (https://dorit4trustee.com/), so assets must be served from "/".
           BASE_PATH: /
           VITE_FORM_ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT }}
+          VITE_DONATE_ENDPOINT: ${{ secrets.VITE_DONATE_ENDPOINT }}
         run: bun run build
 
       - name: Prepare GitHub Pages output

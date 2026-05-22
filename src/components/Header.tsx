@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { openDonateModal } from "@/lib/donateModal";
 
 const NAV_LINKS = [
   { label: "Meet Dorit", to: "/meet-dorit" },
@@ -48,9 +49,15 @@ export function Header({ variant = "overlay" }: HeaderProps) {
             <Link to="/get-involved" className="btn btn--turquoise">
               Volunteer
             </Link>
-            <Link to="/get-involved" className="btn btn--mustard">
+            <button
+              type="button"
+              className="btn btn--mustard"
+              onClick={() => {
+                openDonateModal();
+              }}
+            >
               Donate
-            </Link>
+            </button>
           </div>
         </nav>
 
@@ -82,13 +89,16 @@ export function Header({ variant = "overlay" }: HeaderProps) {
           >
             Volunteer
           </Link>
-          <Link
-            to="/get-involved"
+          <button
+            type="button"
             className="btn btn--mustard btn--lg"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              setMenuOpen(false);
+              openDonateModal();
+            }}
           >
             Donate
-          </Link>
+          </button>
         </div>
       </div>
     </header>

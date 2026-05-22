@@ -990,7 +990,7 @@ a { color: inherit; }
 .ward-map__caption {
   margin-top: var(--sp-3);
   font-size: 13px;
-  color: var(--c-muted);
+  color: var(--fg-muted);
   text-align: center;
 }
 .ward-map__caption a {
@@ -1284,6 +1284,7 @@ a { color: inherit; }
   .pillars { grid-template-columns: 1fr 1fr; }
   .pillars > :nth-child(3) { grid-column: span 2; }
   .priorities__list > :nth-child(3) { grid-column: span 2; max-width: 50%; margin: 0 auto; }
+  .priorities__list--four > :nth-child(3) { grid-column: span 1; max-width: none; margin: 0; }
   .get-involved__grid > :nth-child(3) { grid-column: span 2; max-width: 50%; margin: 0 auto; }
 }
 

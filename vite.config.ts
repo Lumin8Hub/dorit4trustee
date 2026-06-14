@@ -43,10 +43,18 @@ export default defineConfig({
           { path: "/get-involved" },
           { path: "/contact" },
           { path: "/privacy" },
+          // Unlisted dynamic-homepage preview — not linked from nav, so it must
+          // be listed explicitly (crawlLinks won't discover it). noindex'd.
+          { path: "/newhome" },
         ],
       }
     : undefined,
   vite: {
     base: basePath,
+    // Local-only escape hatch: the prerender step starts an internal Vite
+    // preview server that binds IPv6 (::) by default, which some sandboxes
+    // don't support. Set PRERENDER_HOST=127.0.0.1 to force IPv4 when building
+    // locally. Unset in CI / on GitHub Pages, so the pipeline is unchanged.
+    ...(process.env.PRERENDER_HOST ? { preview: { host: process.env.PRERENDER_HOST } } : {}),
   },
 });

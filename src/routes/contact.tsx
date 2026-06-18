@@ -45,7 +45,7 @@ function ContactPage() {
               <ul className="contact__details">
                 <li>
                   <Mail size={18} strokeWidth={2} />
-                  <a href="mailto:hello@doritsmali.ca">hello@doritsmali.ca</a>
+                  <a href="mailto:info@dorit4trustee.com">info@dorit4trustee.com</a>
                 </li>
                 <li className="contact__socials">
                   <a href="#" aria-label="Instagram">

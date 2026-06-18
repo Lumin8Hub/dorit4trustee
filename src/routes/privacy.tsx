@@ -58,7 +58,7 @@ function PrivacyPage() {
             <h2>Your Choices</h2>
             <p>
               You can unsubscribe from campaign updates or ask to have your contact information
-              removed by emailing <a href="mailto:hello@doritsmali.ca">hello@doritsmali.ca</a>. Text
+              removed by emailing <a href="mailto:info@dorit4trustee.com">info@dorit4trustee.com</a>. Text
               messages may also be stopped by replying STOP.
             </p>
 
@@ -71,7 +71,7 @@ function PrivacyPage() {
             <h2>Contact</h2>
             <p>
               Questions about this policy can be sent to{" "}
-              <a href="mailto:hello@doritsmali.ca">hello@doritsmali.ca</a>.
+              <a href="mailto:info@dorit4trustee.com">info@dorit4trustee.com</a>.
             </p>
           </div>
         </section>

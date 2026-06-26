@@ -32,7 +32,7 @@ const PILLARS = [
     icon: Heart,
     variant: "turquoise" as const,
     title: "Donate to the Campaign",
-    body: "Every contribution helps us reach more families across King and Vaughan Ward 1. Support the campaign for better schools.",
+    body: "Every contribution helps us reach more families across King-Vaughan Ward 1. Support the campaign for better schools.",
     cta: { label: "Donate Now", action: "donate" as const },
   },
   {

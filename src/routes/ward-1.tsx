@@ -5,16 +5,16 @@ import { Footer } from "@/components/Footer";
 export const Route = createFileRoute("/ward-1")({
   head: () => ({
     meta: [
-      { title: "Ward 1 — Dorit Smali for YRDSB Trustee 2026" },
+      { title: "King-Vaughan Ward 1 — Dorit Smali for YRDSB Trustee 2026" },
       {
         name: "description",
         content:
-          "YRDSB Trustee Area 4: King and Vaughan Ward 1. View the electoral boundary map for the area Dorit Smali is running to represent.",
+          "YRDSB Trustee Area 4: King-Vaughan Ward 1. View the electoral boundary map for the area Dorit Smali is running to represent.",
       },
-      { property: "og:title", content: "Ward 1 — King & Vaughan" },
+      { property: "og:title", content: "King-Vaughan Ward 1" },
       {
         property: "og:description",
-        content: "See the full YRDSB electoral map for King and Vaughan Ward 1.",
+        content: "See the full YRDSB electoral map for King-Vaughan Ward 1.",
       },
     ],
   }),
@@ -31,7 +31,7 @@ function Ward1Page() {
             <div className="ward-map__head">
               <p className="t-eyebrow">Electoral Area</p>
               <h1 className="section-heading">
-                Ward 1 — King &amp; Vaughan
+                King-Vaughan Ward 1
                 <span
                   className="accent-bar"
                   aria-hidden="true"
@@ -39,16 +39,16 @@ function Ward1Page() {
                 />
               </h1>
               <p className="ward-map__lede">
-                Dorit Smali is running to represent YRDSB Trustee Area 4, covering the Township of
-                King and Vaughan Ward 1. This area includes schools such as King City S.S., Maple
-                H.S., Kleinburg P.S., Nobleton P.S., and many more.
+                Dorit Smali is running to represent YRDSB Trustee Area 4, covering King-Vaughan Ward
+                1. This area includes schools such as King City S.S., Maple H.S., Kleinburg P.S.,
+                Nobleton P.S., and many more.
               </p>
             </div>
 
             <div className="ward-map__image-wrap">
               <img
                 src="/images/ward_1_map.png"
-                alt="York Region District School Board Trustee Electoral Area 2026–2030: King and Vaughan, Ward 1 — showing ward boundaries K1 through K6 and V1 with elementary and secondary school locations"
+                alt="York Region District School Board Trustee Electoral Area 2026–2030: King-Vaughan Ward 1 — showing ward boundaries K1 through K6 and V1 with elementary and secondary school locations"
                 className="ward-map__image"
                 width={1196}
                 height={1550}

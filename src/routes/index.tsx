@@ -28,7 +28,7 @@ const PILLARS = [
     icon: Heart,
     variant: "turquoise" as const,
     title: "Donate to the Campaign",
-    body: "Every contribution helps us reach more families across King and Vaughan Ward 1. Support the campaign for better schools.",
+    body: "Every contribution helps us reach more families across King-Vaughan Ward 1. Support the campaign for better schools.",
     cta: { label: "Donate Now", action: "donate" as const },
   },
   {
@@ -96,12 +96,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A fresh voice for King and Vaughan Ward 1 families. Join the campaign for strong, caring, practical leadership in our YRDSB schools.",
+          "A fresh voice for King-Vaughan Ward 1 families. Join the campaign for strong, caring, practical leadership in our YRDSB schools.",
       },
       { property: "og:title", content: "Make Our Schools Work for Our Kids" },
       {
         property: "og:description",
-        content: "A fresh voice for King and Vaughan Ward 1 families.",
+        content: "A fresh voice for King-Vaughan Ward 1 families.",
       },
       { property: "og:image", content: HERO_DESKTOP_OG },
     ],

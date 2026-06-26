@@ -47,14 +47,14 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "A fresh voice for King and Vaughan Ward 1 families. Strong, caring, practical leadership for our YRDSB schools.",
+          "A fresh voice for King-Vaughan Ward 1 families. Strong, caring, practical leadership for our YRDSB schools.",
       },
       { name: "author", content: "Dorit Smali Campaign" },
       { property: "og:title", content: "Dorit Smali for YRDSB Trustee 2026" },
       {
         property: "og:description",
         content:
-          "A fresh voice for King and Vaughan Ward 1 families. Strong, caring, practical leadership for our YRDSB schools.",
+          "A fresh voice for King-Vaughan Ward 1 families. Strong, caring, practical leadership for our YRDSB schools.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

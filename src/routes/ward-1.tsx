@@ -47,9 +47,11 @@ function Ward1Page() {
 
             <div className="ward-map__image-wrap">
               <img
-                src="/images/ward1-map.jpg"
-                alt="Trustee Electoral Area 2026–2030: King and Vaughan, Ward 1 — showing ward boundaries K1 through K6 and V1 with elementary and secondary school locations"
+                src="/images/ward_1_map.png"
+                alt="York Region District School Board Trustee Electoral Area 2026–2030: King and Vaughan, Ward 1 — showing ward boundaries K1 through K6 and V1 with elementary and secondary school locations"
                 className="ward-map__image"
+                width={1196}
+                height={1550}
                 loading="lazy"
               />
             </div>

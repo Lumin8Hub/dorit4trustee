@@ -12,6 +12,7 @@ import {
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
+import { PhotoCarousel } from "@/components/PhotoCarousel";
 import { openDonateModal } from "@/lib/donateModal";
 
 const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
@@ -86,6 +87,29 @@ const WHY_THIS_MATTERS = [
   {
     label: "Ensuring No Child is Left Behind",
     text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress.",
+  },
+];
+
+const COMMUNITY_PHOTOS = [
+  {
+    src: "/images/community/dorit-nomination.jpg",
+    alt: "Dorit and her husband filing her trustee nomination package for the 2026 King municipal election",
+  },
+  {
+    src: "/images/community/dorit-police.jpg",
+    alt: "Dorit and her daughter with York Regional Police officers at a community festival",
+  },
+  {
+    src: "/images/community/dorit-michelle-cooper.jpg",
+    alt: "Dorit on stage with MPP Michelle Cooper at the Volunteer Service Awards",
+  },
+  {
+    src: "/images/community/dorit-family.jpg",
+    alt: "Dorit and her family at a community event",
+  },
+  {
+    src: "/images/community/dorit-king-city.jpg",
+    alt: "Dorit visiting a local artisan booth at a community market",
   },
 ];
 
@@ -274,6 +298,14 @@ function HomePage() {
               ))}
             </div>
           </div>
+        </section>
+
+        <section className="photo-carousel" aria-label="Dorit in the community">
+          <div className="photo-carousel__inner">
+            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
+            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
+          </div>
+          <PhotoCarousel photos={COMMUNITY_PHOTOS} />
         </section>
 
         <section id="hero-join-section" className="mobile-join">

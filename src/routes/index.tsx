@@ -12,6 +12,7 @@ import {
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
+import { PhotoCarousel } from "@/components/PhotoCarousel";
 import { openDonateModal } from "@/lib/donateModal";
 
 const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
@@ -86,6 +87,72 @@ const WHY_THIS_MATTERS = [
   {
     label: "Ensuring No Child is Left Behind",
     text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress.",
+  },
+];
+
+const COMMUNITY_PHOTOS = [
+  {
+    src: "/images/community/dorit-nomination.jpg",
+    alt: "Dorit and her husband filing her trustee nomination package for the 2026 King municipal election",
+  },
+  {
+    src: "/images/community/dorit-police.jpg",
+    alt: "Dorit and her daughter with York Regional Police officers at a community festival",
+  },
+  {
+    src: "/images/community/dorit-michelle-cooper.jpg",
+    alt: "Dorit on stage with MPP Michelle Cooper at the Volunteer Service Awards",
+  },
+  {
+    src: "/images/community/dorit-laura-smith.jpg",
+    alt: "Dorit with MPP Laura Smith at the UJA Walk with Israel",
+  },
+  {
+    src: "/images/community/dorit-roman-baber.jpg",
+    alt: "Dorit with MP Roman Baber at the UJA Walk with Israel",
+  },
+  {
+    src: "/images/community/dorit-family.jpg",
+    alt: "Dorit and her family at a community event",
+  },
+  {
+    src: "/images/community/dorit-melissa-lantsman.jpg",
+    alt: "Dorit with MP Melissa Lantsman at the UJA Walk with Israel",
+  },
+  {
+    src: "/images/community/dorit-king-city.jpg",
+    alt: "Dorit visiting a local artisan booth at a community market",
+  },
+  {
+    src: "/images/community/dorit-del-duca.jpg",
+    alt: "Dorit with Vaughan Mayor Steven Del Duca at an evening reception",
+  },
+  {
+    src: "/images/community/dorit-indigenous.jpg",
+    alt: "Dorit at a community gathering with Indigenous leaders and neighbours",
+  },
+  {
+    src: "/images/community/dorit-anna.jpg",
+    alt: "Dorit with a community member at a local art exhibition",
+  },
+  {
+    src: "/images/community/dorit-vincent-ho.jpg",
+    alt: "Dorit with MP Vincent Ho at an evening conference reception",
+  },
+];
+
+const ENDORSEMENTS = [
+  {
+    name: "Roman Baber",
+    role: "Member of Parliament",
+    riding: "York Centre",
+    photo: "/images/endorsers/roman-baber.jpg",
+  },
+  {
+    name: "Costas Menegakis",
+    role: "Member of Parliament",
+    riding: "Aurora-Oak Ridges",
+    photo: "/images/endorsers/costas-menegakis.jpg",
   },
 ];
 
@@ -233,6 +300,40 @@ function HomePage() {
               </ul>
             </div>
           </div>
+        </section>
+
+        <section className="endorsements" aria-label="Endorsements">
+          <div className="endorsements__inner">
+            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
+            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
+            <div className="endorsements__grid">
+              {ENDORSEMENTS.map((e) => (
+                <article key={e.name} className="endorsement-card">
+                  <img
+                    className="endorsement-card__photo"
+                    src={e.photo}
+                    alt={`Portrait of ${e.name}`}
+                    loading="lazy"
+                    width={96}
+                    height={96}
+                  />
+                  <div className="endorsement-card__text">
+                    <h3 className="endorsement-card__name">{e.name}</h3>
+                    <p className="endorsement-card__role">{e.role}</p>
+                    <p className="endorsement-card__riding">{e.riding}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="photo-carousel" aria-label="Dorit in the community">
+          <div className="photo-carousel__inner">
+            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
+            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
+          </div>
+          <PhotoCarousel photos={COMMUNITY_PHOTOS} />
         </section>
 
         <section id="hero-join-section" className="mobile-join">

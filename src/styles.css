@@ -726,6 +726,85 @@ a { color: inherit; }
 }
 
 /* =========================================================================
+   ENDORSEMENTS
+   ========================================================================= */
+.endorsements {
+  background: var(--c-cream);
+  padding: var(--sp-9) 0;
+}
+.endorsements__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+.endorsements__eyebrow {
+  color: var(--c-turquoise-deep);
+  margin: 0 0 var(--sp-2);
+  text-align: center;
+}
+.endorsements__heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4.5vw, 52px);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+  color: var(--c-ink);
+  text-align: center;
+  margin: 0 0 var(--sp-7);
+}
+.endorsements__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+  max-width: 860px;
+  margin: 0 auto;
+}
+.endorsement-card {
+  background: var(--c-paper);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
+}
+.endorsement-card__photo {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 3px solid var(--c-mustard);
+}
+.endorsement-card__text {
+  min-width: 0;
+}
+.endorsement-card__name {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--c-ink);
+  margin: 0 0 var(--sp-1);
+}
+.endorsement-card__role {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--c-ink);
+  margin: 0;
+}
+.endorsement-card__riding {
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--c-ink-soft);
+  margin: 0;
+}
+
+/* =========================================================================
    MOBILE JOIN
    ========================================================================= */
 .mobile-join {
@@ -1392,6 +1471,9 @@ a { color: inherit; }
   .pillars { grid-template-columns: 1fr; }
   .pillars > :nth-child(3) { grid-column: span 1; }
   .pillar { padding: var(--sp-6); }
+
+  .endorsements { padding: var(--sp-8) 0; }
+  .endorsements__grid { grid-template-columns: 1fr; max-width: 420px; }
 
   .meet { padding: var(--sp-8) 0; }
   .meet__inner { grid-template-columns: 1fr; gap: var(--sp-6); }

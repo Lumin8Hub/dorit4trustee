@@ -89,6 +89,21 @@ const WHY_THIS_MATTERS = [
   },
 ];
 
+const ENDORSEMENTS = [
+  {
+    name: "Roman Baber",
+    role: "Member of Parliament",
+    riding: "York Centre",
+    photo: "/images/endorsers/roman-baber.jpg",
+  },
+  {
+    name: "Costas Menegakis",
+    role: "Member of Parliament",
+    riding: "Aurora-Oak Ridges",
+    photo: "/images/endorsers/costas-menegakis.jpg",
+  },
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -231,6 +246,32 @@ function HomePage() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="endorsements" aria-label="Endorsements">
+          <div className="endorsements__inner">
+            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
+            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
+            <div className="endorsements__grid">
+              {ENDORSEMENTS.map((e) => (
+                <article key={e.name} className="endorsement-card">
+                  <img
+                    className="endorsement-card__photo"
+                    src={e.photo}
+                    alt={`Portrait of ${e.name}`}
+                    loading="lazy"
+                    width={96}
+                    height={96}
+                  />
+                  <div className="endorsement-card__text">
+                    <h3 className="endorsement-card__name">{e.name}</h3>
+                    <p className="endorsement-card__role">{e.role}</p>
+                    <p className="endorsement-card__riding">{e.riding}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

@@ -24,7 +24,7 @@ export function PhotoCarousel({ photos }: { photos: CarouselPhoto[] }) {
 
   useEffect(() => {
     if (!emblaApi || paused) return;
-    const id = setInterval(() => emblaApi.scrollNext(), 4000);
+    const id = setInterval(() => emblaApi.scrollNext(), 3000);
     return () => clearInterval(id);
   }, [emblaApi, paused]);
 

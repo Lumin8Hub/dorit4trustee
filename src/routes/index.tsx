@@ -104,12 +104,40 @@ const COMMUNITY_PHOTOS = [
     alt: "Dorit on stage with MPP Michelle Cooper at the Volunteer Service Awards",
   },
   {
+    src: "/images/community/dorit-laura-smith.jpg",
+    alt: "Dorit with MPP Laura Smith at the UJA Walk with Israel",
+  },
+  {
+    src: "/images/community/dorit-roman-baber.jpg",
+    alt: "Dorit with MP Roman Baber at the UJA Walk with Israel",
+  },
+  {
     src: "/images/community/dorit-family.jpg",
     alt: "Dorit and her family at a community event",
   },
   {
+    src: "/images/community/dorit-melissa-lantsman.jpg",
+    alt: "Dorit with MP Melissa Lantsman at the UJA Walk with Israel",
+  },
+  {
     src: "/images/community/dorit-king-city.jpg",
     alt: "Dorit visiting a local artisan booth at a community market",
+  },
+  {
+    src: "/images/community/dorit-del-duca.jpg",
+    alt: "Dorit with Vaughan Mayor Steven Del Duca at an evening reception",
+  },
+  {
+    src: "/images/community/dorit-indigenous.jpg",
+    alt: "Dorit at a community gathering with Indigenous leaders and neighbours",
+  },
+  {
+    src: "/images/community/dorit-anna.jpg",
+    alt: "Dorit with a community member at a local art exhibition",
+  },
+  {
+    src: "/images/community/dorit-vincent-ho.jpg",
+    alt: "Dorit with MP Vincent Ho at an evening conference reception",
   },
 ];
 

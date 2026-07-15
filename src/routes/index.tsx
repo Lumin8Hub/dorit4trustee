@@ -108,16 +108,16 @@ const COMMUNITY_PHOTOS = [
     alt: "Dorit with MPP Laura Smith at the UJA Walk with Israel",
   },
   {
-    src: "/images/community/dorit-roman-baber.jpg",
-    alt: "Dorit with MP Roman Baber at the UJA Walk with Israel",
+    src: "/images/community/roman-baber.jpg",
+    alt: "MP Roman Baber (York Centre), who has endorsed Dorit Smali for YRDSB Trustee",
   },
   {
     src: "/images/community/dorit-family.jpg",
     alt: "Dorit and her family at a community event",
   },
   {
-    src: "/images/community/dorit-melissa-lantsman.jpg",
-    alt: "Dorit with MP Melissa Lantsman at the UJA Walk with Israel",
+    src: "/images/community/melissa-lantsman.jpg",
+    alt: "MP Melissa Lantsman (Thornhill), who has endorsed Dorit Smali for YRDSB Trustee",
   },
   {
     src: "/images/community/dorit-king-city.jpg",

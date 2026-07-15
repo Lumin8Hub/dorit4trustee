@@ -147,12 +147,20 @@ const ENDORSEMENTS = [
     role: "Member of Parliament",
     riding: "York Centre",
     photo: "/images/endorsers/roman-baber.jpg",
+    quote: [
+      "Dorit Smali will make a great School Board Trustee! She is involved in her community, passionate about education and determined to get back to basics, instead of pushing political ideology in the classroom. I also commend her efforts in fighting Anti-semitism and look forward to her success as YRDSB Trustee!",
+    ],
   },
   {
-    name: "Costas Menegakis",
+    name: "Melissa Lantsman",
     role: "Member of Parliament",
-    riding: "Aurora-Oak Ridges",
-    photo: "/images/endorsers/costas-menegakis.jpg",
+    riding: "Thornhill",
+    photo: "/images/endorsers/melissa-lantsman.jpg",
+    quote: [
+      "The strength of our community is tied directly to the strength of our schools. That's why I am proud to endorse Dorit Smali for YRDSB Trustee.",
+      "As a mother, business leader, and dedicated advocate, Dorit brings the experience, integrity, and common sense our school board needs. She is focused on the issues that truly matter to families: putting funding into the classroom, supporting special education, and ensuring political transparency.",
+      "Dorit understands that a trustee must be accountable to parents, not the institution. She will keep the focus entirely on educational excellence, and I encourage our community to support her campaign.",
+    ],
   },
 ];
 
@@ -309,19 +317,26 @@ function HomePage() {
             <div className="endorsements__grid">
               {ENDORSEMENTS.map((e) => (
                 <article key={e.name} className="endorsement-card">
-                  <img
-                    className="endorsement-card__photo"
-                    src={e.photo}
-                    alt={`Portrait of ${e.name}`}
-                    loading="lazy"
-                    width={96}
-                    height={96}
-                  />
-                  <div className="endorsement-card__text">
-                    <h3 className="endorsement-card__name">{e.name}</h3>
-                    <p className="endorsement-card__role">{e.role}</p>
-                    <p className="endorsement-card__riding">{e.riding}</p>
+                  <div className="endorsement-card__header">
+                    <img
+                      className="endorsement-card__photo"
+                      src={e.photo}
+                      alt={`Portrait of ${e.name}`}
+                      loading="lazy"
+                      width={112}
+                      height={112}
+                    />
+                    <div className="endorsement-card__text">
+                      <h3 className="endorsement-card__name">{e.name}</h3>
+                      <p className="endorsement-card__role">{e.role}</p>
+                      <p className="endorsement-card__riding">{e.riding}</p>
+                    </div>
                   </div>
+                  <blockquote className="endorsement-card__quote">
+                    {e.quote.map((paragraph) => (
+                      <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                    ))}
+                  </blockquote>
                 </article>
               ))}
             </div>

@@ -757,7 +757,8 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-5);
-  max-width: 860px;
+  align-items: start;
+  max-width: 1020px;
   margin: 0 auto;
 }
 .endorsement-card {
@@ -765,19 +766,38 @@ a { color: inherit; }
   border-radius: var(--radius-lg);
   padding: var(--sp-5);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: var(--sp-4);
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: var(--shadow-md);
 }
+.endorsement-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
 .endorsement-card__photo {
-  width: 96px;
-  height: 96px;
+  width: 112px;
+  height: 112px;
   flex-shrink: 0;
   border-radius: 50%;
   object-fit: cover;
-  object-position: top center;
   border: 3px solid var(--c-mustard);
+}
+.endorsement-card__quote {
+  margin: 0;
+  padding-left: var(--sp-4);
+  border-left: 4px solid var(--c-turquoise);
+}
+.endorsement-card__quote p {
+  font-size: 15px;
+  line-height: 1.65;
+  font-style: italic;
+  color: var(--c-ink-soft);
+  margin: 0 0 var(--sp-3);
+}
+.endorsement-card__quote p:last-child {
+  margin-bottom: 0;
 }
 .endorsement-card__text {
   min-width: 0;
@@ -1569,7 +1589,8 @@ a { color: inherit; }
   .pillar { padding: var(--sp-6); }
 
   .endorsements { padding: var(--sp-8) 0; }
-  .endorsements__grid { grid-template-columns: 1fr; max-width: 420px; }
+  .endorsements__grid { grid-template-columns: 1fr; max-width: 560px; }
+  .endorsement-card__photo { width: 96px; height: 96px; }
 
   .photo-carousel { padding: var(--sp-8) 0; }
   .photo-carousel__slide { flex: 0 0 78%; }

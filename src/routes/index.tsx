@@ -143,6 +143,12 @@ const COMMUNITY_PHOTOS = [
 
 const ENDORSEMENTS = [
   {
+    name: "Anna Roberts",
+    role: "Member of Parliament",
+    riding: "King—Vaughan",
+    photo: "/images/endorsers/anna-roberts.jpg",
+  },
+  {
     name: "Roman Baber",
     role: "Member of Parliament",
     riding: "York Centre",

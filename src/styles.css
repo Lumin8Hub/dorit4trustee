@@ -761,17 +761,26 @@ a { color: inherit; }
   max-width: 1020px;
   margin: 0 auto;
 }
-/* Desktop: keep the tall middle card (Melissa) in the right column across
-   both rows so the third card (Costas) stacks directly beneath the first
-   (Roman) instead of dropping below Melissa's full height. */
+/* Desktop: keep the one tall card (Melissa, third in source order) in the
+   right column spanning every row, so the three short quote-less cards
+   (Anna, Roman, Costas) stack down the left column instead of dropping
+   below Melissa's full height. */
 @media (min-width: 768px) {
-  .endorsement-card:nth-child(2) {
-    grid-column: 2;
-    grid-row: 1 / span 2;
+  .endorsement-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
   }
-  .endorsement-card:nth-child(3) {
+  .endorsement-card:nth-child(2) {
     grid-column: 1;
     grid-row: 2;
+  }
+  .endorsement-card:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+  .endorsement-card:nth-child(4) {
+    grid-column: 1;
+    grid-row: 3;
   }
 }
 .endorsement-card {

@@ -1674,126 +1674,8 @@ a { color: inherit; }
 }
 
 /* =========================================================================
-   DONATE MODAL
+   DONATE — E-TRANSFER FORM + INSTRUCTIONS
    ========================================================================= */
-.donate-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(17, 17, 17, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--sp-4);
-  overflow-y: auto;
-}
-.donate-modal {
-  background: var(--c-cream);
-  border-radius: var(--radius-lg);
-  max-width: 520px;
-  width: 100%;
-  padding: var(--sp-6);
-  box-shadow: var(--shadow-card);
-  position: relative;
-  outline: none;
-}
-.donate-modal__close {
-  position: absolute;
-  top: var(--sp-3);
-  right: var(--sp-3);
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-md);
-  color: var(--c-ink);
-  transition: background-color 120ms ease;
-}
-.donate-modal__close:hover {
-  background: var(--c-cream-deep);
-}
-.donate-modal__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 28px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: var(--lh-tight);
-  color: var(--c-ink);
-  margin: 0 0 var(--sp-2);
-}
-.donate-modal__subtitle {
-  color: var(--fg-muted);
-  margin: 0 0 var(--sp-4);
-  font-size: var(--fs-body);
-  line-height: var(--lh-normal);
-}
-.donate-options {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
-.donate-option {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  width: 100%;
-  padding: var(--sp-4);
-  border-radius: var(--radius-lg);
-  background: var(--c-paper);
-  text-align: left;
-  transition: transform 140ms ease, box-shadow 140ms ease;
-  cursor: pointer;
-}
-.donate-option:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-.donate-option__icon {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--c-ink);
-}
-.donate-option__icon--mustard {
-  background: var(--c-mustard);
-}
-.donate-option__icon--turquoise {
-  background: var(--c-turquoise);
-}
-.donate-option__text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.donate-option__label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: var(--fs-body);
-  color: var(--c-ink);
-}
-.donate-option__sub {
-  font-size: var(--fs-caption);
-  color: var(--fg-muted);
-}
-.donate-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--fg-muted);
-  margin-bottom: var(--sp-3);
-  transition: color 120ms ease;
-}
-.donate-back:hover {
-  color: var(--c-ink);
-}
 .donate-form {
   display: flex;
   flex-direction: column;
@@ -1848,11 +1730,127 @@ a { color: inherit; }
   line-height: var(--lh-relaxed);
 }
 
-@media (max-width: 767px) {
-  .donate-overlay { padding: var(--sp-2); }
-  .donate-modal { padding: var(--sp-4); max-width: 100%; }
-  .donate-modal__title { font-size: 24px; }
-  .donate-option { padding: var(--sp-3); }
+/* --- Donate page --------------------------------------------------------- */
+.donate {
+  background: var(--c-cream);
+  padding: var(--sp-8) 0 var(--sp-9);
+}
+.donate-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: var(--sp-6);
+  align-items: start;
+}
+.donate-grid__main {
+  display: grid;
+  gap: var(--sp-5);
+}
+.donate-card {
+  background: var(--c-paper);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-md);
+}
+.donate-card h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+  color: var(--c-ink);
+  margin: 0 0 var(--sp-4);
+}
+.donate-card__intro {
+  color: var(--fg-muted);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  margin: 0 0 var(--sp-4);
+}
+.donate-card__note {
+  font-size: var(--fs-caption);
+  color: var(--fg-muted);
+  margin: var(--sp-3) 0 0;
+  line-height: var(--lh-normal);
+}
+.zeffy-embed {
+  position: relative;
+  width: 100%;
+  min-height: 880px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.zeffy-embed iframe {
+  width: 100%;
+  height: 880px;
+  display: block;
+}
+.zeffy-embed__fallback {
+  display: inline-block;
+  margin-top: var(--sp-3);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: var(--c-turquoise-deep);
+}
+.donate-rules {
+  background: var(--c-ink);
+  color: var(--c-cream);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-card);
+}
+.donate-rules h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+  color: var(--c-mustard);
+  margin: 0 0 var(--sp-4);
+}
+.donate-rules__lede {
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  margin: 0 0 var(--sp-4);
+}
+.donate-rules__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+.donate-rules__item {
+  border-top: 1px solid rgba(245, 239, 228, 0.18);
+  padding-top: var(--sp-3);
+}
+.donate-rules__term {
+  display: block;
+  font-weight: 800;
+  color: var(--c-mustard);
+  margin-bottom: var(--sp-1);
+}
+.donate-rules__desc {
+  display: block;
+  font-size: 15px;
+  line-height: var(--lh-relaxed);
+  color: rgba(245, 239, 228, 0.86);
+}
+.donate-rules__fine {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-caption);
+  color: rgba(245, 239, 228, 0.7);
+  line-height: var(--lh-normal);
+}
+
+@media (max-width: 1024px) {
+  .donate-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .donate-card { padding: var(--sp-4); }
+  .zeffy-embed { min-height: 1040px; }
+  .zeffy-embed iframe { height: 1040px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

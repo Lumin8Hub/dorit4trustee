@@ -1,9 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Users, Heart, MessageCircle } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
-import { openDonateModal } from "@/lib/donateModal";
 
 const GET_INVOLVED = [
   {
@@ -19,7 +18,7 @@ const GET_INVOLVED = [
     title: "Donate",
     body: "Every contribution makes an impact.",
     cta: "Contribute today",
-    action: "donate" as const,
+    to: "/donate",
   },
   {
     icon: MessageCircle,
@@ -75,13 +74,12 @@ function GetInvolvedPage() {
             <div className="get-involved__grid">
               {GET_INVOLVED.map((item) => {
                 const Icon = item.icon;
-                if ("action" in item && item.action === "donate") {
+                if ("to" in item) {
                   return (
-                    <button
+                    <Link
                       key={item.title}
-                      type="button"
+                      to={item.to}
                       className={`action-card action-card--${item.variant}`}
-                      onClick={() => openDonateModal()}
                     >
                       <span className="action-card__icon">
                         <Icon size={26} strokeWidth={1.75} />
@@ -89,7 +87,7 @@ function GetInvolvedPage() {
                       <h3 className="action-card__title">{item.title}</h3>
                       <p className="action-card__body">{item.body}</p>
                       <span className="action-card__cta">{item.cta} →</span>
-                    </button>
+                    </Link>
                   );
                 }
                 return (

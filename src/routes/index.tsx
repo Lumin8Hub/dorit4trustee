@@ -13,7 +13,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
-import { openDonateModal } from "@/lib/donateModal";
 
 const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
@@ -30,7 +29,7 @@ const PILLARS = [
     variant: "turquoise" as const,
     title: "Donate to the Campaign",
     body: "Every contribution helps us reach more families across King-Vaughan Ward 1. Support the campaign for better schools.",
-    cta: { label: "Donate Now", action: "donate" as const },
+    cta: { label: "Donate Now", to: "/donate" },
   },
   {
     icon: Target,
@@ -218,13 +217,9 @@ function HomePage() {
                 <a href="#hero-join-section" className="btn btn--turquoise btn--lg">
                   Volunteer
                 </a>
-                <button
-                  type="button"
-                  className="btn btn--mustard btn--lg"
-                  onClick={() => openDonateModal()}
-                >
+                <Link to="/donate" className="btn btn--mustard btn--lg">
                   Donate
-                </button>
+                </Link>
               </div>
 
               <div className="hero__form">
@@ -248,23 +243,11 @@ function HomePage() {
                 </div>
                 <h3 className="pillar__title t-pillar">{p.title}</h3>
                 <p className="pillar__body">{p.body}</p>
-                {"cta" in p &&
-                  p.cta &&
-                  ("action" in p.cta && p.cta.action === "donate" ? (
-                    <button
-                      type="button"
-                      className="btn btn--ink btn--sm pillar__cta"
-                      onClick={() => openDonateModal()}
-                    >
-                      {p.cta.label}
-                    </button>
-                  ) : (
-                    "to" in p.cta && (
-                      <Link to={p.cta.to} className="btn btn--ink btn--sm pillar__cta">
-                        {p.cta.label}
-                      </Link>
-                    )
-                  ))}
+                {"cta" in p && p.cta && (
+                  <Link to={p.cta.to} className="btn btn--ink btn--sm pillar__cta">
+                    {p.cta.label}
+                  </Link>
+                )}
               </article>
             );
           })}

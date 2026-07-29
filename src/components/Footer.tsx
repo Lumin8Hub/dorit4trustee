@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "Community", to: "/community" },
   { label: "Get Involved", to: "/get-involved" },
   { label: "Contact", to: "/contact" },
+  { label: "Donate", to: "/donate" },
 ] as const;
 
 export function Footer() {

@@ -1843,14 +1843,30 @@ a { color: inherit; }
   line-height: var(--lh-normal);
 }
 
+/* The shared .btn rule sets white-space: nowrap. On the long e-transfer submit
+   label that creates a ~586px min-content floor, which the grid column honours
+   and which then stretches the sibling Zeffy card past the viewport. */
+.donate-card .btn--full {
+  white-space: normal;
+}
+
+/* Zeffy sends no postMessage height signal, so the frame is sized per breakpoint
+   against its tallest step (card number + expiry/CVC + contact fields). The frame
+   narrows as the viewport does, so the form reflows taller and needs more height,
+   not less. Anything taller still scrolls inside the iframe rather than clipping.
+   These are the two numbers to tune if Zeffy's form length changes. */
 @media (max-width: 1024px) {
-  .donate-grid { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr), not 1fr: a bare 1fr resolves to minmax(auto, 1fr), whose
+     auto floor is the column's min-content width and overflows narrow screens. */
+  .donate-grid { grid-template-columns: minmax(0, 1fr); }
+  .zeffy-embed { min-height: 1100px; }
+  .zeffy-embed iframe { height: 1100px; }
 }
 
 @media (max-width: 640px) {
   .donate-card { padding: var(--sp-4); }
-  .zeffy-embed { min-height: 1040px; }
-  .zeffy-embed iframe { height: 1040px; }
+  .zeffy-embed { min-height: 1400px; }
+  .zeffy-embed iframe { height: 1400px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

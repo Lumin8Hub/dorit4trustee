@@ -103,20 +103,12 @@ const COMMUNITY_PHOTOS = [
     alt: "Dorit on stage with MPP Michelle Cooper at the Volunteer Service Awards",
   },
   {
-    src: "/images/community/dorit-laura-smith.jpg",
-    alt: "Dorit with MPP Laura Smith at the UJA Walk with Israel",
-  },
-  {
     src: "/images/community/dorit-roman-baber.jpg",
     alt: "Dorit with MP Roman Baber at the UJA Walk with Israel",
   },
   {
     src: "/images/community/dorit-family.jpg",
     alt: "Dorit and her family at a community event",
-  },
-  {
-    src: "/images/community/dorit-melissa-lantsman.jpg",
-    alt: "Dorit with MP Melissa Lantsman at the UJA Walk with Israel",
   },
   {
     src: "/images/community/dorit-king-city.jpg",

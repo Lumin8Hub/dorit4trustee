@@ -202,7 +202,7 @@ function HomePage() {
                   Our Kids
                   <span className="hero__underline" aria-hidden="true" />
                 </h1>
-                <p className="hero__subtitle">Raising the Bar, Removing the Noise.</p>
+                <p className="hero__subtitle">Back to Basics. Back to Learning.</p>
               </div>
 
               <div className="hero__mobile-ctas">

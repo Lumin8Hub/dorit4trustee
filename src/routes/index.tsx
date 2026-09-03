@@ -254,10 +254,6 @@ function HomePage() {
                 <p className="voting-card__action">Register in advance to vote online.</p>
                 <dl className="voting-card__details">
                   <div>
-                    <dt>Register by</dt>
-                    <dd>October 15</dd>
-                  </div>
-                  <div>
                     <dt>Vote online</dt>
                     <dd>October 9–18</dd>
                   </div>

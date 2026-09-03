@@ -488,6 +488,146 @@ a { color: inherit; }
 }
 
 /* =========================================================================
+   ONLINE VOTING
+   ========================================================================= */
+.online-voting {
+  background: var(--c-ink);
+  color: var(--c-paper);
+  padding: var(--sp-8) 0 var(--sp-7);
+  border-top: 6px solid var(--c-mustard);
+}
+.online-voting__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+.online-voting__intro {
+  max-width: 800px;
+  margin: 0 auto var(--sp-6);
+  text-align: center;
+}
+.online-voting__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  margin-bottom: var(--sp-4);
+  background: var(--c-mustard);
+  color: var(--c-ink);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.online-voting__eyebrow {
+  color: var(--c-turquoise);
+  margin-bottom: var(--sp-2);
+}
+.online-voting__heading {
+  margin: 0 0 var(--sp-3);
+  color: var(--c-paper);
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 400;
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+}
+.online-voting__lede {
+  max-width: 64ch;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  line-height: 1.6;
+}
+.online-voting__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+.voting-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-5);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+.voting-card--vaughan { border-top: 5px solid var(--c-mustard); }
+.voting-card--king { border-top: 5px solid var(--c-turquoise); }
+.voting-card__location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--sp-3);
+  color: var(--c-paper);
+}
+.voting-card--vaughan .voting-card__location { color: var(--c-mustard); }
+.voting-card--king .voting-card__location { color: var(--c-turquoise); }
+.voting-card__location h3 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.voting-card__action {
+  margin: 0 0 var(--sp-4);
+  color: var(--c-paper);
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.voting-card__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 var(--sp-4);
+  border-block: 1px solid rgba(255, 255, 255, 0.16);
+}
+.voting-card__details > div { padding: var(--sp-3) 0; }
+.voting-card__details > div + div {
+  padding-left: var(--sp-3);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+.voting-card__details dt {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.voting-card__details dd {
+  margin: 2px 0 0;
+  color: var(--c-paper);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.voting-card__note {
+  margin: 0 0 var(--sp-5);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.voting-card__cta {
+  width: 100%;
+  gap: 10px;
+  margin-top: auto;
+  font-size: 16px;
+}
+.online-voting__footnote {
+  margin: var(--sp-4) 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* =========================================================================
    JOIN FORM
    ========================================================================= */
 .join-form { display: flex; flex-direction: column; gap: var(--sp-3); }
@@ -1604,6 +1744,14 @@ a { color: inherit; }
   }
   .hero__underline { width: 120px; height: 5px; }
 
+  .online-voting { padding: var(--sp-7) 0 var(--sp-6); }
+  .online-voting__intro { margin-bottom: var(--sp-5); }
+  .online-voting__heading { font-size: clamp(38px, 11vw, 52px); }
+  .online-voting__lede { font-size: 16px; }
+  .online-voting__cards { grid-template-columns: 1fr; }
+  .voting-card { padding: var(--sp-4); }
+  .voting-card__action { font-size: 26px; }
+
   .mobile-join { display: block; }
 
   .pillars { grid-template-columns: 1fr; }
@@ -1660,6 +1808,12 @@ a { color: inherit; }
 @media (max-width: 380px) {
   .hero__mobile-ctas { flex-direction: column; }
   .hero__mobile-ctas .btn { width: 100%; }
+  .voting-card__details { grid-template-columns: 1fr; }
+  .voting-card__details > div + div {
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    border-left: 0;
+  }
   .join-form__row { grid-template-columns: 1fr; }
 }
 

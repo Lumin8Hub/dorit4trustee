@@ -8,6 +8,9 @@ import {
   Users,
   BookOpen,
   GraduationCap,
+  ExternalLink,
+  MapPin,
+  Vote,
 } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -220,9 +223,97 @@ function HomePage() {
             </div>
           </div>
 
-          <a href="#pillars" className="hero__scroll" aria-label="Scroll to next section">
+          <a href="#online-voting" className="hero__scroll" aria-label="Learn about online voting">
             <ChevronDown size={32} strokeWidth={2.5} />
           </a>
+        </section>
+
+        <section id="online-voting" className="online-voting" aria-labelledby="online-voting-title">
+          <div className="online-voting__inner">
+            <div className="online-voting__intro">
+              <div className="online-voting__badge">
+                <Vote size={20} strokeWidth={2.5} aria-hidden="true" />
+                <span>Action required</span>
+              </div>
+              <p className="t-eyebrow online-voting__eyebrow">2026 Municipal Election</p>
+              <h2 id="online-voting-title" className="online-voting__heading">
+                Get Ready to Vote Online
+              </h2>
+              <p className="online-voting__lede">
+                Online voting works differently in Vaughan and King. Choose where you live to
+                complete the right registration step before voting opens.
+              </p>
+            </div>
+
+            <div className="online-voting__cards">
+              <article className="voting-card voting-card--vaughan">
+                <div className="voting-card__location">
+                  <MapPin size={22} strokeWidth={2.25} aria-hidden="true" />
+                  <h3>Vaughan Residents</h3>
+                </div>
+                <p className="voting-card__action">Register in advance to vote online.</p>
+                <dl className="voting-card__details">
+                  <div>
+                    <dt>Register by</dt>
+                    <dd>October 15</dd>
+                  </div>
+                  <div>
+                    <dt>Vote online</dt>
+                    <dd>October 9–18</dd>
+                  </div>
+                </dl>
+                <p className="voting-card__note">
+                  You must already be on Vaughan's Voters’ List. Have acceptable identification
+                  and a unique email address ready.
+                </p>
+                <a
+                  href="https://internetvoting.vaughan.ca/"
+                  className="btn btn--mustard btn--lg voting-card__cta"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Register in Vaughan
+                  <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
+                </a>
+              </article>
+
+              <article className="voting-card voting-card--king">
+                <div className="voting-card__location">
+                  <MapPin size={22} strokeWidth={2.25} aria-hidden="true" />
+                  <h3>King Residents</h3>
+                </div>
+                <p className="voting-card__action">Confirm you are on the Voters’ List.</p>
+                <dl className="voting-card__details">
+                  <div>
+                    <dt>Your PIN</dt>
+                    <dd>Arrives by mail</dd>
+                  </div>
+                  <div>
+                    <dt>Vote online</dt>
+                    <dd>October 13–23</dd>
+                  </div>
+                </dl>
+                <p className="voting-card__note">
+                  Your Voter Information Letter will include the unique PIN you need to vote online.
+                  Check or update your voter registration now.
+                </p>
+                <a
+                  href="https://www.king.ca/voterinformation"
+                  className="btn btn--turquoise btn--lg voting-card__cta"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Register in King
+                  <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
+                </a>
+              </article>
+            </div>
+
+            <p className="online-voting__footnote">
+              Election Day is Monday, October 26, 2026. Online voting is available during each
+              municipality's advance voting period only.
+            </p>
+          </div>
         </section>
 
         <section id="pillars" className="pillars" aria-label="Campaign values">

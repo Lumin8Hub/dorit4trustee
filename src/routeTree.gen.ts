@@ -14,6 +14,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as NewhomeRouteImport } from './routes/newhome'
 import { Route as MeetDoritRouteImport } from './routes/meet-dorit'
+import { Route as LawnSignRouteImport } from './routes/lawn-sign'
 import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -43,6 +44,11 @@ const NewhomeRoute = NewhomeRouteImport.update({
 const MeetDoritRoute = MeetDoritRouteImport.update({
   id: '/meet-dorit',
   path: '/meet-dorit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LawnSignRoute = LawnSignRouteImport.update({
+  id: '/lawn-sign',
+  path: '/lawn-sign',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetInvolvedRoute = GetInvolvedRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/get-involved': typeof GetInvolvedRoute
+  '/lawn-sign': typeof LawnSignRoute
   '/meet-dorit': typeof MeetDoritRoute
   '/newhome': typeof NewhomeRoute
   '/priorities': typeof PrioritiesRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/get-involved': typeof GetInvolvedRoute
+  '/lawn-sign': typeof LawnSignRoute
   '/meet-dorit': typeof MeetDoritRoute
   '/newhome': typeof NewhomeRoute
   '/priorities': typeof PrioritiesRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/get-involved': typeof GetInvolvedRoute
+  '/lawn-sign': typeof LawnSignRoute
   '/meet-dorit': typeof MeetDoritRoute
   '/newhome': typeof NewhomeRoute
   '/priorities': typeof PrioritiesRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/get-involved'
+    | '/lawn-sign'
     | '/meet-dorit'
     | '/newhome'
     | '/priorities'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/get-involved'
+    | '/lawn-sign'
     | '/meet-dorit'
     | '/newhome'
     | '/priorities'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/get-involved'
+    | '/lawn-sign'
     | '/meet-dorit'
     | '/newhome'
     | '/priorities'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
   GetInvolvedRoute: typeof GetInvolvedRoute
+  LawnSignRoute: typeof LawnSignRoute
   MeetDoritRoute: typeof MeetDoritRoute
   NewhomeRoute: typeof NewhomeRoute
   PrioritiesRoute: typeof PrioritiesRoute
@@ -195,6 +208,13 @@ declare module '@tanstack/react-router' {
       path: '/meet-dorit'
       fullPath: '/meet-dorit'
       preLoaderRoute: typeof MeetDoritRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lawn-sign': {
+      id: '/lawn-sign'
+      path: '/lawn-sign'
+      fullPath: '/lawn-sign'
+      preLoaderRoute: typeof LawnSignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-involved': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
   GetInvolvedRoute: GetInvolvedRoute,
+  LawnSignRoute: LawnSignRoute,
   MeetDoritRoute: MeetDoritRoute,
   NewhomeRoute: NewhomeRoute,
   PrioritiesRoute: PrioritiesRoute,

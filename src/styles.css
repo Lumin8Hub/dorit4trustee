@@ -214,6 +214,10 @@ a { color: inherit; }
   position: relative;
 }
 .section-heading--light { color: var(--c-cream); }
+.section-heading--sm {
+  font-size: 28px;
+  margin-bottom: var(--sp-3);
+}
 .accent-bar {
   display: block;
   width: 96px;
@@ -436,6 +440,21 @@ a { color: inherit; }
   border-radius: 18px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
+}
+.hero__kicker {
+  font-family: var(--font-body);
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: var(--lh-snug);
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 400;
+  margin: var(--sp-2) 0 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+.hero__ctas {
+  display: flex;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+  flex-wrap: wrap;
 }
 .hero__mobile-ctas {
   display: none;
@@ -668,6 +687,29 @@ a { color: inherit; }
   text-align: center;
 }
 .join-form__disclaimer a { color: var(--c-turquoise-deep); }
+.lawn-sign-form__label {
+  display: block;
+  margin-bottom: var(--sp-1);
+  font-size: 14px;
+  font-weight: 600;
+}
+.lawn-sign-form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+}
+.lawn-sign-form__consent input {
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+.lawn-sign-form__hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
 
 /* =========================================================================
    PILLARS
@@ -742,7 +784,11 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-5);
-  margin-bottom: var(--sp-8);
+  margin-bottom: 0;
+}
+.priorities__more {
+  margin-top: var(--sp-6);
+  text-align: center;
 }
 .priorities--home .priority-card {
   background: var(--c-cream);
@@ -902,25 +948,26 @@ a { color: inherit; }
   max-width: 1020px;
   margin: 0 auto;
 }
-/* Desktop: keep the one tall card (Melissa, third in source order) in the
-   right column spanning every row, so the three short quote-less cards
-   (Anna, Roman, Costas) stack down the left column instead of dropping
-   below Melissa's full height. */
+/* Desktop: keep the quoted cards balanced across the two columns. */
 @media (min-width: 768px) {
   .endorsement-card:nth-child(1) {
     grid-column: 1;
     grid-row: 1;
   }
   .endorsement-card:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .endorsement-card:nth-child(3) {
     grid-column: 1;
     grid-row: 2;
   }
-  .endorsement-card:nth-child(3) {
-    grid-column: 2;
-    grid-row: 1 / span 3;
-  }
   .endorsement-card:nth-child(4) {
     grid-column: 1;
+    grid-row: 3;
+  }
+  .endorsement-card:nth-child(5) {
+    grid-column: 2;
     grid-row: 3;
   }
 }
@@ -1398,6 +1445,137 @@ a { color: inherit; }
 }
 
 /* =========================================================================
+   MEET DORIT + LAWN SIGN
+   ========================================================================= */
+.meet-dorit {
+  padding: var(--sp-9) 0;
+  background: var(--c-paper);
+}
+.meet-dorit__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) 1fr;
+  gap: var(--sp-7);
+  align-items: center;
+}
+.meet-dorit__portrait {
+  width: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+}
+.meet-dorit__quote {
+  border-left: 4px solid var(--c-mustard);
+  padding-left: var(--sp-4);
+  font-style: italic;
+  margin: var(--sp-5) 0;
+}
+.meet-dorit__quote p {
+  margin-bottom: var(--sp-2);
+}
+.meet-dorit__quote cite {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+}
+.lawn-sign-section {
+  padding: var(--sp-9) 0;
+  background: var(--c-cream);
+}
+.lawn-sign-section__inner {
+  max-width: 640px;
+  text-align: center;
+}
+.lawn-sign-section__lede {
+  margin: calc(var(--sp-3) * -1) auto var(--sp-6);
+  max-width: 58ch;
+}
+.lawn-sign-section__note {
+  margin: var(--sp-4) 0 0;
+  font-size: 14px;
+}
+.lawn-sign-section__note a,
+.lawn-sign-page__ward-note a,
+.lawn-sign-page__contact a {
+  color: var(--c-turquoise-deep);
+  font-weight: 700;
+}
+.other-ways {
+  padding: var(--sp-7) 0;
+  background: var(--c-cream-deep);
+}
+.other-ways .section-heading {
+  margin-top: 0;
+  text-align: center;
+}
+.other-ways__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-5);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.other-ways__item {
+  padding: var(--sp-5);
+  background: var(--c-paper);
+  border-radius: var(--radius-lg);
+}
+.other-ways__item h3 {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 var(--sp-2);
+}
+.other-ways__item p {
+  margin-bottom: var(--sp-4);
+}
+.lawn-sign-page {
+  padding: var(--sp-9) 0;
+  background: var(--c-cream);
+}
+.lawn-sign-page__inner {
+  max-width: 720px;
+}
+.lawn-sign-page__lede {
+  max-width: 58ch;
+  margin: calc(var(--sp-3) * -1) auto var(--sp-6);
+  font-size: 17px;
+  text-align: center;
+  line-height: 1.6;
+}
+.lawn-sign-page__how {
+  margin-top: var(--sp-8);
+}
+.lawn-sign-page__how .section-heading {
+  margin-top: 0;
+  text-align: center;
+}
+.how-it-works {
+  list-style: none;
+}
+.how-it-works li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+.how-it-works .priority-card__number {
+  flex: 0 0 auto;
+  position: static;
+  width: 44px;
+  text-align: center;
+}
+.how-it-works p {
+  margin: 0;
+}
+.lawn-sign-page__ward-note {
+  margin: var(--sp-7) 0 var(--sp-3);
+  text-align: center;
+}
+.lawn-sign-page__contact {
+  margin: 0;
+  text-align: center;
+}
+
+/* =========================================================================
    COMMUNITY
    ========================================================================= */
 .community { padding: var(--sp-9) 0; background: var(--c-cream); }
@@ -1743,6 +1921,17 @@ a { color: inherit; }
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     backdrop-filter: none;
   }
+  .hero__kicker {
+    font-size: 17px;
+    max-width: 28ch;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  }
+  .hero__ctas {
+    width: 100%;
+  }
+  .hero__ctas .btn {
+    flex: 1 1 220px;
+  }
   .hero__underline { width: 120px; height: 5px; }
 
   .online-voting { padding: var(--sp-7) 0 var(--sp-6); }
@@ -1782,6 +1971,10 @@ a { color: inherit; }
   .priorities__list--four { grid-template-columns: 1fr; }
   .priorities__list > :nth-child(3) { grid-column: span 1; max-width: none; }
   .priorities--home .priorities__grid { grid-template-columns: 1fr; }
+  .meet-dorit__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .meet-dorit__portrait { max-width: 480px; margin: 0 auto; }
+  .other-ways__grid { grid-template-columns: 1fr; }
+  .lawn-sign-page { padding: var(--sp-8) 0; }
   .priorities__why-list { grid-template-columns: 1fr; }
   .why-matters__list { grid-template-columns: 1fr; }
 
@@ -1816,6 +2009,11 @@ a { color: inherit; }
     border-left: 0;
   }
   .join-form__row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .hero__ctas { flex-direction: column; }
+  .hero__ctas .btn { width: 100%; }
 }
 
 *:focus-visible {

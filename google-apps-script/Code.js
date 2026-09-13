@@ -6,6 +6,8 @@
 // SETUP:
 // 1. Create a Google Sheet with these column headers in Row 1:
 //    Timestamp | First Name | Last Name | Email | Phone | Source
+//    Create a second tab named "Lawn Signs" with:
+//    Timestamp | First Name | Last Name | Street Address | Town | Postal Code | Email | Phone | Source
 //
 // 2. Open Extensions → Apps Script
 // 3. Paste this entire file into Code.gs (replace any default code)
@@ -33,6 +35,47 @@ function doPost(e) {
     var safe = function (v) {
       return typeof v === "string" && /^[=+\-@]/.test(v) ? "'" + v : v;
     };
+
+    if (data.formType === "lawn-sign") {
+      const lawnSignsSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Lawn Signs");
+      lawnSignsSheet.appendRow([
+        timestamp,
+        safe(data.firstName || ""),
+        safe(data.lastName || ""),
+        safe(data.address || ""),
+        safe(data.town || ""),
+        safe(data.postalCode || ""),
+        safe(data.email || ""),
+        safe(data.phone || ""),
+        safe(data.source || "unknown"),
+      ]);
+
+      const subject =
+        "New Lawn Sign Request — " + (data.firstName || "") + " " + (data.lastName || "");
+      const body = [
+        "Name: " + (data.firstName || "") + " " + (data.lastName || ""),
+        "Address: " +
+          (data.address || "") +
+          ", " +
+          (data.town || "") +
+          ", " +
+          (data.postalCode || ""),
+        "Email: " + (data.email || ""),
+        "Phone: " + (data.phone || "N/A"),
+        "Source: " + (data.source || "unknown"),
+        "Time: " + timestamp,
+      ].join("\n");
+
+      MailApp.sendEmail({
+        to: NOTIFICATION_EMAIL,
+        subject: subject,
+        body: body,
+      });
+
+      return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(
+        ContentService.MimeType.JSON,
+      );
+    }
 
     // Append row to sheet
     sheet.appendRow([

@@ -16,6 +16,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JoinForm } from "@/components/JoinForm";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
+import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
+import { ENDORSEMENTS } from "@/data/endorsements";
 
 const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
@@ -89,84 +91,6 @@ const WHY_THIS_MATTERS = [
   {
     label: "Ensuring No Child is Left Behind",
     text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress.",
-  },
-];
-
-const COMMUNITY_PHOTOS = [
-  {
-    src: "/images/community/dorit-nomination.jpg",
-    alt: "Dorit and her husband filing her trustee nomination package for the 2026 King municipal election",
-  },
-  {
-    src: "/images/community/dorit-police.jpg",
-    alt: "Dorit and her daughter with York Regional Police officers at a community festival",
-  },
-  {
-    src: "/images/community/dorit-michelle-cooper.jpg",
-    alt: "Dorit on stage with MPP Michelle Cooper at the Volunteer Service Awards",
-  },
-  {
-    src: "/images/community/dorit-roman-baber.jpg",
-    alt: "Dorit with MP Roman Baber at the UJA Walk with Israel",
-  },
-  {
-    src: "/images/community/dorit-family.jpg",
-    alt: "Dorit and her family at a community event",
-  },
-  {
-    src: "/images/community/dorit-king-city.jpg",
-    alt: "Dorit visiting a local artisan booth at a community market",
-  },
-  {
-    src: "/images/community/dorit-del-duca.jpg",
-    alt: "Dorit with Vaughan Mayor Steven Del Duca at an evening reception",
-  },
-  {
-    src: "/images/community/dorit-indigenous.jpg",
-    alt: "Dorit at a community gathering with Indigenous leaders and neighbours",
-  },
-  {
-    src: "/images/community/dorit-anna.jpg",
-    alt: "Dorit with a community member at a local art exhibition",
-  },
-  {
-    src: "/images/community/dorit-vincent-ho.jpg",
-    alt: "Dorit with MP Vincent Ho at an evening conference reception",
-  },
-];
-
-const ENDORSEMENTS = [
-  {
-    name: "Anna Roberts",
-    role: "Member of Parliament",
-    riding: "King—Vaughan",
-    photo: "/images/endorsers/anna-roberts.jpg",
-  },
-  {
-    name: "Roman Baber",
-    role: "Member of Parliament",
-    riding: "York Centre",
-    photo: "/images/endorsers/roman-baber.jpg",
-    quote: [
-      "Dorit Smali will make a great School Board Trustee! She is involved in her community, passionate about education and determined to get back to basics, instead of pushing political ideology in the classroom. I look forward to her success as YRDSB Trustee!",
-    ],
-  },
-  {
-    name: "Melissa Lantsman",
-    role: "Deputy Leader of His Majesty's Loyal Opposition",
-    riding: "Member of Parliament for Thornhill",
-    photo: "/images/endorsers/melissa-lantsman.jpg",
-    quote: [
-      "The strength of our community is tied directly to the strength of our schools. That's why I am proud to endorse Dorit Smali for YRDSB Trustee.",
-      "As a mother, business leader, and dedicated advocate, Dorit brings the experience, integrity, and common sense our school board needs. She is focused on the issues that truly matter to families: putting funding into the classroom, supporting special education, and ensuring political transparency.",
-      "Dorit understands that a trustee must be accountable to parents, not the institution. She will keep the focus entirely on educational excellence, and I encourage our community to support her campaign.",
-    ],
-  },
-  {
-    name: "Costas Menegakis",
-    role: "Member of Parliament",
-    riding: "Aurora-Oak Ridges",
-    photo: "/images/endorsers/costas-menegakis.jpg",
   },
 ];
 

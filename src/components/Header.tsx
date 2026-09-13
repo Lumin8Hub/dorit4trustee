@@ -6,16 +6,17 @@ import { Logo } from "./Logo";
 const NAV_LINKS = [
   { label: "Meet Dorit", to: "/meet-dorit" },
   { label: "My Priorities", to: "/priorities" },
-  { label: "Ward 1", to: "/ward-1" },
+  { label: "Map", to: "/ward-1" },
   { label: "Community", to: "/community" },
   { label: "Get Involved", to: "/get-involved" },
 ] as const;
 
 interface HeaderProps {
   variant?: "overlay" | "solid";
+  nav?: "default" | "voter";
 }
 
-export function Header({ variant = "overlay" }: HeaderProps) {
+export function Header({ variant = "overlay", nav = "default" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -45,12 +46,20 @@ export function Header({ variant = "overlay" }: HeaderProps) {
             ))}
           </ul>
           <div className="site-nav__ctas">
-            <Link to="/get-involved" className="btn btn--turquoise">
-              Volunteer
-            </Link>
-            <Link to="/donate" className="btn btn--mustard">
-              Donate
-            </Link>
+            {nav === "voter" ? (
+              <Link to="/lawn-sign" className="btn btn--mustard">
+                Request a Lawn Sign
+              </Link>
+            ) : (
+              <>
+                <Link to="/get-involved" className="btn btn--turquoise">
+                  Volunteer
+                </Link>
+                <Link to="/donate" className="btn btn--mustard">
+                  Donate
+                </Link>
+              </>
+            )}
           </div>
         </nav>
 
@@ -75,20 +84,41 @@ export function Header({ variant = "overlay" }: HeaderProps) {
           ))}
         </ul>
         <div className="mobile-menu__ctas">
-          <Link
-            to="/get-involved"
-            className="btn btn--turquoise btn--lg"
-            onClick={() => setMenuOpen(false)}
-          >
-            Volunteer
-          </Link>
-          <Link
-            to="/donate"
-            className="btn btn--mustard btn--lg"
-            onClick={() => setMenuOpen(false)}
-          >
-            Donate
-          </Link>
+          {nav === "voter" ? (
+            <>
+              <Link
+                to="/lawn-sign"
+                className="btn btn--mustard btn--lg"
+                onClick={() => setMenuOpen(false)}
+              >
+                Request a Lawn Sign
+              </Link>
+              <Link
+                to="/get-involved"
+                className="btn btn--turquoise btn--lg"
+                onClick={() => setMenuOpen(false)}
+              >
+                Get Involved
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/get-involved"
+                className="btn btn--turquoise btn--lg"
+                onClick={() => setMenuOpen(false)}
+              >
+                Volunteer
+              </Link>
+              <Link
+                to="/donate"
+                className="btn btn--mustard btn--lg"
+                onClick={() => setMenuOpen(false)}
+              >
+                Donate
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

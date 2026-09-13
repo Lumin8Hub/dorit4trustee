@@ -693,6 +693,7 @@ a { color: inherit; }
   font-size: 14px;
   font-weight: 600;
 }
+.lawn-sign-form { text-align: left; }
 .lawn-sign-form__consent {
   display: flex;
   align-items: flex-start;
@@ -1930,7 +1931,8 @@ a { color: inherit; }
     width: 100%;
   }
   .hero__ctas .btn {
-    flex: 1 1 220px;
+    flex: 0 0 auto;
+    width: 100%;
   }
   .hero__underline { width: 120px; height: 5px; }
 
@@ -2013,7 +2015,6 @@ a { color: inherit; }
 
 @media (max-width: 480px) {
   .hero__ctas { flex-direction: column; }
-  .hero__ctas .btn { width: 100%; }
 }
 
 *:focus-visible {

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { LawnSignForm } from "@/components/LawnSignForm";
-import { SectionHeading } from "@/components/SectionHeading";
 
 export const Route = createFileRoute("/lawn-sign")({
   head: () => ({
@@ -34,9 +33,17 @@ function LawnSignPage() {
       <main>
         <section className="lawn-sign-page">
           <div className="container lawn-sign-page__inner">
-            <SectionHeading align="center" eyebrow="Show Your Support">
+            <p className="t-eyebrow" style={{ textAlign: "center" }}>
+              Show Your Support
+            </p>
+            <h1 className="section-heading" style={{ textAlign: "center" }}>
               Request a Lawn Sign
-            </SectionHeading>
+              <span
+                className="accent-bar"
+                aria-hidden="true"
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+              />
+            </h1>
             <p className="lawn-sign-page__lede">
               A sign on your lawn tells your neighbours you are voting for Dorit. It takes 30
               seconds to request one. We deliver it, and we collect it after Election Day on October

@@ -1,98 +1,46 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ChevronDown,
-  HandHelping,
-  Heart,
-  Target,
   Award,
-  Users,
   BookOpen,
-  GraduationCap,
+  ChevronDown,
   ExternalLink,
+  GraduationCap,
   MapPin,
+  Users,
   Vote,
 } from "lucide-react";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { JoinForm } from "@/components/JoinForm";
+import { Header } from "@/components/Header";
+import { LawnSignForm } from "@/components/LawnSignForm";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
+import { SectionHeading } from "@/components/SectionHeading";
 import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
 import { ENDORSEMENTS } from "@/data/endorsements";
 
-const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
-
-const PILLARS = [
-  {
-    icon: HandHelping,
-    variant: "mustard" as const,
-    title: "Volunteer",
-    body: "Join the movement and help elect a trustee who puts kids first. Your time and energy can make a real difference in our schools.",
-    cta: { label: "Get Involved", to: "/get-involved" },
-  },
-  {
-    icon: Heart,
-    variant: "turquoise" as const,
-    title: "Donate to the Campaign",
-    body: "Every contribution helps us reach more families across King-Vaughan Ward 1. Support the campaign for better schools.",
-    cta: { label: "Donate Now", to: "/donate" },
-  },
-  {
-    icon: Target,
-    variant: "taupe" as const,
-    title: "Our Mission",
-    body: "To bring merit-based excellence, genuine inclusivity, and focused academics back to our YRDSB schools — putting students first in every decision.",
-  },
-];
-
-const PRIORITIES = [
+const HOME_PRIORITIES = [
   {
     icon: Award,
     title: "Excellence Through Merit",
-    body: "I believe that every child deserves the highest quality of instruction. I will advocate to hire all teachers based on merit, ensuring that the most qualified, capable, and passionate educators are at the front of our classrooms. Our focus should always be on professional excellence to drive student success.",
+    body: "Every child deserves the best instruction. I will advocate for hiring all teachers on merit, so the most qualified, capable, and passionate educators lead our classrooms.",
   },
   {
     icon: Users,
     title: "Unity and Equality for All",
-    body: "Our schools should be places that bring us together, not pull us apart. I will work to promote unity and oppose all forms of discrimination, division, and segregation. Every student must be treated as an individual with unique potential, ensuring a school environment that is genuinely inclusive and respectful of all backgrounds without creating new barriers.",
+    body: "Schools should bring us together, not pull us apart. I will promote unity and oppose discrimination, division, and segregation in every form. Every student is an individual, and every background deserves respect, without new barriers.",
   },
   {
     icon: BookOpen,
     title: "Neutral Learning Environments",
-    body: "The classroom should be a sanctuary for academic growth, skill-building, and critical thinking. I promise to keep politics out of schools, ensuring that the curriculum remains focused on core academic subjects. By removing political activism from the learning environment, we allow students to focus on what matters most: their education and their future.",
+    body: "The classroom is for academics, skills, and critical thinking. I will work to keep politics out of schools, so the curriculum stays on core subjects and students stay focused on their education and their future.",
   },
   {
     icon: GraduationCap,
     title: "Enhancing Special Education and Individualized Support",
-    body: "I am committed to ensuring that every exceptional student in our region has the resources necessary to reach their full potential. I will advocate for increased funding and targeted resources for Special Education.",
-    bullets: [
-      {
-        label: "Targeted Interventions",
-        text: "Expanding access to specialized staff and smaller, focused learning groups to provide the intensive support students with learning challenges require.",
-      },
-      {
-        label: "Resource Alignment",
-        text: "Ensuring that Individual Education Plans (IEPs) are backed by the actual personnel and specialists needed to drive measurable developmental progress.",
-      },
-      {
-        label: "Early & Consistent Support",
-        text: "Working to reduce wait times for assessments so that students receive early, expert intervention that sets them up for lifelong success.",
-      },
-    ],
+    body: "Every exceptional student deserves the resources to reach their full potential. I will advocate for more funding and targeted support: specialized staff, smaller learning groups, IEPs backed by real personnel, and shorter wait times for assessments.",
   },
 ];
 
-const WHY_THIS_MATTERS = [
-  { label: "Academic Integrity", text: "Putting the focus back on learning." },
-  { label: "True Inclusivity", text: "Treating everyone fairly without forced categorization." },
-  {
-    label: "Professional Standards",
-    text: "Ensuring our tax dollars go toward the best possible educators.",
-  },
-  {
-    label: "Ensuring No Child is Left Behind",
-    text: "Proper funding for Special Education means students with learning challenges get the expert, small-group attention they need to actually progress.",
-  },
-];
+const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -117,7 +65,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <div className="page">
-      <Header variant="overlay" />
+      <Header variant="overlay" nav="voter" />
       <main>
         <section className="hero">
           <div className="hero__scrim" aria-hidden="true" />
@@ -130,26 +78,137 @@ function HomePage() {
                   <span className="hero__underline" aria-hidden="true" />
                 </h1>
                 <p className="hero__subtitle">Back to Basics. Back to Learning.</p>
+                <p className="hero__kicker">Dorit Smali for YRDSB Trustee, King-Vaughan Ward 1</p>
               </div>
 
-              <div className="hero__mobile-ctas">
-                <a href="#hero-join-section" className="btn btn--turquoise btn--lg">
-                  Volunteer
+              <div className="hero__ctas">
+                <a href="#priorities" className="btn btn--mustard btn--lg">
+                  See My Priorities
                 </a>
-                <Link to="/donate" className="btn btn--mustard btn--lg">
-                  Donate
+                <Link to="/lawn-sign" className="btn btn--turquoise btn--lg">
+                  Request a Lawn Sign
                 </Link>
-              </div>
-
-              <div className="hero__form">
-                <JoinForm id="hero-join" source="homepage" />
               </div>
             </div>
           </div>
 
-          <a href="#online-voting" className="hero__scroll" aria-label="Learn about online voting">
+          <a href="#priorities" className="hero__scroll" aria-label="See my priorities">
             <ChevronDown size={32} strokeWidth={2.5} />
           </a>
+        </section>
+
+        <section
+          id="priorities"
+          className="priorities--home"
+          aria-label="Priorities for Our Schools"
+        >
+          <div className="priorities__inner">
+            <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
+            <h2 className="priorities__heading t-section">A "Back to Basics" Approach</h2>
+            <p className="priorities__intro">
+              As your trustee, I will put student achievement and community harmony first. Four
+              promises:
+            </p>
+
+            <div className="priorities__grid">
+              {HOME_PRIORITIES.map((p, i) => {
+                const Icon = p.icon;
+                return (
+                  <article key={p.title} className="priority-card">
+                    <span className="priority-card__number">{i + 1}</span>
+                    <div className="priority-card__icon">
+                      <Icon size={24} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="priority-card__title">{p.title}</h3>
+                    <p className="priority-card__body">{p.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+
+            <div className="priorities__more">
+              <Link to="/priorities" className="btn btn--ink">
+                Read the full platform
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="endorsements" aria-label="Endorsements">
+          <div className="endorsements__inner">
+            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
+            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
+            <div className="endorsements__grid">
+              {ENDORSEMENTS.map((e) => (
+                <article key={e.name} className="endorsement-card">
+                  <div className="endorsement-card__header">
+                    <img
+                      className="endorsement-card__photo"
+                      src={e.photo}
+                      alt={`Portrait of ${e.name}`}
+                      loading="lazy"
+                      width={112}
+                      height={112}
+                    />
+                    <div className="endorsement-card__text">
+                      <h3 className="endorsement-card__name">{e.name}</h3>
+                      <p className="endorsement-card__role">{e.role}</p>
+                      <p className="endorsement-card__riding">{e.riding}</p>
+                    </div>
+                  </div>
+                  {e.quote && (
+                    <blockquote className="endorsement-card__quote">
+                      {e.quote.map((paragraph) => (
+                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                      ))}
+                    </blockquote>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="meet-dorit">
+          <div className="container meet-dorit__inner">
+            <img
+              src="/images/dorit-portrait.png"
+              className="meet-dorit__portrait"
+              alt="Dorit Smali"
+              loading="lazy"
+            />
+            <div>
+              <SectionHeading eyebrow="Meet Dorit">A Mom, a Leader, a Neighbour.</SectionHeading>
+              <p>
+                Dorit Smali is a wife, a mother of two young children, and a York Region community
+                builder. For more than 20 years she has helped large organizations adopt new
+                technology to deliver better services at lower cost. She knows how to manage a
+                complex budget, ask the right questions, and turn priorities into results.
+              </p>
+              <p>
+                The YRDSB manages a budget of more than $1.8 billion. That money belongs to our
+                community, and it should work as hard as possible for our students.
+              </p>
+              <blockquote className="meet-dorit__quote">
+                <p>
+                  Our schools, families, and children deserve strong, caring, practical leadership
+                  that always puts students first.
+                </p>
+                <cite>Dorit</cite>
+              </blockquote>
+              <Link to="/meet-dorit" className="btn btn--ink">
+                Read Dorit&apos;s Story
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="photo-carousel" aria-label="Dorit in the community">
+          <div className="photo-carousel__inner">
+            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
+            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
+          </div>
+          <PhotoCarousel photos={COMMUNITY_PHOTOS} />
         </section>
 
         <section id="online-voting" className="online-voting" aria-labelledby="online-voting-title">
@@ -183,7 +242,7 @@ function HomePage() {
                   </div>
                 </dl>
                 <p className="voting-card__note">
-                  You must already be on Vaughan's Voters’ List. Have acceptable identification
+                  You must already be on Vaughan&apos;s Voters’ List. Have acceptable identification
                   and a unique email address ready.
                 </p>
                 <a
@@ -231,128 +290,47 @@ function HomePage() {
 
             <p className="online-voting__footnote">
               Election Day is Monday, October 26, 2026. Online voting is available during each
-              municipality's advance voting period only.
+              municipality&apos;s advance voting period only.
             </p>
           </div>
         </section>
 
-        <section id="pillars" className="pillars" aria-label="Campaign values">
-          {PILLARS.map((p) => {
-            const Icon = p.icon;
-            return (
-              <article key={p.title} className={`pillar pillar--${p.variant}`}>
-                <div className="pillar__icon">
-                  <Icon size={28} strokeWidth={1.5} />
-                </div>
-                <h3 className="pillar__title t-pillar">{p.title}</h3>
-                <p className="pillar__body">{p.body}</p>
-                {"cta" in p && p.cta && (
-                  <Link to={p.cta.to} className="btn btn--ink btn--sm pillar__cta">
-                    {p.cta.label}
-                  </Link>
-                )}
-              </article>
-            );
-          })}
-        </section>
-
-        <section className="priorities--home" aria-label="Priorities for Our Schools">
-          <div className="priorities__inner">
-            <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
-            <h2 className="priorities__heading t-section">A "Back to Basics" Approach</h2>
-            <p className="priorities__intro">
-              As your future trustee, I am committed to a "back to basics" approach that prioritizes
-              student achievement and community harmony. My platform is built on the following core
-              promises:
+        <section id="lawn-sign" className="lawn-sign-section">
+          <div className="container lawn-sign-section__inner">
+            <SectionHeading align="center" eyebrow="Show Your Support">
+              Request a Lawn Sign
+            </SectionHeading>
+            <p className="lawn-sign-section__lede">
+              Signs go up soon. Tell us where to put yours. We deliver it, and we pick it up after
+              Election Day.
             </p>
-
-            <div className="priorities__grid">
-              {PRIORITIES.map((p, i) => {
-                const Icon = p.icon;
-                return (
-                  <article key={p.title} className="priority-card">
-                    <span className="priority-card__number">{i + 1}</span>
-                    <div className="priority-card__icon">
-                      <Icon size={24} strokeWidth={1.5} />
-                    </div>
-                    <h3 className="priority-card__title">{p.title}</h3>
-                    <p className="priority-card__body">{p.body}</p>
-                    {"bullets" in p && p.bullets && (
-                      <ul className="priority-card__bullets">
-                        {p.bullets.map((b) => (
-                          <li key={b.label}>
-                            <strong>{b.label}:</strong> {b.text}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </article>
-                );
-              })}
-            </div>
-
-            <div className="why-matters">
-              <h3 className="why-matters__title t-pillar">Why This Matters</h3>
-              <p className="why-matters__intro">
-                By reframing these issues, we move the conversation away from divisive labels and
-                back to the fundamental values that most parents share:
-              </p>
-              <ul className="why-matters__list">
-                {WHY_THIS_MATTERS.map((item) => (
-                  <li key={item.label}>
-                    <strong>{item.label}:</strong> {item.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <LawnSignForm id="home-lawn-sign" source="home" />
+            <p className="lawn-sign-section__note">
+              Not sure if your home is in Ward 1? <Link to="/ward-1">Check the map.</Link>
+            </p>
           </div>
         </section>
 
-        <section className="endorsements" aria-label="Endorsements">
-          <div className="endorsements__inner">
-            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
-            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
-            <div className="endorsements__grid">
-              {ENDORSEMENTS.map((e) => (
-                <article key={e.name} className="endorsement-card">
-                  <div className="endorsement-card__header">
-                    <img
-                      className="endorsement-card__photo"
-                      src={e.photo}
-                      alt={`Portrait of ${e.name}`}
-                      loading="lazy"
-                      width={112}
-                      height={112}
-                    />
-                    <div className="endorsement-card__text">
-                      <h3 className="endorsement-card__name">{e.name}</h3>
-                      <p className="endorsement-card__role">{e.role}</p>
-                      <p className="endorsement-card__riding">{e.riding}</p>
-                    </div>
-                  </div>
-                  {e.quote && (
-                    <blockquote className="endorsement-card__quote">
-                      {e.quote.map((paragraph) => (
-                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                      ))}
-                    </blockquote>
-                  )}
-                </article>
-              ))}
+        <section className="other-ways">
+          <div className="container">
+            <h2 className="section-heading section-heading--sm">Other Ways to Help</h2>
+            <div className="other-ways__grid">
+              <div className="other-ways__item">
+                <h3>Volunteer</h3>
+                <p>Have a few hours? Knock on doors, make calls, or help at an event.</p>
+                <Link to="/get-involved" className="btn btn--turquoise btn--sm">
+                  Volunteer
+                </Link>
+              </div>
+              <div className="other-ways__item">
+                <h3>Donate</h3>
+                <p>Contributions pay for signs, flyers, and reaching more families in Ward 1.</p>
+                <Link to="/donate" className="btn btn--mustard btn--sm">
+                  Donate
+                </Link>
+              </div>
             </div>
           </div>
-        </section>
-
-        <section className="photo-carousel" aria-label="Dorit in the community">
-          <div className="photo-carousel__inner">
-            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
-            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
-          </div>
-          <PhotoCarousel photos={COMMUNITY_PHOTOS} />
-        </section>
-
-        <section id="hero-join-section" className="mobile-join">
-          <JoinForm id="mobile-join-form" source="homepage-mobile" />
         </section>
       </main>
       <Footer />

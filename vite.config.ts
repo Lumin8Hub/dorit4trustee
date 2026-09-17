@@ -43,9 +43,6 @@ export default defineConfig({
           { path: "/get-involved" },
           { path: "/contact" },
           { path: "/privacy" },
-          // Unlisted dynamic-homepage preview — not linked from nav, so it must
-          // be listed explicitly (crawlLinks won't discover it). noindex'd.
-          { path: "/newhome" },
         ],
       }
     : undefined,

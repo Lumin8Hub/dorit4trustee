@@ -16,7 +16,7 @@ interface HeaderProps {
   nav?: "default" | "voter";
 }
 
-export function Header({ variant = "overlay", nav = "default" }: HeaderProps) {
+export function Header({ variant = "overlay", nav = "voter" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {

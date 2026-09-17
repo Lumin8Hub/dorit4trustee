@@ -14,6 +14,18 @@ export const ENDORSEMENTS: Endorsement[] = [
     photo: "/images/endorsers/stephen-lecce.jpg",
   },
   {
+    name: "Anna Roberts",
+    role: "Member of Parliament",
+    riding: "King—Vaughan",
+    photo: "/images/endorsers/anna-roberts.jpg",
+  },
+  {
+    name: "Costas Menegakis",
+    role: "Member of Parliament",
+    riding: "Aurora-Oak Ridges",
+    photo: "/images/endorsers/costas-menegakis.jpg",
+  },
+  {
     name: "Melissa Lantsman",
     role: "Deputy Leader of His Majesty's Loyal Opposition",
     riding: "Member of Parliament for Thornhill",
@@ -32,17 +44,5 @@ export const ENDORSEMENTS: Endorsement[] = [
     quote: [
       "Dorit Smali will make a great School Board Trustee! She is involved in her community, passionate about education and determined to get back to basics, instead of pushing political ideology in the classroom. I look forward to her success as YRDSB Trustee!",
     ],
-  },
-  {
-    name: "Anna Roberts",
-    role: "Member of Parliament",
-    riding: "King—Vaughan",
-    photo: "/images/endorsers/anna-roberts.jpg",
-  },
-  {
-    name: "Costas Menegakis",
-    role: "Member of Parliament",
-    riding: "Aurora-Oak Ridges",
-    photo: "/images/endorsers/costas-menegakis.jpg",
   },
 ];

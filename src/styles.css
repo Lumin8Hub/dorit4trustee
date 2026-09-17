@@ -1866,7 +1866,7 @@ a { color: inherit; }
   .hero {
     min-height: 100svh;
     padding-top: 96px;
-    padding-bottom: var(--sp-6);
+    padding-bottom: var(--sp-8);
     background: url("/images/hero-mobile.png") 72% 28% / cover no-repeat;
   }
   .hero__scrim {
@@ -1879,7 +1879,7 @@ a { color: inherit; }
     align-items: flex-end;
     justify-content: stretch;
     padding: 0 var(--container-pad);
-    min-height: calc(100svh - 96px - var(--sp-6));
+    min-height: calc(100svh - 96px - var(--sp-8));
   }
   .hero__panel {
     width: 100%;

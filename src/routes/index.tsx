@@ -1,44 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Award,
-  BookOpen,
-  ChevronDown,
-  ExternalLink,
-  GraduationCap,
-  MapPin,
-  Users,
-  Vote,
-} from "lucide-react";
+import { ChevronDown, ExternalLink, MapPin, Vote } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { LawnSignForm } from "@/components/LawnSignForm";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
+import { LawnSignCard, PriorityCard } from "@/components/PriorityCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
 import { ENDORSEMENTS } from "@/data/endorsements";
-
-const HOME_PRIORITIES = [
-  {
-    icon: Award,
-    title: "Excellence Through Merit",
-    body: "Every child deserves the best instruction. I will advocate for hiring all teachers on merit, so the most qualified, capable, and passionate educators lead our classrooms.",
-  },
-  {
-    icon: Users,
-    title: "Unity and Equality for All",
-    body: "Schools should bring us together, not pull us apart. I will promote unity and oppose discrimination, division, and segregation in every form. Every student is an individual, and every background deserves respect, without new barriers.",
-  },
-  {
-    icon: BookOpen,
-    title: "Neutral Learning Environments",
-    body: "The classroom is for academics, skills, and critical thinking. I will work to keep politics out of schools, so the curriculum stays on core subjects and students stay focused on their education and their future.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Enhancing Special Education and Individualized Support",
-    body: "Every exceptional student deserves the resources to reach their full potential. I will advocate for more funding and targeted support: specialized staff, smaller learning groups, IEPs backed by real personnel, and shorter wait times for assessments.",
-  },
-];
+import { PRIORITIES } from "@/data/priorities";
 
 const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
@@ -104,26 +74,17 @@ function HomePage() {
         >
           <div className="priorities__inner">
             <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
-            <h2 className="priorities__heading t-section">A "Back to Basics" Approach</h2>
+            <h2 className="priorities__heading t-section">A Back to Basics Approach</h2>
             <p className="priorities__intro">
-              As your trustee, I will put student achievement and community harmony first. Four
+              As your trustee, I will put student achievement and community harmony first. Five
               promises:
             </p>
 
-            <div className="priorities__grid">
-              {HOME_PRIORITIES.map((p, i) => {
-                const Icon = p.icon;
-                return (
-                  <article key={p.title} className="priority-card">
-                    <span className="priority-card__number">{i + 1}</span>
-                    <div className="priority-card__icon">
-                      <Icon size={24} strokeWidth={1.5} />
-                    </div>
-                    <h3 className="priority-card__title">{p.title}</h3>
-                    <p className="priority-card__body">{p.body}</p>
-                  </article>
-                );
-              })}
+            <div className="promises-grid">
+              {PRIORITIES.map((p, i) => (
+                <PriorityCard key={p.id} priority={p} number={i + 1} />
+              ))}
+              <LawnSignCard href="#lawn-sign" source="home-priorities-grid" />
             </div>
 
             <div className="priorities__more">

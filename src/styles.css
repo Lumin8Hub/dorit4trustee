@@ -781,47 +781,58 @@ a { color: inherit; }
   max-width: 68ch;
   margin: 0 0 var(--sp-7);
 }
-.priorities--home .priorities__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-5);
-  margin-bottom: 0;
-}
 .priorities__more {
   margin-top: var(--sp-6);
   text-align: center;
 }
-.priorities--home .priority-card {
-  background: var(--c-cream);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-6);
+
+/* =========================================================================
+   PROMISES GRID (shared by the home page and /priorities)
+   3 columns desktop, 2 tablet, 1 mobile. Five pillar cards + lawn sign CTA.
+   ========================================================================= */
+.promises-grid {
+  --promise-card-bg: var(--c-cream);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-5);
+  margin: 0;
+}
+.priorities .promises-grid {
+  --promise-card-bg: var(--c-cream-deep);
+}
+
+.promise-card {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: var(--sp-6) var(--sp-5);
+  background: var(--promise-card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  scroll-margin-top: 96px;
 }
-.priorities--home .priority-card__number {
+.promise-card__number {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-5);
   font-family: var(--font-display);
   font-size: 48px;
   line-height: 1;
   color: var(--c-mustard);
-  opacity: 0.4;
-  position: absolute;
-  top: var(--sp-4);
-  right: var(--sp-5);
+  opacity: 0.45;
 }
-.priorities--home .priority-card__icon {
-  width: 44px; height: 44px;
+.promise-card__icon {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--c-mustard);
   color: var(--c-ink);
-  border: none;
 }
-.priorities--home .priority-card__title {
+.promise-card__title {
   font-family: var(--font-body);
   font-weight: 800;
   font-size: 18px;
@@ -830,41 +841,72 @@ a { color: inherit; }
   line-height: 1.2;
   color: var(--c-ink);
   margin: 0;
-  max-width: 24ch;
+  max-width: 22ch;
+  text-wrap: balance;
 }
-.priorities--home .priority-card__body {
+.promise-card__body {
   font-size: 15px;
   line-height: 1.6;
   color: var(--c-ink-soft);
   margin: 0;
 }
-.priorities--home .priority-card__bullets {
+.promise-card__bullets {
   list-style: none;
   padding: 0;
-  margin: var(--sp-2) 0 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-2);
 }
-.priorities--home .priority-card__bullets li {
+.promise-card__bullets li {
+  position: relative;
+  padding-left: var(--sp-4);
   font-size: 14px;
   line-height: 1.55;
   color: var(--c-ink-soft);
-  padding-left: var(--sp-4);
-  position: relative;
 }
-.priorities--home .priority-card__bullets li::before {
-  content: '';
+.promise-card__bullets li::before {
+  content: "";
   position: absolute;
   left: 0;
-  top: 8px;
+  top: 7px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--c-turquoise);
 }
-.priorities--home .priority-card__bullets strong {
+.promise-card__bullets strong {
   color: var(--c-ink);
+}
+.promise-card__close {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+/* Slot six: lawn sign CTA */
+.promise-card--cta {
+  background: var(--c-ink);
+  border-color: var(--c-ink);
+  color: var(--c-cream);
+}
+.promise-card--cta .promise-card__title {
+  color: var(--c-paper);
+}
+.promise-card--cta .promise-card__body {
+  color: var(--c-cream);
+  opacity: 0.85;
+}
+.promise-card__eyebrow {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--c-mustard);
+}
+.promise-card__cta {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .why-matters {
@@ -1253,86 +1295,6 @@ a { color: inherit; }
 .priorities__head { text-align: center; margin-bottom: var(--sp-7); }
 .priorities__head .accent-bar { margin-left: auto; margin-right: auto; }
 .priorities__lede { max-width: 56ch; margin: var(--sp-3) auto 0; }
-.priorities__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-5);
-}
-.priority-card {
-  background: var(--c-cream-deep);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-.priority-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
-}
-.priority-card__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--sp-2);
-}
-.priority-card__num {
-  font-family: var(--font-display);
-  font-size: 56px;
-  line-height: 0.9;
-  color: var(--c-mustard-deep);
-  letter-spacing: -0.02em;
-}
-.priority-card__icon {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: var(--c-paper);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--c-ink);
-  border: 1.5px solid var(--border-medium);
-}
-.priority-card__title {
-  font-family: var(--font-display);
-  font-size: 24px;
-  text-transform: uppercase;
-  color: var(--c-ink);
-  letter-spacing: 0.005em;
-  line-height: 1.1;
-  margin: 0 0 var(--sp-2);
-}
-.priority-card__body { font-size: 15px; margin: 0; }
-.priority-card__bullets {
-  list-style: none;
-  padding: 0;
-  margin: var(--sp-2) 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-}
-.priority-card__bullets li {
-  font-size: 14px;
-  line-height: 1.5;
-  padding-left: 1.2em;
-  position: relative;
-}
-.priority-card__bullets li::before {
-  content: "\2022";
-  position: absolute;
-  left: 0;
-  color: var(--c-turquoise);
-  font-weight: 700;
-}
-.priority-card__bullets strong {
-  color: var(--c-ink);
-}
-
-.priorities__list--four {
-  grid-template-columns: repeat(2, 1fr);
-}
-
 .priorities__why {
   margin-top: var(--sp-8);
   text-align: center;
@@ -1364,6 +1326,9 @@ a { color: inherit; }
 }
 .priorities__why-list strong {
   color: var(--c-ink);
+}
+.priorities__why-list > li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 /* =========================================================================
@@ -1818,12 +1783,10 @@ a { color: inherit; }
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 1023px) {
-  .priorities__list,
+  .promises-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .get-involved__grid,
   .pillars { grid-template-columns: 1fr 1fr; }
   .pillars > :nth-child(3) { grid-column: span 2; }
-  .priorities__list > :nth-child(3) { grid-column: span 2; max-width: 50%; margin: 0 auto; }
-  .priorities__list--four > :nth-child(3) { grid-column: span 1; max-width: none; margin: 0; }
   .get-involved__grid > :nth-child(3) { grid-column: span 2; max-width: 50%; margin: 0 auto; }
   .photo-carousel__slide { flex: 0 0 48%; }
 }
@@ -1969,10 +1932,7 @@ a { color: inherit; }
   .why__attribution { font-size: 26px; }
 
   .priorities { padding: var(--sp-8) 0; }
-  .priorities__list { grid-template-columns: 1fr; gap: var(--sp-4); }
-  .priorities__list--four { grid-template-columns: 1fr; }
-  .priorities__list > :nth-child(3) { grid-column: span 1; max-width: none; }
-  .priorities--home .priorities__grid { grid-template-columns: 1fr; }
+  .promises-grid { grid-template-columns: 1fr; gap: var(--sp-4); }
   .meet-dorit__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
   .meet-dorit__portrait { max-width: 480px; margin: 0 auto; }
   .other-ways__grid { grid-template-columns: 1fr; }

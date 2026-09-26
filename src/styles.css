@@ -407,7 +407,7 @@ a { color: inherit; }
 .hero {
   position: relative;
   min-height: 100vh;
-  background: url("/images/hero-desktop.png") 26% center / cover no-repeat;
+  background: url("/images/hero-desktop.png") 26% top / cover no-repeat;
   padding-top: 120px;
   padding-bottom: var(--sp-8);
   display: flex;

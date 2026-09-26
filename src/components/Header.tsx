@@ -47,9 +47,14 @@ export function Header({ variant = "overlay", nav = "voter" }: HeaderProps) {
           </ul>
           <div className="site-nav__ctas">
             {nav === "voter" ? (
-              <Link to="/lawn-sign" className="btn btn--mustard">
-                Request a Lawn Sign
-              </Link>
+              <>
+                <Link to="/lawn-sign" className="btn btn--mustard">
+                  Request a Lawn Sign
+                </Link>
+                <Link to="/donate" className="btn btn--turquoise">
+                  Donate
+                </Link>
+              </>
             ) : (
               <>
                 <Link to="/get-involved" className="btn btn--turquoise">
@@ -94,11 +99,11 @@ export function Header({ variant = "overlay", nav = "voter" }: HeaderProps) {
                 Request a Lawn Sign
               </Link>
               <Link
-                to="/get-involved"
+                to="/donate"
                 className="btn btn--turquoise btn--lg"
                 onClick={() => setMenuOpen(false)}
               >
-                Get Involved
+                Donate
               </Link>
             </>
           ) : (

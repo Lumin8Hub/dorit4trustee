@@ -200,6 +200,18 @@ a { color: inherit; }
 .btn--full { width: 100%; }
 .btn--ink { background: var(--c-ink); color: var(--c-paper); }
 .btn--ink:hover { background: #333; }
+.btn--outline-light {
+  background: transparent;
+  color: var(--c-paper);
+  border: 2px solid var(--c-paper);
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.btn--outline-light:hover {
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--c-mustard);
+  border-color: var(--c-mustard);
+}
 
 /* --- Section heading ----------------------------------------------------- */
 .section-heading {
@@ -292,6 +304,7 @@ a { color: inherit; }
   text-decoration: none;
   padding: 10px 4px;
   position: relative;
+  white-space: nowrap;
   transition: color 120ms ease;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
@@ -308,6 +321,13 @@ a { color: inherit; }
 .site-nav__link:hover::after,
 .site-nav__link--active::after { transform: scaleX(1); }
 .site-nav__ctas { display: flex; gap: var(--sp-3); }
+/* Tighter nav on narrower desktops so links and both CTAs fit on one line. */
+@media (max-width: 1399px) {
+  .site-nav { gap: var(--sp-4); }
+  .site-nav__links { gap: var(--sp-3); }
+  .site-nav__link { font-size: 14px; }
+  .site-nav__ctas .btn { padding-left: 16px; padding-right: 16px; }
+}
 
 .site-header__toggle {
   display: none;
@@ -350,6 +370,47 @@ a { color: inherit; }
   flex-direction: column;
   gap: var(--sp-3);
   margin-top: var(--sp-4);
+}
+/* Below 1200px the full nav no longer fits: switch to the compact header and menu toggle. */
+@media (max-width: 1199px) {
+  .site-header {
+    position: fixed;
+    padding: var(--sp-4) 0;
+  }
+  .site-header--solid {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+  }
+  .site-header--solid + main {
+    padding-top: 72px;
+  }
+  .site-header__inner {
+    align-items: center;
+  }
+  .site-nav { display: none; }
+  .site-header__toggle {
+    display: flex;
+    color: var(--c-paper);
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(6px);
+    border-radius: var(--radius-md);
+  }
+  .logo__name {
+    font-size: 28px;
+    color: var(--c-mustard);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 4px rgba(0, 0, 0, 0.5);
+  }
+  .logo__tag {
+    font-size: 11px;
+    color: var(--c-turquoise);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  }
+  .mobile-menu { display: flex; }
+  .mobile-menu a.btn {
+    font-family: var(--font-body);
+    font-size: var(--fs-button-lg);
+    color: var(--c-ink);
+  }
 }
 
 /* =========================================================================
@@ -991,27 +1052,16 @@ a { color: inherit; }
   max-width: 1020px;
   margin: 0 auto;
 }
-/* Desktop: keep the quoted cards balanced across the two columns. */
+/* Desktop: short cards run three across, quoted cards two across. */
 @media (min-width: 768px) {
-  .endorsement-card:nth-child(1) {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .endorsement-card:nth-child(2) {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-  .endorsement-card:nth-child(3) {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .endorsement-card:nth-child(4) {
-    grid-column: 1;
-    grid-row: 3;
-  }
-  .endorsement-card:nth-child(5) {
-    grid-column: 2;
-    grid-row: 3;
+  .endorsements__grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .endorsement-card { grid-column: span 3; }
+  .endorsement-card--short { grid-column: span 2; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .endorsement-card--short .endorsement-card__header {
+    flex-direction: column;
+    text-align: center;
   }
 }
 .endorsement-card {
@@ -1075,6 +1125,16 @@ a { color: inherit; }
   line-height: 1.4;
   color: var(--c-ink-soft);
   margin: 0;
+}
+.endorsements__cta {
+  margin-top: var(--sp-7);
+  text-align: center;
+}
+.endorsements__cta p {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-ink);
+  margin: 0 0 var(--sp-4);
 }
 
 /* =========================================================================
@@ -1464,6 +1524,23 @@ a { color: inherit; }
   color: var(--c-turquoise-deep);
   font-weight: 700;
 }
+.meet-dorit__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.support-cta {
+  background: var(--c-cream);
+  padding: var(--sp-8) 0;
+}
+.support-cta__inner { text-align: center; }
+.support-cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
 .other-ways {
   padding: var(--sp-7) 0;
   background: var(--c-cream-deep);
@@ -1539,6 +1616,14 @@ a { color: inherit; }
 .lawn-sign-page__contact {
   margin: 0;
   text-align: center;
+}
+.lawn-sign-page__donate {
+  margin: 0 0 var(--sp-3);
+  text-align: center;
+}
+.lawn-sign-page__donate a {
+  color: var(--c-turquoise-deep);
+  font-weight: 700;
 }
 
 /* =========================================================================
@@ -1792,44 +1877,10 @@ a { color: inherit; }
 }
 
 @media (max-width: 767px) {
-  .site-header {
-    position: fixed;
-    padding: var(--sp-4) 0;
-  }
-  .site-header--solid {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-  }
-  .site-header--solid + main {
-    padding-top: 72px;
-  }
-  .site-header__inner {
-    align-items: center;
-  }
-  .site-nav { display: none; }
-  .site-header__toggle {
-    display: flex;
-    color: var(--c-paper);
-    background: rgba(0, 0, 0, 0.32);
-    backdrop-filter: blur(6px);
-    border-radius: var(--radius-md);
-  }
-  .logo__name {
-    font-size: 28px;
-    color: var(--c-mustard);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 4px rgba(0, 0, 0, 0.5);
-  }
-  .logo__tag {
-    font-size: 11px;
-    color: var(--c-turquoise);
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
-  }
-  .mobile-menu { display: flex; }
-
   .hero {
     min-height: 100svh;
     padding-top: 96px;
-    padding-bottom: var(--sp-6);
+    padding-bottom: var(--sp-8);
     background: url("/images/hero-mobile.png") 72% 28% / cover no-repeat;
   }
   .hero__scrim {
@@ -1842,7 +1893,7 @@ a { color: inherit; }
     align-items: flex-end;
     justify-content: stretch;
     padding: 0 var(--container-pad);
-    min-height: calc(100svh - 96px - var(--sp-6));
+    min-height: calc(100svh - 96px - var(--sp-8));
   }
   .hero__panel {
     width: 100%;

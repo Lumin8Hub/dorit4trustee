@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { SupportCta } from "@/components/SupportCta";
 
 const PORTRAIT_IMAGE = "/images/dorit-portrait.png";
 const PORTRAIT_IMAGE_OG = "https://dorit4trustee.com/images/dorit-portrait.png";
@@ -96,6 +97,7 @@ function MeetDoritPage() {
             </div>
           </div>
         </section>
+        <SupportCta />
       </main>
       <Footer />
     </div>

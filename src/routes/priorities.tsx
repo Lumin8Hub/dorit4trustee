@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { SupportCta } from "@/components/SupportCta";
 import { LawnSignCard, PriorityCard } from "@/components/PriorityCard";
 import { PRIORITIES, WHY_THIS_MATTERS } from "@/data/priorities";
 
@@ -69,6 +70,7 @@ function PrioritiesPage() {
             </div>
           </div>
         </section>
+        <SupportCta />
       </main>
       <Footer />
     </div>

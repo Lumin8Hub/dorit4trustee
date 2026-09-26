@@ -78,6 +78,9 @@ function LawnSignPage() {
               <br />
               Not sure if that is you? <Link to="/ward-1">Check the map.</Link>
             </p>
+            <p className="lawn-sign-page__donate">
+              Want to do more? <Link to="/donate">Chip in to the campaign.</Link>
+            </p>
             <p className="lawn-sign-page__contact">
               Questions? Email <a href="mailto:info@dorit4trustee.com">info@dorit4trustee.com</a>.
             </p>

@@ -58,6 +58,9 @@ function HomePage() {
                 <Link to="/lawn-sign" className="btn btn--turquoise btn--lg">
                   Request a Lawn Sign
                 </Link>
+                <Link to="/donate" className="btn btn--outline-light btn--lg">
+                  Donate
+                </Link>
               </div>
             </div>
           </div>
@@ -65,111 +68,6 @@ function HomePage() {
           <a href="#priorities" className="hero__scroll" aria-label="See my priorities">
             <ChevronDown size={32} strokeWidth={2.5} />
           </a>
-        </section>
-
-        <section
-          id="priorities"
-          className="priorities--home"
-          aria-label="Priorities for Our Schools"
-        >
-          <div className="priorities__inner">
-            <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
-            <h2 className="priorities__heading t-section">A Back to Basics Approach</h2>
-            <p className="priorities__intro">
-              As your trustee, I will put student achievement and community harmony first. Five
-              promises:
-            </p>
-
-            <div className="promises-grid">
-              {PRIORITIES.map((p, i) => (
-                <PriorityCard key={p.id} priority={p} number={i + 1} />
-              ))}
-              <LawnSignCard href="#lawn-sign" source="home-priorities-grid" />
-            </div>
-
-            <div className="priorities__more">
-              <Link to="/priorities" className="btn btn--ink">
-                Read the full platform
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="endorsements" aria-label="Endorsements">
-          <div className="endorsements__inner">
-            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
-            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
-            <div className="endorsements__grid">
-              {ENDORSEMENTS.map((e) => (
-                <article key={e.name} className="endorsement-card">
-                  <div className="endorsement-card__header">
-                    <img
-                      className="endorsement-card__photo"
-                      src={e.photo}
-                      alt={`Portrait of ${e.name}`}
-                      loading="lazy"
-                      width={112}
-                      height={112}
-                    />
-                    <div className="endorsement-card__text">
-                      <h3 className="endorsement-card__name">{e.name}</h3>
-                      <p className="endorsement-card__role">{e.role}</p>
-                      <p className="endorsement-card__riding">{e.riding}</p>
-                    </div>
-                  </div>
-                  {e.quote && (
-                    <blockquote className="endorsement-card__quote">
-                      {e.quote.map((paragraph) => (
-                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                      ))}
-                    </blockquote>
-                  )}
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="meet-dorit">
-          <div className="container meet-dorit__inner">
-            <img
-              src="/images/dorit-portrait.png"
-              className="meet-dorit__portrait"
-              alt="Dorit Smali"
-              loading="lazy"
-            />
-            <div>
-              <SectionHeading eyebrow="Meet Dorit">A Mom, a Leader, a Neighbour.</SectionHeading>
-              <p>
-                Dorit Smali is a wife, a mother of two young children, and a York Region community
-                builder. For more than 20 years she has helped large organizations adopt new
-                technology to deliver better services at lower cost. She knows how to manage a
-                complex budget, ask the right questions, and turn priorities into results.
-              </p>
-              <p>
-                The YRDSB manages a budget of more than $1.8 billion. That money belongs to our
-                community, and it should work as hard as possible for our students.
-              </p>
-              <blockquote className="meet-dorit__quote">
-                <p>
-                  Our schools, families, and children deserve strong, caring, practical leadership
-                  that always puts students first.
-                </p>
-                <cite>Dorit</cite>
-              </blockquote>
-              <Link to="/meet-dorit" className="btn btn--ink">
-                Read Dorit&apos;s Story
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="photo-carousel" aria-label="Dorit in the community">
-          <div className="photo-carousel__inner">
-            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
-            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
-          </div>
-          <PhotoCarousel photos={COMMUNITY_PHOTOS} />
         </section>
 
         <section id="online-voting" className="online-voting" aria-labelledby="online-voting-title">
@@ -254,6 +152,125 @@ function HomePage() {
               municipality&apos;s advance voting period only.
             </p>
           </div>
+        </section>
+
+        <section
+          id="priorities"
+          className="priorities--home"
+          aria-label="Priorities for Our Schools"
+        >
+          <div className="priorities__inner">
+            <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
+            <h2 className="priorities__heading t-section">A Back to Basics Approach</h2>
+            <p className="priorities__intro">
+              As your trustee, I will put student achievement and community harmony first. Five
+              promises:
+            </p>
+
+            <div className="promises-grid">
+              {PRIORITIES.map((p, i) => (
+                <PriorityCard key={p.id} priority={p} number={i + 1} />
+              ))}
+              <LawnSignCard href="#lawn-sign" source="home-priorities-grid" />
+            </div>
+
+            <div className="priorities__more">
+              <Link to="/priorities" className="btn btn--ink">
+                Read the full platform
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="endorsements" aria-label="Endorsements">
+          <div className="endorsements__inner">
+            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
+            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
+            <div className="endorsements__grid">
+              {ENDORSEMENTS.map((e) => (
+                <article
+                  key={e.name}
+                  className={`endorsement-card${e.quote ? "" : " endorsement-card--short"}`}
+                >
+                  <div className="endorsement-card__header">
+                    <img
+                      className="endorsement-card__photo"
+                      src={e.photo}
+                      alt={`Portrait of ${e.name}`}
+                      loading="lazy"
+                      width={112}
+                      height={112}
+                    />
+                    <div className="endorsement-card__text">
+                      <h3 className="endorsement-card__name">{e.name}</h3>
+                      <p className="endorsement-card__role">{e.role}</p>
+                      <p className="endorsement-card__riding">{e.riding}</p>
+                    </div>
+                  </div>
+                  {e.quote && (
+                    <blockquote className="endorsement-card__quote">
+                      {e.quote.map((paragraph) => (
+                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                      ))}
+                    </blockquote>
+                  )}
+                </article>
+              ))}
+            </div>
+            <div className="endorsements__cta">
+              <p>Stand with these leaders. Support Dorit&apos;s campaign.</p>
+              <Link to="/donate" className="btn btn--mustard btn--lg">
+                Donate
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="meet-dorit">
+          <div className="container meet-dorit__inner">
+            <img
+              src="/images/dorit-portrait.png"
+              className="meet-dorit__portrait"
+              alt="Dorit Smali"
+              loading="lazy"
+            />
+            <div>
+              <SectionHeading eyebrow="Meet Dorit">A Mom, a Leader, a Neighbour.</SectionHeading>
+              <p>
+                Dorit Smali is a wife, a mother of two young children, and a York Region community
+                builder. For more than 20 years she has helped large organizations adopt new
+                technology to deliver better services at lower cost. She knows how to manage a
+                complex budget, ask the right questions, and turn priorities into results.
+              </p>
+              <p>
+                The YRDSB manages a budget of more than $1.8 billion. That money belongs to our
+                community, and it should work as hard as possible for our students.
+              </p>
+              <blockquote className="meet-dorit__quote">
+                <p>
+                  Our schools, families, and children deserve strong, caring, practical leadership
+                  that always puts students first.
+                </p>
+                <cite>Dorit</cite>
+              </blockquote>
+              <div className="meet-dorit__ctas">
+                <Link to="/meet-dorit" className="btn btn--ink">
+                  Read Dorit&apos;s Story
+                </Link>
+                <Link to="/donate" className="btn btn--mustard">
+                  Donate
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="photo-carousel" aria-label="Dorit in the community">
+          <div className="photo-carousel__inner">
+            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
+            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
+          </div>
+          <PhotoCarousel photos={COMMUNITY_PHOTOS} />
         </section>
 
         <section id="lawn-sign" className="lawn-sign-section">

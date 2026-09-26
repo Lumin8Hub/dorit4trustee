@@ -52,22 +52,19 @@ function HomePage() {
               </div>
 
               <div className="hero__ctas">
-                <a href="#priorities" className="btn btn--mustard btn--lg">
-                  See My Priorities
-                </a>
-                <Link to="/lawn-sign" className="btn btn--turquoise btn--lg">
-                  Request a Lawn Sign
+                <Link to="/lawn-sign" className="btn btn--mustard">
+                  <span className="hero__cta-prefix">Request a&nbsp;</span>Lawn Sign
                 </Link>
-                <Link to="/donate" className="btn btn--outline-light btn--lg">
+                <Link to="/donate" className="btn btn--turquoise">
                   Donate
                 </Link>
               </div>
+              <a href="#priorities" className="hero__priorities-link">
+                See my priorities
+                <ChevronDown size={20} strokeWidth={2.5} aria-hidden="true" />
+              </a>
             </div>
           </div>
-
-          <a href="#priorities" className="hero__scroll" aria-label="See my priorities">
-            <ChevronDown size={32} strokeWidth={2.5} />
-          </a>
         </section>
 
         <section id="online-voting" className="online-voting" aria-labelledby="online-voting-title">

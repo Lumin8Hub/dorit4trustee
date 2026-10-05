@@ -19,6 +19,9 @@ export function EtransferBlock() {
   const [view, setView] = useState<View>("form");
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
+  // False when the donor's details could not be sent to the campaign log; the
+  // instructions then ask for everything we need in the e-Transfer message.
+  const [logged, setLogged] = useState(true);
 
   async function handleEtransferSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,6 +36,7 @@ export function EtransferBlock() {
       source: "donate-etransfer",
     };
 
+    // Never block a donor: if logging fails, still show the e-Transfer steps.
     try {
       if (!FORM_ENDPOINT) throw new Error("Form endpoint not configured");
 
@@ -42,14 +46,12 @@ export function EtransferBlock() {
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(data),
       });
-
-      setView("instructions");
+      setLogged(true);
     } catch {
-      toast.error("Something went wrong.", {
-        description: "Please try again or email us directly at info@dorit4trustee.com.",
-      });
+      setLogged(false);
     } finally {
       setSubmitting(false);
+      setView("instructions");
     }
   }
 
@@ -84,10 +86,18 @@ export function EtransferBlock() {
           <li>
             Send your contribution to <strong>{ETRANSFER_EMAIL}</strong>.
           </li>
-          <li>
-            In the message field, include the <strong>same full name</strong> you entered here so we
-            can match your contribution.
-          </li>
+          {logged ? (
+            <li>
+              In the message field, include the <strong>same full name</strong> you entered here so
+              we can match your contribution.
+            </li>
+          ) : (
+            <li>
+              In the message field, include your{" "}
+              <strong>full name, home address and phone number</strong>. We need these to record
+              your contribution.
+            </li>
+          )}
           <li>We'll confirm receipt by email.</li>
         </ol>
       </>

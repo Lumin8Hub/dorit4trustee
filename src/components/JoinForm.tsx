@@ -62,6 +62,7 @@ export function JoinForm({ id = "join-form", source = "unknown" }: JoinFormProps
           <input
             id={`${id}-first`}
             name={`${id}-first`}
+            autoComplete="given-name"
             type="text"
             placeholder="First Name"
             className="join-form__input"
@@ -75,6 +76,7 @@ export function JoinForm({ id = "join-form", source = "unknown" }: JoinFormProps
           <input
             id={`${id}-last`}
             name={`${id}-last`}
+            autoComplete="family-name"
             type="text"
             placeholder="Last Name"
             className="join-form__input"
@@ -89,6 +91,7 @@ export function JoinForm({ id = "join-form", source = "unknown" }: JoinFormProps
       <input
         id={`${id}-email`}
         name={`${id}-email`}
+        autoComplete="email"
         type="email"
         placeholder="Your Email Address"
         className="join-form__input"
@@ -101,6 +104,7 @@ export function JoinForm({ id = "join-form", source = "unknown" }: JoinFormProps
       <input
         id={`${id}-phone`}
         name={`${id}-phone`}
+        autoComplete="tel"
         type="tel"
         placeholder="Your Phone Number"
         className="join-form__input"

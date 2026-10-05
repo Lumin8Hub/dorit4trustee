@@ -1,4 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
@@ -6,6 +8,7 @@ import appCss from "../styles.css?url";
 function NotFoundComponent() {
   return (
     <div className="page">
+      <Header variant="solid" />
       <main
         style={{
           flex: 1,
@@ -28,11 +31,17 @@ function NotFoundComponent() {
           <p style={{ marginBottom: 24 }}>
             The page you're looking for doesn't exist or has been moved.
           </p>
-          <Link to="/" className="btn btn--mustard btn--lg">
-            Go Home
-          </Link>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <Link to="/" className="btn btn--mustard btn--lg">
+              Go Home
+            </Link>
+            <Link to="/vote" className="btn btn--turquoise btn--lg">
+              How to Vote
+            </Link>
+          </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

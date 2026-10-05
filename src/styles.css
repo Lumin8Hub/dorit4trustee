@@ -407,7 +407,7 @@ a { color: inherit; }
 .hero {
   position: relative;
   min-height: 100vh;
-  background: url("/images/hero-desktop.png") 26% top / cover no-repeat;
+  background: url("/images/hero-desktop.webp") 26% top / cover no-repeat;
   padding-top: 120px;
   padding-bottom: var(--sp-8);
   display: flex;
@@ -510,6 +510,7 @@ a { color: inherit; }
   align-items: center;
   gap: 6px;
   margin-top: calc(-1 * var(--sp-2));
+  padding: 10px 4px;
   font-weight: 700;
   font-size: 16px;
   color: var(--c-paper);
@@ -862,7 +863,7 @@ a { color: inherit; }
   gap: var(--sp-3);
 }
 .join-form__disclaimer {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--fg-muted);
   line-height: 1.5;
   margin: var(--sp-2) 0 0;
@@ -1336,19 +1337,29 @@ a { color: inherit; }
 .photo-carousel__arrow--next { right: var(--sp-3); }
 .photo-carousel__dots {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: var(--sp-2);
-  margin-top: var(--sp-5);
+  gap: 2px;
+  margin-top: var(--sp-4);
 }
+/* The button is a 28px tap target; the visible dot stays small. */
 .photo-carousel__dot {
-  width: 10px;
-  height: 10px;
+  position: relative;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   padding: 0;
+  background: transparent;
+}
+.photo-carousel__dot::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
   background: rgba(26, 26, 26, 0.18);
   transition: background 0.2s ease, transform 0.2s ease;
 }
-.photo-carousel__dot--active {
+.photo-carousel__dot--active::before {
   background: var(--c-turquoise-deep);
   transform: scale(1.25);
 }
@@ -1946,8 +1957,11 @@ a { color: inherit; }
   text-underline-offset: 4px;
 }
 .site-footer__social a:hover { color: var(--c-turquoise); }
-.site-footer__nav { display: flex; flex-direction: column; gap: var(--sp-2); }
+.site-footer__nav { display: flex; flex-direction: column; gap: 0; }
 .site-footer__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
   font-family: var(--font-display);
   font-size: 14px;
   letter-spacing: 0.06em;
@@ -2021,7 +2035,7 @@ a { color: inherit; }
     min-height: 100svh;
     padding-top: 96px;
     padding-bottom: var(--sp-5);
-    background: url("/images/hero-mobile.png") 72% 28% / cover no-repeat;
+    background: url("/images/hero-mobile.webp") 72% 28% / cover no-repeat;
   }
   .hero__scrim {
     display: block;
@@ -2111,7 +2125,7 @@ a { color: inherit; }
 
   .photo-carousel { padding: var(--sp-8) 0; }
   .photo-carousel__slide { flex: 0 0 78%; }
-  .photo-carousel__arrow { width: 40px; height: 40px; }
+  .photo-carousel__arrow { width: 44px; height: 44px; }
 
   .meet { padding: var(--sp-8) 0; }
   .meet__inner { grid-template-columns: 1fr; gap: var(--sp-6); }

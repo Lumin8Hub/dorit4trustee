@@ -248,7 +248,7 @@ function HomePage() {
         <section className="meet-dorit">
           <div className="container meet-dorit__inner">
             <img
-              src="/images/dorit-portrait.png"
+              src="/images/dorit-portrait.webp"
               className="meet-dorit__portrait"
               alt="Dorit Smali"
               loading="lazy"

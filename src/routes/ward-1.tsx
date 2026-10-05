@@ -47,7 +47,7 @@ function Ward1Page() {
 
             <div className="ward-map__image-wrap">
               <img
-                src="/images/ward_1_map.png"
+                src="/images/ward_1_map.webp"
                 alt="York Region District School Board Trustee Electoral Area 2026–2030: King-Vaughan Ward 1 — showing ward boundaries K1 through K6 and V1 with elementary and secondary school locations"
                 className="ward-map__image"
                 width={1196}

@@ -77,6 +77,7 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
           <input
             id={`${id}-first`}
             name={`${id}-first`}
+            autoComplete="given-name"
             type="text"
             className="join-form__input"
             required
@@ -89,6 +90,7 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
           <input
             id={`${id}-last`}
             name={`${id}-last`}
+            autoComplete="family-name"
             type="text"
             className="join-form__input"
             required
@@ -102,6 +104,7 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
       <input
         id={`${id}-address`}
         name={`${id}-address`}
+        autoComplete="street-address"
         type="text"
         placeholder="123 Main Street"
         className="join-form__input"
@@ -116,6 +119,7 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
           <input
             id={`${id}-town`}
             name={`${id}-town`}
+            autoComplete="address-level2"
             type="text"
             placeholder="King City, Kleinburg, Maple..."
             className="join-form__input"
@@ -129,6 +133,7 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
           <input
             id={`${id}-postal`}
             name={`${id}-postal`}
+            autoComplete="postal-code"
             type="text"
             placeholder="L7B 1A1"
             pattern="[A-Za-z]\d[A-Za-z][ ]?\d[A-Za-z]\d"
@@ -145,6 +150,7 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
       <input
         id={`${id}-email`}
         name={`${id}-email`}
+        autoComplete="email"
         type="email"
         className="join-form__input"
         required
@@ -153,7 +159,13 @@ export function LawnSignForm({ id, source }: LawnSignFormProps) {
       <label className="lawn-sign-form__label" htmlFor={`${id}-phone`}>
         Phone (optional)
       </label>
-      <input id={`${id}-phone`} name={`${id}-phone`} type="tel" className="join-form__input" />
+      <input
+        id={`${id}-phone`}
+        name={`${id}-phone`}
+        autoComplete="tel"
+        type="tel"
+        className="join-form__input"
+      />
 
       <label className="lawn-sign-form__consent">
         <input id={`${id}-consent`} name={`${id}-consent`} type="checkbox" required />

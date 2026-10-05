@@ -102,6 +102,7 @@ export function EtransferBlock() {
       <input
         id="donate-name"
         name="donate-name"
+        autoComplete="name"
         type="text"
         placeholder="Full Name"
         className="join-form__input"
@@ -114,6 +115,7 @@ export function EtransferBlock() {
       <input
         id="donate-email"
         name="donate-email"
+        autoComplete="email"
         type="email"
         placeholder="Email Address"
         className="join-form__input"
@@ -126,6 +128,7 @@ export function EtransferBlock() {
       <input
         id="donate-phone"
         name="donate-phone"
+        autoComplete="tel"
         type="tel"
         placeholder="Phone Number"
         className="join-form__input"
@@ -138,6 +141,7 @@ export function EtransferBlock() {
       <textarea
         id="donate-address"
         name="donate-address"
+        autoComplete="street-address"
         placeholder="Full Residential Address"
         className="join-form__input donate-form__address"
         rows={3}

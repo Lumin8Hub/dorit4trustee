@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
 const NAV_LINKS = [
+  { label: "How to Vote", to: "/vote" },
   { label: "Meet Dorit", to: "/meet-dorit" },
   { label: "My Priorities", to: "/priorities" },
   { label: "Map", to: "/ward-1" },

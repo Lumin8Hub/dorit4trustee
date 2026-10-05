@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
 
 const NAV_LINKS = [
+  { label: "How to Vote", to: "/vote" },
   { label: "Meet Dorit", to: "/meet-dorit" },
   { label: "My Priorities", to: "/priorities" },
   { label: "Map", to: "/ward-1" },
@@ -11,6 +12,12 @@ const NAV_LINKS = [
   { label: "Donate", to: "/donate" },
 ] as const;
 
+const SOCIAL_LINKS = [
+  { label: "Facebook", href: "https://www.facebook.com/Dorit4Trustee" },
+  { label: "Instagram", href: "https://www.instagram.com/dorit4trustee/" },
+  { label: "Nextdoor", href: "https://ca.nextdoor.com/page/dorit-smali-for-trustee-vaughan-on/" },
+] as const;
+
 export function Footer() {
   return (
     <footer className="site-footer">
@@ -18,6 +25,15 @@ export function Footer() {
         <div className="site-footer__brand">
           <Logo />
           <p className="site-footer__url">dorit4trustee.com</p>
+          <ul className="site-footer__social" aria-label="Follow the campaign">
+            {SOCIAL_LINKS.map((link) => (
+              <li key={link.label}>
+                <a href={link.href} target="_blank" rel="noreferrer">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <nav className="site-footer__nav" aria-label="Footer">

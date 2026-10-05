@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Ward1RouteImport } from './routes/ward-1'
+import { Route as VotingRouteImport } from './routes/voting'
+import { Route as VoteRouteImport } from './routes/vote'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as MeetDoritRouteImport } from './routes/meet-dorit'
@@ -23,6 +25,16 @@ import { Route as IndexRouteImport } from './routes/index'
 const Ward1Route = Ward1RouteImport.update({
   id: '/ward-1',
   path: '/ward-1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VotingRoute = VotingRouteImport.update({
+  id: '/voting',
+  path: '/voting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoteRoute = VoteRouteImport.update({
+  id: '/vote',
+  path: '/vote',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -81,6 +93,8 @@ export interface FileRoutesByFullPath {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/vote': typeof VoteRoute
+  '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
 }
 export interface FileRoutesByTo {
@@ -93,6 +107,8 @@ export interface FileRoutesByTo {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/vote': typeof VoteRoute
+  '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
 }
 export interface FileRoutesById {
@@ -106,6 +122,8 @@ export interface FileRoutesById {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/vote': typeof VoteRoute
+  '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
 }
 export interface FileRouteTypes {
@@ -120,6 +138,8 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/vote'
+    | '/voting'
     | '/ward-1'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +152,8 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/vote'
+    | '/voting'
     | '/ward-1'
   id:
     | '__root__'
@@ -144,6 +166,8 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/vote'
+    | '/voting'
     | '/ward-1'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +181,8 @@ export interface RootRouteChildren {
   MeetDoritRoute: typeof MeetDoritRoute
   PrioritiesRoute: typeof PrioritiesRoute
   PrivacyRoute: typeof PrivacyRoute
+  VoteRoute: typeof VoteRoute
+  VotingRoute: typeof VotingRoute
   Ward1Route: typeof Ward1Route
 }
 
@@ -167,6 +193,20 @@ declare module '@tanstack/react-router' {
       path: '/ward-1'
       fullPath: '/ward-1'
       preLoaderRoute: typeof Ward1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voting': {
+      id: '/voting'
+      path: '/voting'
+      fullPath: '/voting'
+      preLoaderRoute: typeof VotingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vote': {
+      id: '/vote'
+      path: '/vote'
+      fullPath: '/vote'
+      preLoaderRoute: typeof VoteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -245,6 +285,8 @@ const rootRouteChildren: RootRouteChildren = {
   MeetDoritRoute: MeetDoritRoute,
   PrioritiesRoute: PrioritiesRoute,
   PrivacyRoute: PrivacyRoute,
+  VoteRoute: VoteRoute,
+  VotingRoute: VotingRoute,
   Ward1Route: Ward1Route,
 }
 export const routeTree = rootRouteImport

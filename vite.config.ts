@@ -43,6 +43,9 @@ export default defineConfig({
           { path: "/get-involved" },
           { path: "/contact" },
           { path: "/privacy" },
+          { path: "/vote" },
+          { path: "/donate" },
+          { path: "/lawn-sign" },
         ],
       }
     : undefined,

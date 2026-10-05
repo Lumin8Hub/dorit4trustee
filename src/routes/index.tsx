@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
 import { ENDORSEMENTS } from "@/data/endorsements";
 import { PRIORITIES } from "@/data/priorities";
+import { ELECTION_DAY, KING, VAUGHAN } from "@/data/voting";
 
 const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
 
@@ -42,10 +43,12 @@ function HomePage() {
           <div className="hero__inner">
             <div className="hero__panel">
               <div className="hero__copy">
-                <p className="t-eyebrow hero__eyebrow">Make Our Schools Work For</p>
-                <h1 className="hero__headline">
-                  Our Kids
-                  <span className="hero__underline" aria-hidden="true" />
+                <h1 className="hero__title">
+                  <span className="t-eyebrow hero__eyebrow">Make Our Schools Work For</span>{" "}
+                  <span className="hero__headline">
+                    Our Kids
+                    <span className="hero__underline" aria-hidden="true" />
+                  </span>
                 </h1>
                 <p className="hero__subtitle">Back to Basics. Back to Learning.</p>
                 <p className="hero__kicker">Dorit Smali for YRDSB Trustee, King-Vaughan Ward 1</p>
@@ -76,11 +79,11 @@ function HomePage() {
               </div>
               <p className="t-eyebrow online-voting__eyebrow">2026 Municipal Election</p>
               <h2 id="online-voting-title" className="online-voting__heading">
-                Get Ready to Vote Online
+                How to Vote
               </h2>
               <p className="online-voting__lede">
-                Online voting works differently in Vaughan and King. Choose where you live to
-                complete the right registration step before voting opens.
+                Voting works differently in Vaughan and King. Choose where you live to see your
+                dates and next step.
               </p>
             </div>
 
@@ -90,24 +93,29 @@ function HomePage() {
                   <MapPin size={22} strokeWidth={2.25} aria-hidden="true" />
                   <h3>Vaughan Residents</h3>
                 </div>
-                <p className="voting-card__action">Register in advance to vote online.</p>
+                <p className="voting-card__action">Register to vote online by October 15.</p>
                 <dl className="voting-card__details">
                   <div>
+                    <dt>Register by</dt>
+                    <dd>{VAUGHAN.registerOnlineBy}</dd>
+                  </div>
+                  <div>
                     <dt>Vote online</dt>
-                    <dd>October 9–18</dd>
+                    <dd>{VAUGHAN.onlineDates}</dd>
                   </div>
                 </dl>
                 <p className="voting-card__note">
-                  You must already be on Vaughan&apos;s Voters’ List. Have acceptable identification
-                  and a unique email address ready.
+                  Online is the only way to vote early in Vaughan, and you must register first. You
+                  need to be on the Voters&apos; List, with acceptable ID and your own email
+                  address.
                 </p>
                 <a
-                  href="https://internetvoting.vaughan.ca/"
+                  href={VAUGHAN.registerUrl}
                   className="btn btn--mustard btn--lg voting-card__cta"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Register in Vaughan
+                  Register to Vote Online
                   <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
                 </a>
               </article>
@@ -117,36 +125,50 @@ function HomePage() {
                   <MapPin size={22} strokeWidth={2.25} aria-hidden="true" />
                   <h3>King Residents</h3>
                 </div>
-                <p className="voting-card__action">Confirm you are on the Voters’ List.</p>
+                <p className="voting-card__action">Vote online or in person early.</p>
                 <dl className="voting-card__details">
                   <div>
-                    <dt>Your PIN</dt>
-                    <dd>Arrives by mail</dd>
+                    <dt>Vote online</dt>
+                    <dd>{KING.onlineDates}</dd>
                   </div>
                   <div>
-                    <dt>Vote online</dt>
-                    <dd>October 13–23</dd>
+                    <dt>In person early</dt>
+                    <dd>
+                      Sat Oct{" "}
+                      {KING.advanceDays.map((d) => d.shortDate.replace("Oct ", "")).join(", ")}
+                    </dd>
                   </div>
                 </dl>
                 <p className="voting-card__note">
-                  Your Voter Information Letter will include the unique PIN you need to vote online.
-                  Check or update your voter registration now.
+                  Use the PIN in your Voter Information Letter to vote online. No letter? Check that
+                  you&apos;re on the Voters&apos; List.
                 </p>
-                <a
-                  href="https://www.king.ca/voterinformation"
-                  className="btn btn--turquoise btn--lg voting-card__cta"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Register in King
-                  <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
-                </a>
+                <div className="voting-card__cta-group">
+                  <a
+                    href={KING.voteUrl}
+                    className="btn btn--turquoise btn--lg voting-card__cta"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Vote Online (from Oct 13)
+                    <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
+                  </a>
+                  <a
+                    href={KING.votersListUrl}
+                    className="voting-card__secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Check your voter information
+                    <ExternalLink size={16} strokeWidth={2.25} aria-hidden="true" />
+                  </a>
+                </div>
               </article>
             </div>
 
             <p className="online-voting__footnote">
-              Election Day is Monday, October 26, 2026. Online voting is available during each
-              municipality&apos;s advance voting period only.
+              Election Day is {ELECTION_DAY.date}, in person, {ELECTION_DAY.hours}{" "}
+              <Link to="/vote">See the full voting guide</Link>
             </p>
           </div>
         </section>

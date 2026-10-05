@@ -8,7 +8,11 @@ export function Logo() {
         <br />
         <span className="logo__last">Smali</span>
       </span>
-      <span className="logo__tag">Public School Trustee · King-Vaughan Ward 1</span>
+      <span className="logo__tag">
+        Public School Trustee
+        <span className="logo__tag-sep"> · </span>
+        <span className="logo__tag-area">King-Vaughan Ward 1</span>
+      </span>
     </Link>
   );
 }

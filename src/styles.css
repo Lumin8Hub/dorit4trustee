@@ -2421,3 +2421,5 @@ a { color: inherit; }
 .logo__last { color: var(--c-mustard); }
 .logo__tag { color: var(--c-turquoise); }
 .site-footer__url { color: var(--c-turquoise); }
+.site-header .logo__tag-sep { display: none; }
+.site-header .logo__tag-area { display: block; }

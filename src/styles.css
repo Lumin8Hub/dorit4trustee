@@ -36,24 +36,27 @@
   --color-destructive: oklch(0.577 0.245 27.325);
   --color-destructive-foreground: oklch(0.984 0.003 247.858);
   --font-display: "Anton", Impact, sans-serif;
-  --font-body: "Montserrat", system-ui, sans-serif;
-  --font-script: "Caveat", cursive;
+  --font-body: "Public Sans", system-ui, sans-serif;
+  --font-script: "Public Sans", system-ui, sans-serif;
   --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
 }
 
 :root {
   /* Brand colors */
-  --c-mustard: #FFDB58;
-  --c-mustard-deep: #F2C94C;
+  /* Brand v2 (Oct 2026): Campaign Yellow, Campaign Teal, Turquoise on Ink only */
+  --c-mustard: #FFBB22;
+  --c-mustard-deep: #E9A100;
+  --c-teal: #0E7593;
+  --c-teal-deep: #0A5A72;
   --c-turquoise: #6EFAFB;
-  --c-turquoise-deep: #4DD9DA;
+  --c-turquoise-deep: #0E7593;
   --c-taupe: #968E85;
-  --c-cream: #F5EFE4;
+  --c-cream: #F7F1E5;
   --c-cream-deep: #EDE5D6;
   --c-paper: #FFFFFF;
-  --c-ink: #1A1A1A;
+  --c-ink: #141414;
   --c-ink-soft: #3A3A3A;
 
   /* Foregrounds on backgrounds */
@@ -2393,3 +2396,30 @@ a { color: inherit; }
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================================================
+   BRAND V2 PREVIEW OVERRIDES
+   Teal buttons and links on light grounds, turquoise only on Ink, square
+   corners, no coloured top-border accents on cards.
+   ========================================================================= */
+.btn--turquoise { background: var(--c-teal); color: #fff; }
+.btn--turquoise:hover { background: var(--c-teal-deep); color: #fff; }
+.online-voting .btn--turquoise,
+.site-footer .btn--turquoise,
+.mobile-menu .btn--turquoise { background: var(--c-turquoise); color: var(--c-ink); }
+.btn, .voting-card, .vote-guide__card, .vote-guide__note, .vote-guide__list li,
+.endorsement-card, .promise-card, .online-voting__badge { border-radius: 0; }
+.btn:focus-visible { outline: 3px solid var(--c-teal); outline-offset: 2px; }
+.online-voting .btn:focus-visible, .site-footer a:focus-visible { outline-color: var(--c-turquoise); }
+.voting-card--vaughan, .voting-card--king,
+.vote-guide__card--vaughan, .vote-guide__card--king { border-top: 1px solid rgba(255, 255, 255, 0.18); }
+.vote-guide__card--vaughan, .vote-guide__card--king { border: 2px solid var(--c-ink); box-shadow: none; }
+.voting-card--vaughan .voting-card__location { color: var(--c-mustard); }
+.voting-card--king .voting-card__location { color: var(--c-turquoise); }
+.t-script { font-style: italic; font-weight: 600; }
+.logo__first { color: var(--c-paper); }
+.logo__last { color: var(--c-mustard); }
+.logo__tag { color: var(--c-turquoise); }
+.site-footer__url { color: var(--c-turquoise); }
+.site-header .logo__tag-sep { display: none; }
+.site-header .logo__tag-area { display: block; }

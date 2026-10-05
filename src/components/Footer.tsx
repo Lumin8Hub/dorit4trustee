@@ -24,7 +24,7 @@ export function Footer() {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           <Logo />
-          <p className="site-footer__url">dorit4trustee.com</p>
+          <p className="site-footer__url">Dorit4Trustee.ca</p>
           <ul className="site-footer__social" aria-label="Follow the campaign">
             {SOCIAL_LINKS.map((link) => (
               <li key={link.label}>

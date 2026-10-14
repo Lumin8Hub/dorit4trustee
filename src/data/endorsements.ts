@@ -40,7 +40,7 @@ export const ENDORSEMENTS: Endorsement[] = [
     name: "Roman Baber",
     role: "Member of Parliament",
     riding: "York Centre",
-    photo: "/images/endorsers/roman-baber.jpg",
+    photo: "/images/endorsers/roman-baber-v2.jpg",
     quote: [
       "Dorit Smali will make a great School Board Trustee! She is involved in her community, passionate about education and determined to get back to basics, instead of pushing political ideology in the classroom. I look forward to her success as YRDSB Trustee!",
     ],

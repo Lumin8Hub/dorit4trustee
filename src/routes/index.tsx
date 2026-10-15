@@ -221,7 +221,9 @@ function HomePage() {
                       height={112}
                     />
                     <div className="endorsement-card__text">
-                      <h3 className="endorsement-card__name">{e.name}</h3>
+                      <h3 className="endorsement-card__name">
+                        {e.website ? <a href={e.website}>{e.name}</a> : e.name}
+                      </h3>
                       <p className="endorsement-card__role">{e.role}</p>
                       <p className="endorsement-card__riding">{e.riding}</p>
                     </div>

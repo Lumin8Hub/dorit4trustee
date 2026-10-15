@@ -3,6 +3,7 @@ export type Endorsement = {
   role: string;
   riding: string;
   photo: string;
+  website?: string;
   quote?: string[];
 };
 
@@ -43,6 +44,19 @@ export const ENDORSEMENTS: Endorsement[] = [
     photo: "/images/endorsers/roman-baber-v2.jpg",
     quote: [
       "Dorit Smali will make a great School Board Trustee! She is involved in her community, passionate about education and determined to get back to basics, instead of pushing political ideology in the classroom. I look forward to her success as YRDSB Trustee!",
+    ],
+  },
+  {
+    name: "Dr Weidong Pei",
+    role: "Toronto District School Board Trustee",
+    riding: "Ward 4 - York Centre & Willowdale",
+    photo: "/images/endorsers/weidong-pei.png",
+    website: "https://www.weidongpei.ca/",
+    quote: [
+      "I’m proud to endorse Dorit Smali for Public School Trustee.",
+      "Dorit is a caring, hardworking, and passionate advocate who understands both education and the policies that shape our schools. For many years, she has advocated for children, families, and stronger schools, and she understands the challenges facing students, parents, and educators.",
+      "What stands out about Dorit is her commitment to listening, understanding the issues, and working toward practical solutions. She is motivated by a genuine desire to help children succeed, support parents, and ensure teachers have the resources and support they need.",
+      "I believe in Dorit and know she will bring passion, dedication, and a strong understanding of education to the role of YRDSB Trustee.",
     ],
   },
 ];

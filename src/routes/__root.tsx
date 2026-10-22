@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Toaster } from "@/components/ui/sonner";
+import { AnalyticsConsent } from "@/components/AnalyticsConsent";
 
 import appCss from "../styles.css?url";
 
@@ -91,6 +92,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <Toaster />
+        <AnalyticsConsent />
         <Scripts />
       </body>
     </html>

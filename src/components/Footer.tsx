@@ -47,6 +47,13 @@ export function Footer() {
         <div className="site-footer__legal">
           <p>Authorized by the Official Agent for the Dorit Smali Campaign.</p>
           <p>&copy; 2026 Dorit Smali for YRDSB Trustee. All rights reserved.</p>
+          <button
+            type="button"
+            className="site-footer__privacy-control"
+            onClick={() => window.dispatchEvent(new Event("dorit:analytics-preferences"))}
+          >
+            Analytics preferences
+          </button>
         </div>
       </div>
     </footer>

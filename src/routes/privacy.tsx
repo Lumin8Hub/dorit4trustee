@@ -55,6 +55,24 @@ function PrivacyPage() {
               volunteers, and understand community interest in the campaign.
             </p>
 
+            <h2>Optional Website Analytics</h2>
+            <p>
+              If you choose to accept analytics, this website uses Google Analytics 4 to collect
+              limited website usage information, such as pages visited and general device/browser
+              information. Analytics are optional and are not loaded before you accept. You can
+              change your choice at any time using the Analytics preferences control in the footer.
+              If you decline, analytics are not used. We do not use advertising personalization or
+              Google Signals. Please do not include personal details in website URLs; query values
+              other than standard campaign source tags are excluded from page-view reporting.
+            </p>
+
+            <h2>Cookies and Preferences</h2>
+            <p>
+              Your analytics choice is stored in your browser's local storage so the site can
+              remember whether you accepted or declined. Google Analytics may use cookies when
+              enabled. This site does not use analytics cookies unless you opt in.
+            </p>
+
             <h2>Your Choices</h2>
             <p>
               You can unsubscribe from campaign updates or ask to have your contact information

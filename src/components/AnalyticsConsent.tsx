@@ -142,7 +142,7 @@ export function AnalyticsConsent() {
   return (
     <aside className="analytics-consent" aria-label="Analytics preferences" aria-live="polite">
       <p>
-        Optional analytics help us understand how people use this campaign website. No analytics are
+        Optional analytics help us understand how people use this website. No analytics are
         used unless you opt in.
       </p>
       <div className="analytics-consent__actions">

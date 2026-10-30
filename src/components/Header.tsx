@@ -3,21 +3,20 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
-const NAV_LINKS = [
-  { label: "How to Vote", to: "/vote" },
-  { label: "Meet Dorit", to: "/meet-dorit" },
-  { label: "My Priorities", to: "/priorities" },
-  { label: "Map", to: "/ward-1" },
-  { label: "Community", to: "/community" },
-  { label: "Get Involved", to: "/get-involved" },
+export const NAV_LINKS = [
+  { label: "About Dorit", to: "/about" },
+  { label: "Commitments", to: "/commitments" },
+  { label: "Our Schools", to: "/schools" },
+  { label: "Updates", to: "/updates" },
+  { label: "The Board", to: "/the-board" },
+  { label: "Resources", to: "/resources" },
 ] as const;
 
 interface HeaderProps {
   variant?: "overlay" | "solid";
-  nav?: "default" | "voter";
 }
 
-export function Header({ variant = "overlay", nav = "voter" }: HeaderProps) {
+export function Header({ variant = "overlay" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -60,25 +59,9 @@ export function Header({ variant = "overlay", nav = "voter" }: HeaderProps) {
             ))}
           </ul>
           <div className="site-nav__ctas">
-            {nav === "voter" ? (
-              <>
-                <Link to="/lawn-sign" className="btn btn--mustard">
-                  Request a Lawn Sign
-                </Link>
-                <Link to="/donate" className="btn btn--turquoise">
-                  Donate
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/get-involved" className="btn btn--turquoise">
-                  Volunteer
-                </Link>
-                <Link to="/donate" className="btn btn--mustard">
-                  Donate
-                </Link>
-              </>
-            )}
+            <Link to="/contact" className="btn btn--mustard">
+              Contact Dorit
+            </Link>
           </div>
         </nav>
 
@@ -104,41 +87,13 @@ export function Header({ variant = "overlay", nav = "voter" }: HeaderProps) {
           ))}
         </ul>
         <div className="mobile-menu__ctas">
-          {nav === "voter" ? (
-            <>
-              <Link
-                to="/lawn-sign"
-                className="btn btn--mustard btn--lg"
-                onClick={() => setMenuOpen(false)}
-              >
-                Request a Lawn Sign
-              </Link>
-              <Link
-                to="/donate"
-                className="btn btn--turquoise btn--lg"
-                onClick={() => setMenuOpen(false)}
-              >
-                Donate
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/get-involved"
-                className="btn btn--turquoise btn--lg"
-                onClick={() => setMenuOpen(false)}
-              >
-                Volunteer
-              </Link>
-              <Link
-                to="/donate"
-                className="btn btn--mustard btn--lg"
-                onClick={() => setMenuOpen(false)}
-              >
-                Donate
-              </Link>
-            </>
-          )}
+          <Link
+            to="/contact"
+            className="btn btn--mustard btn--lg"
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact Dorit
+          </Link>
         </div>
       </div>
     </header>

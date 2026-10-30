@@ -1,8 +1,8 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { RedirectPage, redirectHead } from "@/components/PageShell";
 
-// People guess /voting; send them to the voting guide.
+// Retired campaign URL. Kept so old links, flyers and QR codes still land.
 export const Route = createFileRoute("/voting")({
-  beforeLoad: () => {
-    throw redirect({ to: "/vote" });
-  },
+  head: () => redirectHead("/"),
+  component: () => <RedirectPage to="/" />,
 });

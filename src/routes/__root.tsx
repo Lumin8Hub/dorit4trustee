@@ -36,8 +36,8 @@ function NotFoundComponent() {
             <Link to="/" className="btn btn--mustard btn--lg">
               Go Home
             </Link>
-            <Link to="/vote" className="btn btn--turquoise btn--lg">
-              How to Vote
+            <Link to="/contact" className="btn btn--turquoise btn--lg">
+              Contact Dorit
             </Link>
           </div>
         </div>
@@ -52,19 +52,20 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dorit Smali for YRDSB Trustee 2026" },
+      { title: "Dorit Smali | YRDSB Trustee, King & Vaughan Ward 1" },
       {
         name: "description",
         content:
-          "A fresh voice for King-Vaughan Ward 1 families. Strong, caring, practical leadership for our YRDSB schools.",
+          "Dorit Smali, York Region District School Board trustee for King Township and Vaughan Ward 1.",
       },
-      { name: "author", content: "Dorit Smali Campaign" },
-      { property: "og:title", content: "Dorit Smali for YRDSB Trustee 2026" },
+      { name: "author", content: "Dorit Smali" },
+      { property: "og:title", content: "Dorit Smali, YRDSB Trustee" },
       {
         property: "og:description",
         content:
-          "A fresh voice for King-Vaughan Ward 1 families. Strong, caring, practical leadership for our YRDSB schools.",
+          "Dorit Smali, York Region District School Board trustee for King Township and Vaughan Ward 1.",
       },
+      { property: "og:site_name", content: "Dorit Smali, YRDSB Trustee" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

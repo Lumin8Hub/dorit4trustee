@@ -36,6 +36,34 @@ function doPost(e) {
       return typeof v === "string" && /^[=+\-@]/.test(v) ? "'" + v : v;
     };
 
+    // Trustee-site contact form: email only. Messages are NOT written to the
+    // campaign Sheet, so campaign volunteers with Sheet access never see them.
+    if (data.formType === "contact") {
+      const clip = function (v, n) {
+        return String(v || "").slice(0, n);
+      };
+      MailApp.sendEmail({
+        to: NOTIFICATION_EMAIL,
+        replyTo: clip(data.email, 200),
+        subject: "Website message: " + clip(data.topic, 120) + " (" + clip(data.name, 80) + ")",
+        body: [
+          "New message from dorit4trustee.com/contact",
+          "",
+          "Name: " + clip(data.name, 120),
+          "Email: " + clip(data.email, 200),
+          "Community: " + clip(data.community, 60),
+          "School: " + (clip(data.school, 80) || "Not school-specific"),
+          "Topic: " + clip(data.topic, 120),
+          "Time: " + timestamp,
+          "",
+          clip(data.message, 5000),
+        ].join("\n"),
+      });
+      return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(
+        ContentService.MimeType.JSON,
+      );
+    }
+
     if (data.formType === "lawn-sign") {
       const lawnSignsSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Lawn Signs");
       lawnSignsSheet.appendRow([

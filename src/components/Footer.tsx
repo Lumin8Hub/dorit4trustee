@@ -1,21 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
+import { SITE, SOCIAL_LINKS } from "@/data/site";
 
-const NAV_LINKS = [
-  { label: "How to Vote", to: "/vote" },
-  { label: "Meet Dorit", to: "/meet-dorit" },
-  { label: "My Priorities", to: "/priorities" },
-  { label: "Map", to: "/ward-1" },
-  { label: "Community", to: "/community" },
-  { label: "Get Involved", to: "/get-involved" },
+const FOOTER_LINKS = [
+  { label: "About Dorit", to: "/about" },
+  { label: "Commitments", to: "/commitments" },
+  { label: "Our Schools", to: "/schools" },
+  { label: "Updates", to: "/updates" },
+  { label: "The Board & You", to: "/the-board" },
+  { label: "Resources", to: "/resources" },
+  { label: "In the Community", to: "/community" },
   { label: "Contact", to: "/contact" },
-  { label: "Donate", to: "/donate" },
-] as const;
-
-const SOCIAL_LINKS = [
-  { label: "Facebook", href: "https://www.facebook.com/Dorit4Trustee" },
-  { label: "Instagram", href: "https://www.instagram.com/dorit4trustee/" },
-  { label: "Nextdoor", href: "https://ca.nextdoor.com/page/dorit-smali-for-trustee-vaughan-on/" },
+  { label: "2026 Campaign", to: "/2026-campaign" },
+  { label: "Privacy", to: "/privacy" },
 ] as const;
 
 export function Footer() {
@@ -24,8 +21,8 @@ export function Footer() {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           <Logo />
-          <p className="site-footer__url">Dorit4Trustee.ca</p>
-          <ul className="site-footer__social" aria-label="Follow the campaign">
+          <p className="site-footer__url">Dorit4Trustee.com</p>
+          <ul className="site-footer__social" aria-label="Follow Dorit">
             {SOCIAL_LINKS.map((link) => (
               <li key={link.label}>
                 <a href={link.href} target="_blank" rel="noreferrer">
@@ -37,7 +34,7 @@ export function Footer() {
         </div>
 
         <nav className="site-footer__nav" aria-label="Footer">
-          {NAV_LINKS.map((link) => (
+          {FOOTER_LINKS.map((link) => (
             <Link key={link.to} to={link.to}>
               {link.label}
             </Link>
@@ -45,8 +42,15 @@ export function Footer() {
         </nav>
 
         <div className="site-footer__legal">
-          <p>Authorized by the Official Agent for the Dorit Smali Campaign.</p>
-          <p>&copy; 2026 Dorit Smali for YRDSB Trustee. All rights reserved.</p>
+          <p className="site-footer__disclaimer">{SITE.disclaimer}</p>
+          <p>
+            For YRDSB matters, see the{" "}
+            <a href="https://www2.yrdsb.ca/about-us/board-trustees/board-trustees-directory">
+              YRDSB Trustee Directory
+            </a>
+            .
+          </p>
+          <p>&copy; 2026 Dorit Smali. All rights reserved.</p>
           <button
             type="button"
             className="site-footer__privacy-control"

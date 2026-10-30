@@ -1,42 +1,64 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronDown, ExternalLink, MapPin, Vote } from "lucide-react";
+import { BookOpenCheck, CalendarDays, Mail, School } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { LawnSignForm } from "@/components/LawnSignForm";
+import { PriorityCard } from "@/components/PriorityCard";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
-import { LawnSignCard, PriorityCard } from "@/components/PriorityCard";
-import { SectionHeading } from "@/components/SectionHeading";
-import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
-import { ENDORSEMENTS } from "@/data/endorsements";
 import { PRIORITIES } from "@/data/priorities";
-import { ELECTION_DAY, KING, VAUGHAN } from "@/data/voting";
+import { ELEMENTARY, SECONDARY } from "@/data/schools";
+import { ELECTION_RESULT, SITE } from "@/data/site";
+import { UPDATES, formatDate } from "@/data/updates";
+import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
 
-const HERO_DESKTOP_OG = "https://dorit4trustee.com/images/hero-desktop.png";
+const OG_IMAGE = "https://dorit4trustee.com/images/hero-desktop.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dorit Smali for YRDSB Trustee 2026 — Make Our Schools Work for Our Kids" },
+      { title: "Dorit Smali | YRDSB Trustee, King & Vaughan Ward 1" },
       {
         name: "description",
         content:
-          "A fresh voice for King-Vaughan Ward 1 families. Join the campaign for strong, caring, practical leadership in our YRDSB schools.",
+          "Dorit Smali is the York Region District School Board trustee for King Township and Vaughan Ward 1. Schools, board updates, commitments and how to reach her.",
       },
-      { property: "og:title", content: "Make Our Schools Work for Our Kids" },
+      { property: "og:title", content: "Dorit Smali, YRDSB Trustee" },
       {
         property: "og:description",
-        content: "A fresh voice for King-Vaughan Ward 1 families.",
+        content: "Working for our kids in King Township and Vaughan Ward 1.",
       },
-      { property: "og:image", content: HERO_DESKTOP_OG },
+      { property: "og:image", content: OG_IMAGE },
     ],
   }),
   component: HomePage,
 });
 
+const QUICK_LINKS = [
+  { icon: Mail, label: "Contact Dorit", text: "Questions, concerns and invitations.", to: "/contact" },
+  {
+    icon: School,
+    label: "Our Schools",
+    text: `${ELEMENTARY.length} elementary and ${SECONDARY.length} secondary schools.`,
+    to: "/schools",
+  },
+  {
+    icon: CalendarDays,
+    label: "The Board & You",
+    text: "Meetings, committees and how to have your say.",
+    to: "/the-board",
+  },
+  {
+    icon: BookOpenCheck,
+    label: "Board Updates",
+    text: "What the board decided and what it means for your child.",
+    to: "/updates",
+  },
+] as const;
+
 function HomePage() {
+  const latest = UPDATES.slice(0, 3);
   return (
     <div className="page">
-      <Header variant="overlay" nav="voter" />
+      <Header variant="overlay" />
       <main>
         <section className="hero">
           <div className="hero__scrim" aria-hidden="true" />
@@ -44,290 +66,201 @@ function HomePage() {
             <div className="hero__panel">
               <div className="hero__copy">
                 <h1 className="hero__title">
-                  <span className="t-eyebrow hero__eyebrow">Make Our Schools Work For</span>{" "}
+                  <span className="t-eyebrow hero__eyebrow">
+                    YRDSB Trustee · {SITE.areaShort}
+                  </span>{" "}
                   <span className="hero__headline">
-                    Our Kids
+                    Working for Our Kids
                     <span className="hero__underline" aria-hidden="true" />
                   </span>
                 </h1>
                 <p className="hero__subtitle">Back to Basics. Back to Learning.</p>
-                <p className="hero__kicker">Dorit Smali for YRDSB Trustee, King-Vaughan Ward 1</p>
+                <p className="hero__kicker">
+                  Dorit Smali, your public school trustee for King Township and Vaughan Ward 1
+                </p>
               </div>
-
               <div className="hero__ctas">
-                <Link to="/lawn-sign" className="btn btn--mustard">
-                  <span className="hero__cta-prefix">Request a&nbsp;</span>Lawn Sign
+                <Link to="/contact" className="btn btn--mustard">
+                  Contact Dorit
                 </Link>
-                <Link to="/donate" className="btn btn--turquoise">
-                  Donate
+                <Link to="/schools" className="btn btn--turquoise">
+                  Find Your School
                 </Link>
               </div>
-              <a href="#priorities" className="hero__priorities-link">
-                See my priorities
-                <ChevronDown size={20} strokeWidth={2.5} aria-hidden="true" />
-              </a>
             </div>
           </div>
         </section>
 
-        <section id="online-voting" className="online-voting" aria-labelledby="online-voting-title">
-          <div className="online-voting__inner">
-            <div className="online-voting__intro">
-              <div className="online-voting__badge">
-                <Vote size={20} strokeWidth={2.5} aria-hidden="true" />
-                <span>Action required</span>
-              </div>
-              <p className="t-eyebrow online-voting__eyebrow">2026 Municipal Election</p>
-              <h2 id="online-voting-title" className="online-voting__heading">
-                How to Vote
+        <section className="letter" aria-labelledby="letter-title">
+          <div className="container letter__inner">
+            <img
+              src="/images/dorit-portrait.webp"
+              className="letter__portrait"
+              alt="Portrait of Dorit Smali"
+              loading="lazy"
+            />
+            <div className="letter__body">
+              <p className="t-eyebrow">A Letter to Residents</p>
+              <h2 id="letter-title" className="section-heading">
+                Dear Neighbours,
+                <span className="accent-bar" aria-hidden="true" />
               </h2>
-              <p className="online-voting__lede">
-                Voting works differently in Vaughan and King. Choose where you live to see your
-                dates and next step.
+              <p>
+                Thank you. On October 26, families across King Township and Vaughan Ward 1 elected
+                me as your York Region District School Board trustee, with{" "}
+                {ELECTION_RESULT.votes.toLocaleString("en-CA")} votes (
+                <a href={ELECTION_RESULT.certificateUrl}>certified results</a>). I am honoured by
+                your trust, and I take the responsibility seriously.
+              </p>
+              <p>
+                To everyone who voted, whoever you supported: I work for every family in our ward.
+                That includes the parents I met at your doors, at markets and community events in
+                King and Vaughan, and the ones I haven't met yet.
+              </p>
+              <p>
+                I made five commitments: excellence through merit, unity and equality, keeping
+                politics out of the classroom, real support for special education, and safe
+                schools. This website tracks each one, and I will report back on what the board
+                decides and how I vote.
+              </p>
+              <p>
+                My term begins on {SITE.termStart}. I look forward to working with families,
+                teachers and staff in all {ELEMENTARY.length + SECONDARY.length} of our schools.
+              </p>
+              <p className="letter__signoff">
+                Sincerely,
+                <span className="letter__signature">Dorit Smali</span>
+              </p>
+              <p className="letter__ps">
+                P.S. This is my personal website. For YRDSB matters, see the{" "}
+                <Link to="/contact">Contact page</Link> for how to reach me.
               </p>
             </div>
-
-            <div className="online-voting__cards">
-              <article className="voting-card voting-card--vaughan">
-                <div className="voting-card__location">
-                  <MapPin size={22} strokeWidth={2.25} aria-hidden="true" />
-                  <h3>Vaughan Residents</h3>
-                </div>
-                <p className="voting-card__action">Register to vote online by October 15.</p>
-                <dl className="voting-card__details">
-                  <div>
-                    <dt>Register by</dt>
-                    <dd>{VAUGHAN.registerOnlineBy}</dd>
-                  </div>
-                  <div>
-                    <dt>Vote online</dt>
-                    <dd>{VAUGHAN.onlineDates}</dd>
-                  </div>
-                </dl>
-                <p className="voting-card__note">
-                  Online is the only way to vote early in Vaughan, and you must register first. You
-                  need to be on the Voters&apos; List, with acceptable ID and your own email
-                  address.
-                </p>
-                <a
-                  href={VAUGHAN.registerUrl}
-                  className="btn btn--mustard btn--lg voting-card__cta"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Register to Vote Online
-                  <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
-                </a>
-              </article>
-
-              <article className="voting-card voting-card--king">
-                <div className="voting-card__location">
-                  <MapPin size={22} strokeWidth={2.25} aria-hidden="true" />
-                  <h3>King Residents</h3>
-                </div>
-                <p className="voting-card__action">Vote online or in person early.</p>
-                <dl className="voting-card__details">
-                  <div>
-                    <dt>Vote online</dt>
-                    <dd>{KING.onlineDates}</dd>
-                  </div>
-                  <div>
-                    <dt>In person early</dt>
-                    <dd>
-                      Sat Oct{" "}
-                      {KING.advanceDays.map((d) => d.shortDate.replace("Oct ", "")).join(", ")}
-                    </dd>
-                  </div>
-                </dl>
-                <p className="voting-card__note">
-                  Use the PIN in your Voter Information Letter to vote online. No letter? Check that
-                  you&apos;re on the Voters&apos; List.
-                </p>
-                <div className="voting-card__cta-group">
-                  <a
-                    href={KING.voteUrl}
-                    className="btn btn--turquoise btn--lg voting-card__cta"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Vote Online (from Oct 13)
-                    <ExternalLink size={18} strokeWidth={2.25} aria-hidden="true" />
-                  </a>
-                  <a
-                    href={KING.votersListUrl}
-                    className="voting-card__secondary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Check your voter information
-                    <ExternalLink size={16} strokeWidth={2.25} aria-hidden="true" />
-                  </a>
-                </div>
-              </article>
-            </div>
-
-            <p className="online-voting__footnote">
-              Election Day is {ELECTION_DAY.date}, in person, {ELECTION_DAY.hours}{" "}
-              <Link to="/vote">See the full voting guide</Link>
-            </p>
           </div>
         </section>
 
-        <section
-          id="priorities"
-          className="priorities--home"
-          aria-label="Priorities for Our Schools"
-        >
-          <div className="priorities__inner">
-            <p className="t-eyebrow priorities__eyebrow">Priorities for Our Schools</p>
-            <h2 className="priorities__heading t-section">A Back to Basics Approach</h2>
-            <p className="priorities__intro">
-              As your trustee, I will put student achievement and community harmony first. Five
-              promises:
-            </p>
+        <section className="quick-links" aria-label="Quick links">
+          <div className="container quick-links__grid">
+            {QUICK_LINKS.map((q) => {
+              const Icon = q.icon;
+              return (
+                <Link key={q.to} to={q.to} className="quick-link">
+                  <Icon size={28} strokeWidth={1.75} aria-hidden="true" />
+                  <span className="quick-link__label">{q.label}</span>
+                  <span className="quick-link__text">{q.text}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
 
+        <section id="commitments" className="priorities--home" aria-labelledby="commitments-title">
+          <div className="priorities__inner">
+            <p className="t-eyebrow priorities__eyebrow">My Commitments</p>
+            <h2 id="commitments-title" className="priorities__heading t-section">
+              Five Promises. Tracked in Public.
+            </h2>
+            <p className="priorities__intro">
+              I am one of 12 elected trustees, so I can't deliver any of these alone. Here is where
+              each one stands.
+            </p>
             <div className="promises-grid">
               {PRIORITIES.map((p, i) => (
                 <PriorityCard key={p.id} priority={p} number={i + 1} />
               ))}
-              <LawnSignCard href="#lawn-sign" source="home-priorities-grid" />
-            </div>
-
-            <div className="priorities__more">
-              <Link to="/priorities" className="btn btn--ink">
-                Read the full platform
-              </Link>
+              <aside className="promise-card promise-card--cta">
+                <h3 className="promise-card__title">See the Progress</h3>
+                <p className="promise-card__body">
+                  Each commitment has a status, a record of what has happened, and the next
+                  decision to watch.
+                </p>
+                <Link to="/commitments" className="btn btn--mustard promise-card__cta">
+                  Track My Commitments
+                </Link>
+              </aside>
             </div>
           </div>
         </section>
 
-        <section className="endorsements" aria-label="Endorsements">
-          <div className="endorsements__inner">
-            <p className="t-eyebrow endorsements__eyebrow">Endorsements</p>
-            <h2 className="endorsements__heading t-section">Endorsed By Community Leaders</h2>
-            <div className="endorsements__grid">
-              {ENDORSEMENTS.map((e) => (
-                <article
-                  key={e.name}
-                  className={`endorsement-card${e.quote ? "" : " endorsement-card--short"}`}
-                >
-                  <div className="endorsement-card__header">
-                    <img
-                      className="endorsement-card__photo"
-                      src={e.photo}
-                      alt={`Portrait of ${e.name}`}
-                      loading="lazy"
-                      width={112}
-                      height={112}
-                    />
-                    <div className="endorsement-card__text">
-                      <h3 className="endorsement-card__name">
-                        {e.website ? <a href={e.website}>{e.name}</a> : e.name}
-                      </h3>
-                      <p className="endorsement-card__role">{e.role}</p>
-                      <p className="endorsement-card__riding">{e.riding}</p>
-                    </div>
-                  </div>
-                  {e.quote && (
-                    <blockquote className="endorsement-card__quote">
-                      {e.quote.map((paragraph) => (
-                        <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                      ))}
-                    </blockquote>
-                  )}
+        <section className="home-updates" aria-labelledby="updates-title">
+          <div className="container">
+            <p className="t-eyebrow">Board Updates</p>
+            <h2 id="updates-title" className="section-heading">
+              Latest from the Board
+              <span className="accent-bar" aria-hidden="true" />
+            </h2>
+            <div className="update-grid">
+              {latest.map((u) => (
+                <article key={u.slug} className="update-card">
+                  <p className="update-card__meta">
+                    {u.category} · <time dateTime={u.date}>{formatDate(u.date)}</time>
+                  </p>
+                  <h3 className="update-card__title">
+                    <Link to="/updates/$slug" params={{ slug: u.slug }}>
+                      {u.title}
+                    </Link>
+                  </h3>
+                  <p className="update-card__summary">{u.summary}</p>
                 </article>
               ))}
             </div>
-            <div className="endorsements__cta">
-              <p>Stand with these leaders. Support Dorit&apos;s campaign.</p>
-              <Link to="/donate" className="btn btn--mustard btn--lg">
-                Donate
+            <Link to="/updates" className="btn btn--ink">
+              All Updates
+            </Link>
+          </div>
+        </section>
+
+        <section className="home-schools" aria-labelledby="schools-title">
+          <div className="container home-schools__inner">
+            <div>
+              <p className="t-eyebrow">Our Schools</p>
+              <h2 id="schools-title" className="section-heading">
+                {ELEMENTARY.length + SECONDARY.length} Schools. One Community.
+                <span className="accent-bar" aria-hidden="true" />
+              </h2>
+              <p>
+                I represent {ELEMENTARY.length} elementary and {SECONDARY.length} secondary YRDSB
+                schools across King Township and Vaughan Ward 1, from Schomberg and Nobleton to
+                Kleinburg and Maple.
+              </p>
+              <Link to="/schools" className="btn btn--ink">
+                See All Schools and the Ward Map
               </Link>
             </div>
-          </div>
-        </section>
-
-        <section className="meet-dorit">
-          <div className="container meet-dorit__inner">
             <img
-              src="/images/dorit-portrait.webp"
-              className="meet-dorit__portrait"
-              alt="Dorit Smali"
+              src="/images/ward_1_map.webp"
+              alt="Map of the King and Vaughan Ward 1 trustee area with school locations"
+              className="home-schools__map"
+              width={1196}
+              height={1550}
               loading="lazy"
             />
-            <div>
-              <SectionHeading eyebrow="Meet Dorit">A Mom, a Leader, a Neighbour.</SectionHeading>
-              <p>
-                Dorit Smali is a wife, a mother of two young children, and a York Region community
-                builder. For more than 20 years she has helped large organizations adopt new
-                technology to deliver better services at lower cost. She knows how to manage a
-                complex budget, ask the right questions, and turn priorities into results.
-              </p>
-              <p>
-                The YRDSB manages a budget of more than $1.8 billion. That money belongs to our
-                community, and it should work as hard as possible for our students.
-              </p>
-              <blockquote className="meet-dorit__quote">
-                <p>
-                  Our schools, families, and children deserve strong, caring, practical leadership
-                  that always puts students first.
-                </p>
-                <cite>Dorit</cite>
-              </blockquote>
-              <div className="meet-dorit__ctas">
-                <Link to="/meet-dorit" className="btn btn--ink">
-                  Read Dorit&apos;s Story
-                </Link>
-                <Link to="/donate" className="btn btn--mustard">
-                  Donate
-                </Link>
-              </div>
-            </div>
           </div>
         </section>
 
-        <section className="photo-carousel" aria-label="Dorit in the community">
+        <section className="photo-carousel" aria-labelledby="community-title">
           <div className="photo-carousel__inner">
-            <p className="t-eyebrow photo-carousel__eyebrow">On the Campaign Trail</p>
-            <h2 className="photo-carousel__heading t-section">Out in the Community</h2>
+            <p className="t-eyebrow photo-carousel__eyebrow">In the Community</p>
+            <h2 id="community-title" className="photo-carousel__heading t-section">
+              Showing Up for Our Community
+            </h2>
           </div>
           <PhotoCarousel photos={COMMUNITY_PHOTOS} />
         </section>
 
-        <section id="lawn-sign" className="lawn-sign-section">
-          <div className="container lawn-sign-section__inner">
-            <SectionHeading align="center" eyebrow="Show Your Support">
-              Request a Lawn Sign
-            </SectionHeading>
-            <p className="lawn-sign-section__lede">
-              Signs go up soon. Tell us where to put yours. We deliver it, and we pick it up after
-              Election Day.
+        <section className="support-cta" aria-labelledby="home-cta-title">
+          <div className="container support-cta__inner">
+            <h2 id="home-cta-title" className="section-heading section-heading--sm">
+              Have a Question About Our Schools?
+            </h2>
+            <p className="support-cta__lede">
+              Dorit reads every message. For a classroom concern, start with your child's teacher
+              or principal.
             </p>
-            <LawnSignForm id="home-lawn-sign" source="home" />
-            <p className="lawn-sign-section__note">
-              Not sure if your home is in Ward 1? <Link to="/ward-1">Check the map.</Link>
-            </p>
-          </div>
-        </section>
-
-        <section className="other-ways">
-          <div className="container">
-            <h2 className="section-heading section-heading--sm">Other Ways to Help</h2>
-            <div className="other-ways__grid">
-              <div className="other-ways__item">
-                <h3>Volunteer</h3>
-                <p>Have a few hours? Knock on doors, make calls, or help at an event.</p>
-                <Link to="/get-involved" className="btn btn--turquoise btn--sm">
-                  Volunteer
-                </Link>
-              </div>
-              <div className="other-ways__item">
-                <h3>Donate</h3>
-                <p>Contributions pay for signs, flyers, and reaching more families in Ward 1.</p>
-                <Link to="/donate" className="btn btn--mustard btn--sm">
-                  Donate
-                </Link>
-              </div>
+            <div className="support-cta__buttons">
+              <Link to="/contact" className="btn btn--mustard btn--lg">
+                Contact Dorit
+              </Link>
             </div>
           </div>
         </section>

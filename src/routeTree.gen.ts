@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as Ward1RouteImport } from './routes/ward-1'
 import { Route as VotingRouteImport } from './routes/voting'
 import { Route as VoteRouteImport } from './routes/vote'
+import { Route as TheBoardRouteImport } from './routes/the-board'
+import { Route as SchoolsRouteImport } from './routes/schools'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as MeetDoritRouteImport } from './routes/meet-dorit'
@@ -20,7 +23,13 @@ import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as CommitmentsRouteImport } from './routes/commitments'
+import { Route as AccessibilityRouteImport } from './routes/accessibility'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as R2026CampaignRouteImport } from './routes/2026-campaign'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UpdatesIndexRouteImport } from './routes/updates.index'
+import { Route as UpdatesSlugRouteImport } from './routes/updates.$slug'
 
 const Ward1Route = Ward1RouteImport.update({
   id: '/ward-1',
@@ -35,6 +44,21 @@ const VotingRoute = VotingRouteImport.update({
 const VoteRoute = VoteRouteImport.update({
   id: '/vote',
   path: '/vote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheBoardRoute = TheBoardRouteImport.update({
+  id: '/the-board',
+  path: '/the-board',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchoolsRoute = SchoolsRouteImport.update({
+  id: '/schools',
+  path: '/schools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -77,14 +101,48 @@ const CommunityRoute = CommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommitmentsRoute = CommitmentsRouteImport.update({
+  id: '/commitments',
+  path: '/commitments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccessibilityRoute = AccessibilityRouteImport.update({
+  id: '/accessibility',
+  path: '/accessibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R2026CampaignRoute = R2026CampaignRouteImport.update({
+  id: '/2026-campaign',
+  path: '/2026-campaign',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UpdatesIndexRoute = UpdatesIndexRouteImport.update({
+  id: '/updates/',
+  path: '/updates/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpdatesSlugRoute = UpdatesSlugRouteImport.update({
+  id: '/updates/$slug',
+  path: '/updates/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/2026-campaign': typeof R2026CampaignRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/commitments': typeof CommitmentsRoute
   '/community': typeof CommunityRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
@@ -93,12 +151,21 @@ export interface FileRoutesByFullPath {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
+  '/schools': typeof SchoolsRoute
+  '/the-board': typeof TheBoardRoute
   '/vote': typeof VoteRoute
   '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
+  '/updates/$slug': typeof UpdatesSlugRoute
+  '/updates/': typeof UpdatesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/2026-campaign': typeof R2026CampaignRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/commitments': typeof CommitmentsRoute
   '/community': typeof CommunityRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
@@ -107,13 +174,22 @@ export interface FileRoutesByTo {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
+  '/schools': typeof SchoolsRoute
+  '/the-board': typeof TheBoardRoute
   '/vote': typeof VoteRoute
   '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
+  '/updates/$slug': typeof UpdatesSlugRoute
+  '/updates': typeof UpdatesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/2026-campaign': typeof R2026CampaignRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/commitments': typeof CommitmentsRoute
   '/community': typeof CommunityRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
@@ -122,14 +198,23 @@ export interface FileRoutesById {
   '/meet-dorit': typeof MeetDoritRoute
   '/priorities': typeof PrioritiesRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
+  '/schools': typeof SchoolsRoute
+  '/the-board': typeof TheBoardRoute
   '/vote': typeof VoteRoute
   '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
+  '/updates/$slug': typeof UpdatesSlugRoute
+  '/updates/': typeof UpdatesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/2026-campaign'
+    | '/about'
+    | '/accessibility'
+    | '/commitments'
     | '/community'
     | '/contact'
     | '/donate'
@@ -138,12 +223,21 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/resources'
+    | '/schools'
+    | '/the-board'
     | '/vote'
     | '/voting'
     | '/ward-1'
+    | '/updates/$slug'
+    | '/updates/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/2026-campaign'
+    | '/about'
+    | '/accessibility'
+    | '/commitments'
     | '/community'
     | '/contact'
     | '/donate'
@@ -152,12 +246,21 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/resources'
+    | '/schools'
+    | '/the-board'
     | '/vote'
     | '/voting'
     | '/ward-1'
+    | '/updates/$slug'
+    | '/updates'
   id:
     | '__root__'
     | '/'
+    | '/2026-campaign'
+    | '/about'
+    | '/accessibility'
+    | '/commitments'
     | '/community'
     | '/contact'
     | '/donate'
@@ -166,13 +269,22 @@ export interface FileRouteTypes {
     | '/meet-dorit'
     | '/priorities'
     | '/privacy'
+    | '/resources'
+    | '/schools'
+    | '/the-board'
     | '/vote'
     | '/voting'
     | '/ward-1'
+    | '/updates/$slug'
+    | '/updates/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R2026CampaignRoute: typeof R2026CampaignRoute
+  AboutRoute: typeof AboutRoute
+  AccessibilityRoute: typeof AccessibilityRoute
+  CommitmentsRoute: typeof CommitmentsRoute
   CommunityRoute: typeof CommunityRoute
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
@@ -181,9 +293,14 @@ export interface RootRouteChildren {
   MeetDoritRoute: typeof MeetDoritRoute
   PrioritiesRoute: typeof PrioritiesRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRoute
+  SchoolsRoute: typeof SchoolsRoute
+  TheBoardRoute: typeof TheBoardRoute
   VoteRoute: typeof VoteRoute
   VotingRoute: typeof VotingRoute
   Ward1Route: typeof Ward1Route
+  UpdatesSlugRoute: typeof UpdatesSlugRoute
+  UpdatesIndexRoute: typeof UpdatesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -207,6 +324,27 @@ declare module '@tanstack/react-router' {
       path: '/vote'
       fullPath: '/vote'
       preLoaderRoute: typeof VoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-board': {
+      id: '/the-board'
+      path: '/the-board'
+      fullPath: '/the-board'
+      preLoaderRoute: typeof TheBoardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schools': {
+      id: '/schools'
+      path: '/schools'
+      fullPath: '/schools'
+      preLoaderRoute: typeof SchoolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -265,6 +403,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/commitments': {
+      id: '/commitments'
+      path: '/commitments'
+      fullPath: '/commitments'
+      preLoaderRoute: typeof CommitmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accessibility': {
+      id: '/accessibility'
+      path: '/accessibility'
+      fullPath: '/accessibility'
+      preLoaderRoute: typeof AccessibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/2026-campaign': {
+      id: '/2026-campaign'
+      path: '/2026-campaign'
+      fullPath: '/2026-campaign'
+      preLoaderRoute: typeof R2026CampaignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -272,11 +438,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/updates/': {
+      id: '/updates/'
+      path: '/updates'
+      fullPath: '/updates/'
+      preLoaderRoute: typeof UpdatesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/updates/$slug': {
+      id: '/updates/$slug'
+      path: '/updates/$slug'
+      fullPath: '/updates/$slug'
+      preLoaderRoute: typeof UpdatesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R2026CampaignRoute: R2026CampaignRoute,
+  AboutRoute: AboutRoute,
+  AccessibilityRoute: AccessibilityRoute,
+  CommitmentsRoute: CommitmentsRoute,
   CommunityRoute: CommunityRoute,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
@@ -285,9 +469,14 @@ const rootRouteChildren: RootRouteChildren = {
   MeetDoritRoute: MeetDoritRoute,
   PrioritiesRoute: PrioritiesRoute,
   PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRoute,
+  SchoolsRoute: SchoolsRoute,
+  TheBoardRoute: TheBoardRoute,
   VoteRoute: VoteRoute,
   VotingRoute: VotingRoute,
   Ward1Route: Ward1Route,
+  UpdatesSlugRoute: UpdatesSlugRoute,
+  UpdatesIndexRoute: UpdatesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

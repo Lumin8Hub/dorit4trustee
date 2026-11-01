@@ -1,13 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BookOpenCheck, CalendarDays, Mail, School } from "lucide-react";
+import { Mail, Newspaper, School, UsersRound } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { PriorityCard } from "@/components/PriorityCard";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
 import { PRIORITIES } from "@/data/priorities";
 import { ELEMENTARY, SECONDARY } from "@/data/schools";
-import { ELECTION_RESULT, SITE } from "@/data/site";
-import { UPDATES, formatDate } from "@/data/updates";
+import { BOARD_NEWS_URL, ELECTION_RESULT, SITE } from "@/data/site";
 import { COMMUNITY_PHOTOS } from "@/data/communityPhotos";
 
 const OG_IMAGE = "https://dorit4trustee.com/images/hero-desktop.png";
@@ -19,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Dorit Smali is the York Region District School Board trustee for King Township and Vaughan Ward 1. Schools, board updates, commitments and how to reach her.",
+          "Dorit Smali is the York Region District School Board trustee for King Township and Vaughan Ward 1. Join her supporter team, follow her commitments and get in touch.",
       },
       { property: "og:title", content: "Dorit Smali, YRDSB Trustee" },
       {
@@ -33,7 +32,18 @@ export const Route = createFileRoute("/")({
 });
 
 const QUICK_LINKS = [
-  { icon: Mail, label: "Contact Dorit", text: "Questions, concerns and invitations.", to: "/contact" },
+  {
+    icon: UsersRound,
+    label: "Join Team Dorit",
+    text: "Events, meet-and-greets and the next campaign.",
+    to: "/get-involved",
+  },
+  {
+    icon: Mail,
+    label: "Contact Dorit",
+    text: "Send a message or an event invitation.",
+    to: "/contact",
+  },
   {
     icon: School,
     label: "Our Schools",
@@ -41,21 +51,14 @@ const QUICK_LINKS = [
     to: "/schools",
   },
   {
-    icon: CalendarDays,
-    label: "The Board & You",
-    text: "Meetings, committees and how to have your say.",
-    to: "/the-board",
-  },
-  {
-    icon: BookOpenCheck,
-    label: "Board Updates",
-    text: "What the board decided and what it means for your child.",
-    to: "/updates",
+    icon: Newspaper,
+    label: "Board News",
+    text: "Official news from the York Region District School Board.",
+    href: BOARD_NEWS_URL,
   },
 ] as const;
 
 function HomePage() {
-  const latest = UPDATES.slice(0, 3);
   return (
     <div className="page">
       <Header variant="overlay" />
@@ -66,25 +69,22 @@ function HomePage() {
             <div className="hero__panel">
               <div className="hero__copy">
                 <h1 className="hero__title">
-                  <span className="t-eyebrow hero__eyebrow">
-                    YRDSB Trustee · {SITE.areaShort}
-                  </span>{" "}
+                  <span className="t-eyebrow hero__eyebrow">YRDSB Trustee · {SITE.areaShort}</span>{" "}
                   <span className="hero__headline">
                     Working for Our Kids
                     <span className="hero__underline" aria-hidden="true" />
                   </span>
                 </h1>
-                <p className="hero__subtitle">Back to Basics. Back to Learning.</p>
                 <p className="hero__kicker">
                   Dorit Smali, your public school trustee for King Township and Vaughan Ward 1
                 </p>
               </div>
               <div className="hero__ctas">
-                <Link to="/contact" className="btn btn--mustard">
-                  Contact Dorit
+                <Link to="/get-involved" className="btn btn--mustard">
+                  Join Team Dorit
                 </Link>
-                <Link to="/schools" className="btn btn--turquoise">
-                  Find Your School
+                <Link to="/contact" className="btn btn--turquoise">
+                  Contact Dorit
                 </Link>
               </div>
             </div>
@@ -119,21 +119,26 @@ function HomePage() {
               </p>
               <p>
                 I made five commitments: excellence through merit, unity and equality, keeping
-                politics out of the classroom, real support for special education, and safe
-                schools. This website tracks each one, and I will report back on what the board
-                decides and how I vote.
+                politics out of the classroom, real support for special education, and safe schools.
+                This website tracks where each one stands.
               </p>
               <p>
                 My term begins on {SITE.termStart}. I look forward to working with families,
                 teachers and staff in all {ELEMENTARY.length + SECONDARY.length} of our schools.
+              </p>
+              <p>
+                To the volunteers and supporters who carried this campaign: please stay with me.{" "}
+                <Link to="/get-involved">Join Team Dorit</Link> to hear about community events and
+                to help when it's time to run again.
               </p>
               <p className="letter__signoff">
                 Sincerely,
                 <span className="letter__signature">Dorit Smali</span>
               </p>
               <p className="letter__ps">
-                P.S. This is my personal website. For YRDSB matters, see the{" "}
-                <Link to="/contact">Contact page</Link> for how to reach me.
+                P.S. This is my personal website for friends and supporters. Board business goes
+                through my official YRDSB email, which I'll share here once it's set up. Official
+                board news is on the <a href={BOARD_NEWS_URL}>YRDSB newsroom</a>.
               </p>
             </div>
           </div>
@@ -143,11 +148,26 @@ function HomePage() {
           <div className="container quick-links__grid">
             {QUICK_LINKS.map((q) => {
               const Icon = q.icon;
-              return (
-                <Link key={q.to} to={q.to} className="quick-link">
+              const inner = (
+                <>
                   <Icon size={28} strokeWidth={1.75} aria-hidden="true" />
                   <span className="quick-link__label">{q.label}</span>
                   <span className="quick-link__text">{q.text}</span>
+                </>
+              );
+              return "href" in q ? (
+                <a
+                  key={q.href}
+                  href={q.href}
+                  className="quick-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <Link key={q.to} to={q.to} className="quick-link">
+                  {inner}
                 </Link>
               );
             })}
@@ -171,42 +191,14 @@ function HomePage() {
               <aside className="promise-card promise-card--cta">
                 <h3 className="promise-card__title">See the Progress</h3>
                 <p className="promise-card__body">
-                  Each commitment has a status, a record of what has happened, and the next
-                  decision to watch.
+                  Each commitment has a status, a record of what has happened, and the next decision
+                  to watch.
                 </p>
                 <Link to="/commitments" className="btn btn--mustard promise-card__cta">
                   Track My Commitments
                 </Link>
               </aside>
             </div>
-          </div>
-        </section>
-
-        <section className="home-updates" aria-labelledby="updates-title">
-          <div className="container">
-            <p className="t-eyebrow">Board Updates</p>
-            <h2 id="updates-title" className="section-heading">
-              Latest from the Board
-              <span className="accent-bar" aria-hidden="true" />
-            </h2>
-            <div className="update-grid">
-              {latest.map((u) => (
-                <article key={u.slug} className="update-card">
-                  <p className="update-card__meta">
-                    {u.category} · <time dateTime={u.date}>{formatDate(u.date)}</time>
-                  </p>
-                  <h3 className="update-card__title">
-                    <Link to="/updates/$slug" params={{ slug: u.slug }}>
-                      {u.title}
-                    </Link>
-                  </h3>
-                  <p className="update-card__summary">{u.summary}</p>
-                </article>
-              ))}
-            </div>
-            <Link to="/updates" className="btn btn--ink">
-              All Updates
-            </Link>
           </div>
         </section>
 
@@ -251,14 +243,16 @@ function HomePage() {
         <section className="support-cta" aria-labelledby="home-cta-title">
           <div className="container support-cta__inner">
             <h2 id="home-cta-title" className="section-heading section-heading--sm">
-              Have a Question About Our Schools?
+              Stay on Team Dorit
             </h2>
             <p className="support-cta__lede">
-              Dorit reads every message. For a classroom concern, start with your child's teacher
-              or principal.
+              Hear about community events, meet-and-greets and how to help in the next campaign.
             </p>
             <div className="support-cta__buttons">
-              <Link to="/contact" className="btn btn--mustard btn--lg">
+              <Link to="/get-involved" className="btn btn--mustard btn--lg">
+                Join Team Dorit
+              </Link>
+              <Link to="/contact" className="btn btn--ink btn--lg">
                 Contact Dorit
               </Link>
             </div>

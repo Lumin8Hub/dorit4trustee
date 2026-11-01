@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Mail, MessageSquare } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
@@ -12,12 +12,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Dorit Smali, YRDSB Trustee for King Township and Vaughan Ward 1, and find out who to contact first about a school concern.",
+          "Send Dorit Smali, YRDSB Trustee for King Township and Vaughan Ward 1, a message or an event invitation, and find out who to contact first about a school concern.",
       },
       { property: "og:title", content: "Contact Dorit Smali" },
       {
         property: "og:description",
-        content: "Questions, concerns and invitations. Dorit reads every message.",
+        content: "Messages and event invitations. Dorit reads every message.",
       },
     ],
   }),
@@ -53,31 +53,25 @@ function ContactPage() {
                 <span className="accent-bar" aria-hidden="true" />
               </h1>
               <p>
-                Have a question, a concern or an idea about our schools? Want me at your school
-                council meeting or community event? Send me a message. I read every one.
+                Want me at your community event or gathering? Have a message for me? Use the form
+                and I'll get back to you. I read every one.
               </p>
               <ul className="contact__details">
-                <li>
-                  <Mail size={18} strokeWidth={2} aria-hidden="true" />
-                  <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-                </li>
                 {SITE.yrdsbEmail ? (
                   <li>
                     <Mail size={18} strokeWidth={2} aria-hidden="true" />
                     <span>
-                      YRDSB: <a href={`mailto:${SITE.yrdsbEmail}`}>{SITE.yrdsbEmail}</a>
+                      Board matters: email me at{" "}
+                      <a href={`mailto:${SITE.yrdsbEmail}`}>{SITE.yrdsbEmail}</a>
                     </span>
                   </li>
                 ) : (
                   <li>
-                    <Mail size={18} strokeWidth={2} aria-hidden="true" />
-                    <span>My YRDSB email will be posted here once the term begins.</span>
-                  </li>
-                )}
-                {SITE.yrdsbPhone && (
-                  <li>
-                    <Phone size={18} strokeWidth={2} aria-hidden="true" />
-                    <a href={`tel:${SITE.yrdsbPhone}`}>{SITE.yrdsbPhone}</a>
+                    <MessageSquare size={18} strokeWidth={2} aria-hidden="true" />
+                    <span>
+                      Board matters will go to my official YRDSB email, which I'll post here once
+                      it's set up. Until then, please use this form.
+                    </span>
                   </li>
                 )}
                 <li className="contact__social-links">
@@ -88,6 +82,10 @@ function ContactPage() {
                   ))}
                 </li>
               </ul>
+              <p className="contact__join">
+                Want to come to events or help with the next campaign?{" "}
+                <Link to="/get-involved">Join Team Dorit</Link>.
+              </p>
             </div>
 
             <div className="contact__form">

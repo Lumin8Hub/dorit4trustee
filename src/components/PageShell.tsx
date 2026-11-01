@@ -38,20 +38,22 @@ export function PageShell({
 }
 
 /** Closing call to action used at the bottom of most pages. */
-export function ContactCta({ heading = "Questions About Our Schools?" }: { heading?: string }) {
+export function ContactCta({ heading = "Stay Connected with Dorit" }: { heading?: string }) {
   return (
     <section className="support-cta" aria-labelledby="contact-cta-title">
       <div className="container support-cta__inner">
         <h2 id="contact-cta-title" className="section-heading section-heading--sm">
           {heading}
         </h2>
-        <p className="support-cta__lede">I work for every family in King and Vaughan Ward 1.</p>
+        <p className="support-cta__lede">
+          Join Team Dorit to hear about community events and how to help in the next campaign.
+        </p>
         <div className="support-cta__buttons">
-          <Link to="/contact" className="btn btn--mustard btn--lg">
-            Contact Dorit
+          <Link to="/get-involved" className="btn btn--mustard btn--lg">
+            Join Team Dorit
           </Link>
-          <Link to="/updates" className="btn btn--ink btn--lg">
-            Read Board Updates
+          <Link to="/contact" className="btn btn--ink btn--lg">
+            Contact Dorit
           </Link>
         </div>
       </div>
@@ -71,6 +73,20 @@ export function redirectHead(to: string) {
       { httpEquiv: "refresh", content: `0; url=${to}` },
     ],
   };
+}
+
+/** Retired page whose content now lives on an external site (e.g. the YRDSB newsroom). */
+export function ExternalRedirectPage({ href, label }: { href: string; label: string }) {
+  useEffect(() => {
+    window.location.replace(href);
+  }, [href]);
+  return (
+    <main style={{ padding: "120px 24px", textAlign: "center" }}>
+      <p>
+        This page has moved to <a href={href}>{label}</a>.
+      </p>
+    </main>
+  );
 }
 
 export function RedirectPage({ to }: { to: string }) {

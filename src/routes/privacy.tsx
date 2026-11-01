@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { SITE } from "@/data/site";
 
@@ -17,12 +17,12 @@ export const Route = createFileRoute("/privacy")({
 });
 
 function PrivacyPage() {
-  const mail = <a href={`mailto:${SITE.email}`}>{SITE.email}</a>;
+  const form = <Link to="/contact">contact form</Link>;
   return (
     <PageShell
       eyebrow="Privacy"
       title="Privacy Policy"
-      lede="This website only asks for the information needed to respond to you."
+      lede="What we collect, why, and how to ask us to remove it."
     >
       <section className="legal">
         <div className="legal__inner">
@@ -34,23 +34,32 @@ function PrivacyPage() {
 
           <h2>Information We Collect</h2>
           <p>
-            When you use the contact form, we collect your name, email address, the community you
-            live in, and the school, topic and message you choose to send. We may also receive basic
-            technical information from normal website logs, such as browser type and approximate
-            visit time.
+            <strong>Join Team Dorit sign-up:</strong> your name, email address, optional mobile
+            number, home street address, community and postal code, and, if you choose to tell us,
+            which school board you vote for, whether you are a YRDSB parent and how you would like
+            to help.
+          </p>
+          <p>
+            <strong>Contact form:</strong> your name, email address, the community you live in, and
+            the school, topic and message you choose to send.
+          </p>
+          <p>
+            We may also receive basic technical information from normal website logs, such as
+            browser type and approximate visit time.
           </p>
 
           <h2>How We Use It</h2>
           <p>
-            We use your message only to read and reply to it. If your message is about a YRDSB
-            matter, Dorit may follow up through her YRDSB account so it is handled through the
-            board's proper channels. We do not add you to any mailing list from the contact form.
+            Sign-up information is used to keep in touch with supporters: invitations to community
+            events, volunteer opportunities and Dorit's future election campaigns. Your address
+            helps us confirm that you live in King Township or Vaughan Ward 1 and organize local
+            events and volunteers. We only send you messages if you check the consent box, and you
+            can unsubscribe at any time.
           </p>
-
-          <h2>Election Data</h2>
           <p>
-            This website does not use voter lists or contact information gathered during the 2026
-            election campaign.
+            Contact-form messages are used to read and reply to you. If your message is about a
+            YRDSB matter, Dorit will follow up through her official YRDSB account so it is handled
+            through the board's proper channels.
           </p>
 
           <h2>Optional Website Analytics</h2>
@@ -65,20 +74,21 @@ function PrivacyPage() {
 
           <h2>Cookies and Preferences</h2>
           <p>
-            Your analytics choice is stored in your browser's local storage so the site can
-            remember it. Google Analytics may use cookies when enabled. This site does not use
-            analytics cookies unless you opt in.
+            Your analytics choice is stored in your browser's local storage so the site can remember
+            it. Google Analytics may use cookies when enabled. This site does not use analytics
+            cookies unless you opt in.
           </p>
 
           <h2>Sharing and Retention</h2>
           <p>
-            We do not sell or share personal information. Messages are kept only as long as needed
-            to respond and follow up. You can ask us to delete your information at any time by
-            emailing {mail}.
+            We do not sell personal information or share it with YRDSB or any other organization.
+            Supporter information is kept until you ask us to remove it. Messages are kept only as
+            long as needed to respond and follow up. You can ask us to delete your information at
+            any time through the {form}.
           </p>
 
           <h2>Contact</h2>
-          <p>Questions about this policy can be sent to {mail}.</p>
+          <p>Questions about this policy can be sent through the {form}.</p>
         </div>
       </section>
     </PageShell>

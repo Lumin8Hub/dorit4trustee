@@ -13,18 +13,20 @@ async function importTs(path) {
   return import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
 }
 
-const RETIRED = ["meet-dorit", "priorities", "ward-1", "vote", "voting", "donate", "lawn-sign", "get-involved"];
+const RETIRED = ["meet-dorit", "priorities", "ward-1", "vote", "voting", "donate", "lawn-sign"];
 const routeFiles = readdirSync(new URL("src/routes/", root)).filter((f) => f.endsWith(".tsx"));
 const liveRoutes = routeFiles.filter((f) => !RETIRED.includes(f.replace(/\.tsx$/, "")));
 
-test("no fundraising or campaign calls to action anywhere in live pages or shared components", () => {
+// Supporter sign-up (events, next campaign) is allowed since Dorit's Nov 1, 2026 feedback.
+// Fundraising and 2026 voting instructions stay banned.
+test("no fundraising or 2026 voting calls to action in live pages or shared components", () => {
   const files = [
     ...liveRoutes.map((f) => `src/routes/${f}`),
     ...readdirSync(new URL("src/components/", root))
       .filter((f) => f.endsWith(".tsx"))
       .map((f) => `src/components/${f}`),
   ];
-  const banned = /donat|zeffy|e-?transfer|fundrais|contribut|lawn sign|volunteer for|join the campaign|how to vote|register to vote|request a sign/i;
+  const banned = /donat|zeffy|e-?transfer|fundrais|contribut|how to vote|register to vote|request a sign/i;
   for (const f of files) {
     const hits = read(f).match(banned);
     assert.equal(hits, null, `${f} mentions "${hits?.[0]}"`);
@@ -85,14 +87,63 @@ test("schools: 13 elementary and 2 secondary, each linked to yrdsb.ca", async ()
   for (const s of SCHOOLS) assert.match(s.url, /^https:\/\/[a-z]+-(ps|es|ss|hs)\.yrdsb\.ca\/$/, s.name);
 });
 
-test("updates have unique slugs, ISO dates and sources over https", async () => {
-  const { UPDATES } = await importTs("src/data/updates.ts");
-  assert.ok(UPDATES.length >= 1);
-  assert.equal(new Set(UPDATES.map((u) => u.slug)).size, UPDATES.length);
-  for (const u of UPDATES) {
-    assert.match(u.date, /^\d{4}-\d{2}-\d{2}$/);
-    for (const s of u.sources ?? []) assert.match(s.href, /^https:\/\//);
+const sourceFiles = () => [
+  ...liveRoutes.map((f) => `src/routes/${f}`),
+  ...readdirSync(new URL("src/components/", root))
+    .filter((f) => f.endsWith(".tsx"))
+    .map((f) => `src/components/${f}`),
+  "src/data/site.ts",
+];
+
+test("board updates go to the YRDSB newsroom, not a section on this site", async () => {
+  const { BOARD_NEWS_URL } = await importTs("src/data/site.ts");
+  assert.equal(BOARD_NEWS_URL, "https://www2.yrdsb.ca/newsroom/news");
+  assert.ok(!existsSync(new URL("src/data/updates.ts", root)), "updates data should be deleted");
+  assert.ok(!existsSync(new URL("src/routes/updates.$slug.tsx", root)), "update posts should be deleted");
+  assert.match(read("src/routes/updates.index.tsx"), /ExternalRedirectPage href=\{BOARD_NEWS_URL\}/);
+  for (const f of sourceFiles()) {
+    if (f.endsWith("updates.index.tsx")) continue;
+    assert.doesNotMatch(read(f), /to="\/updates|UPDATES/, `${f} still links to the old updates section`);
   }
+  assert.match(read("src/components/Header.tsx"), /BOARD_NEWS_URL/);
+  assert.match(read("src/components/Footer.tsx"), /BOARD_NEWS_URL/);
+});
+
+test("no email address or phone number is published; board matters wait for the YRDSB email", async () => {
+  const { SITE } = await importTs("src/data/site.ts");
+  assert.equal(SITE.email, undefined, "personal inbox must not be in site data");
+  assert.equal(SITE.yrdsbPhone, undefined, "no phone number on the site");
+  for (const f of sourceFiles()) {
+    const src = read(f);
+    assert.doesNotMatch(src, /tel:|@dorit4trustee|@gmail|\d{3}[-.\s]\d{3}[-.\s]\d{4}/, f);
+    const mailtos = src.match(/mailto:[^`"]*/g) ?? [];
+    for (const m of mailtos) assert.equal(m, "mailto:${SITE.yrdsbEmail}", `${f}: ${m}`);
+  }
+  assert.match(read("src/routes/contact.tsx"), /SITE\.yrdsbEmail \?/);
+});
+
+test("Dorit's Nov 1 feedback: no Nextdoor, no hero slogan, new real headshot", () => {
+  for (const f of sourceFiles()) assert.doesNotMatch(read(f), /nextdoor/i, f);
+  assert.doesNotMatch(read("src/routes/index.tsx"), /Back to Basics|hero__subtitle/);
+  assert.ok(!existsSync(new URL("public/images/dorit-portrait.png", root)), "old portrait removed");
+  assert.ok(existsSync(new URL("public/images/dorit-portrait.jpg", root)));
+});
+
+test("supporter sign-up identifies voters and asks for consent", () => {
+  const form = read("src/components/SupporterForm.tsx");
+  assert.match(form, /formType: "supporter"/);
+  const requiredField = (field) => {
+    const start = form.indexOf("name={`${id}-" + field + "`}");
+    assert.ok(start > 0, `${field} field missing`);
+    const tag = form.slice(start, form.indexOf(">", start));
+    return /\brequired\b/.test(tag);
+  };
+  for (const field of ["first-name", "last-name", "email", "address", "community", "postal-code", "consent"]) {
+    assert.ok(requiredField(field), `${field} must be required`);
+  }
+  assert.match(read("src/routes/get-involved.tsx"), /<SupporterForm \/>/);
+  assert.match(read("google-apps-script/Code.js"), /formType === "supporter"/);
+  assert.match(read("src/components/Header.tsx"), /to="\/get-involved"/);
 });
 
 test("resources are absolute URLs", async () => {

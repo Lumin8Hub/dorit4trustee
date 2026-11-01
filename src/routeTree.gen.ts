@@ -29,7 +29,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as R2026CampaignRouteImport } from './routes/2026-campaign'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UpdatesIndexRouteImport } from './routes/updates.index'
-import { Route as UpdatesSlugRouteImport } from './routes/updates.$slug'
 
 const Ward1Route = Ward1RouteImport.update({
   id: '/ward-1',
@@ -131,11 +130,6 @@ const UpdatesIndexRoute = UpdatesIndexRouteImport.update({
   path: '/updates/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UpdatesSlugRoute = UpdatesSlugRouteImport.update({
-  id: '/updates/$slug',
-  path: '/updates/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -157,7 +151,6 @@ export interface FileRoutesByFullPath {
   '/vote': typeof VoteRoute
   '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
-  '/updates/$slug': typeof UpdatesSlugRoute
   '/updates/': typeof UpdatesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -180,7 +173,6 @@ export interface FileRoutesByTo {
   '/vote': typeof VoteRoute
   '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
-  '/updates/$slug': typeof UpdatesSlugRoute
   '/updates': typeof UpdatesIndexRoute
 }
 export interface FileRoutesById {
@@ -204,7 +196,6 @@ export interface FileRoutesById {
   '/vote': typeof VoteRoute
   '/voting': typeof VotingRoute
   '/ward-1': typeof Ward1Route
-  '/updates/$slug': typeof UpdatesSlugRoute
   '/updates/': typeof UpdatesIndexRoute
 }
 export interface FileRouteTypes {
@@ -229,7 +220,6 @@ export interface FileRouteTypes {
     | '/vote'
     | '/voting'
     | '/ward-1'
-    | '/updates/$slug'
     | '/updates/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -252,7 +242,6 @@ export interface FileRouteTypes {
     | '/vote'
     | '/voting'
     | '/ward-1'
-    | '/updates/$slug'
     | '/updates'
   id:
     | '__root__'
@@ -275,7 +264,6 @@ export interface FileRouteTypes {
     | '/vote'
     | '/voting'
     | '/ward-1'
-    | '/updates/$slug'
     | '/updates/'
   fileRoutesById: FileRoutesById
 }
@@ -299,7 +287,6 @@ export interface RootRouteChildren {
   VoteRoute: typeof VoteRoute
   VotingRoute: typeof VotingRoute
   Ward1Route: typeof Ward1Route
-  UpdatesSlugRoute: typeof UpdatesSlugRoute
   UpdatesIndexRoute: typeof UpdatesIndexRoute
 }
 
@@ -445,13 +432,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UpdatesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/updates/$slug': {
-      id: '/updates/$slug'
-      path: '/updates/$slug'
-      fullPath: '/updates/$slug'
-      preLoaderRoute: typeof UpdatesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -475,7 +455,6 @@ const rootRouteChildren: RootRouteChildren = {
   VoteRoute: VoteRoute,
   VotingRoute: VotingRoute,
   Ward1Route: Ward1Route,
-  UpdatesSlugRoute: UpdatesSlugRoute,
   UpdatesIndexRoute: UpdatesIndexRoute,
 }
 export const routeTree = rootRouteImport

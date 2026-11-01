@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
-import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/accessibility")({
   head: () => ({
@@ -26,15 +25,15 @@ function AccessibilityPage() {
         <div className="legal__inner">
           <h2>Our Goal</h2>
           <p>
-            This website aims to meet the Web Content Accessibility Guidelines (WCAG) 2.1, Level
-            AA. Pages use clear headings, descriptive image text, sufficient colour contrast and
+            This website aims to meet the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA.
+            Pages use clear headings, descriptive image text, sufficient colour contrast and
             keyboard-friendly navigation.
           </p>
           <h2>Report a Barrier</h2>
           <p>
-            If something on this site is hard to use, or you need information in another format,
-            email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and tell us the page and the
-            problem. We will respond and work to fix it.
+            If something on this site is hard to use, or you need information in another format, use
+            the <Link to="/contact">contact form</Link> and tell us the page and the problem. We
+            will respond and work to fix it.
           </p>
         </div>
       </section>

@@ -2,15 +2,18 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { BOARD_NEWS_URL } from "@/data/site";
 
 export const NAV_LINKS = [
   { label: "About Dorit", to: "/about" },
   { label: "Commitments", to: "/commitments" },
   { label: "Our Schools", to: "/schools" },
-  { label: "Updates", to: "/updates" },
-  { label: "The Board", to: "/the-board" },
-  { label: "Resources", to: "/resources" },
+  { label: "Community", to: "/community" },
+  { label: "Contact", to: "/contact" },
 ] as const;
+
+/** Board news goes straight to YRDSB's newsroom. */
+const BOARD_NEWS = { label: "Board News", href: BOARD_NEWS_URL };
 
 interface HeaderProps {
   variant?: "overlay" | "solid";
@@ -57,10 +60,15 @@ export function Header({ variant = "overlay" }: HeaderProps) {
                 </Link>
               </li>
             ))}
+            <li>
+              <a href={BOARD_NEWS.href} className="site-nav__link" target="_blank" rel="noreferrer">
+                {BOARD_NEWS.label}
+              </a>
+            </li>
           </ul>
           <div className="site-nav__ctas">
-            <Link to="/contact" className="btn btn--mustard">
-              Contact Dorit
+            <Link to="/get-involved" className="btn btn--mustard">
+              Join Team Dorit
             </Link>
           </div>
         </nav>
@@ -85,14 +93,19 @@ export function Header({ variant = "overlay" }: HeaderProps) {
               </Link>
             </li>
           ))}
+          <li>
+            <a href={BOARD_NEWS.href} target="_blank" rel="noreferrer">
+              {BOARD_NEWS.label}
+            </a>
+          </li>
         </ul>
         <div className="mobile-menu__ctas">
           <Link
-            to="/contact"
+            to="/get-involved"
             className="btn btn--mustard btn--lg"
             onClick={() => setMenuOpen(false)}
           >
-            Contact Dorit
+            Join Team Dorit
           </Link>
         </div>
       </div>

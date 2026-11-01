@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
-import { SITE, SOCIAL_LINKS } from "@/data/site";
+import { BOARD_NEWS_URL, SITE, SOCIAL_LINKS } from "@/data/site";
 
 const FOOTER_LINKS = [
   { label: "About Dorit", to: "/about" },
   { label: "Commitments", to: "/commitments" },
   { label: "Our Schools", to: "/schools" },
-  { label: "Updates", to: "/updates" },
+  { label: "Join Team Dorit", to: "/get-involved" },
   { label: "The Board & You", to: "/the-board" },
   { label: "Resources", to: "/resources" },
   { label: "In the Community", to: "/community" },
@@ -39,6 +39,9 @@ export function Footer() {
               {link.label}
             </Link>
           ))}
+          <a href={BOARD_NEWS_URL} target="_blank" rel="noreferrer">
+            Board News (YRDSB)
+          </a>
         </nav>
 
         <div className="site-footer__legal">

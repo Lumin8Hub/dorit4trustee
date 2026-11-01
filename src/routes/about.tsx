@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { ContactCta } from "@/components/PageShell";
 import { SITE } from "@/data/site";
 
-const PORTRAIT_OG = "https://dorit4trustee.com/images/dorit-portrait.png";
+const PORTRAIT_OG = "https://dorit4trustee.com/images/dorit-portrait.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

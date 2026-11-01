@@ -2545,15 +2545,6 @@ a { color: inherit; }
 .quick-link__label { font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; font-size: 16px; }
 .quick-link__text { font-size: 15px; color: var(--c-ink-soft); line-height: 1.5; }
 
-/* Updates */
-.home-updates, .updates-list { background: var(--c-paper); padding: var(--sp-9) 0; }
-.update-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-5); margin-bottom: var(--sp-6); }
-.update-card { padding: var(--sp-5); background: var(--c-cream); border: 2px solid var(--c-ink); }
-.update-card__meta { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-teal); margin-bottom: var(--sp-2); }
-.update-card__title { font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1.1; text-transform: uppercase; margin: 0 0 var(--sp-3); }
-.update-card__title a { text-decoration: none; }
-.update-card__title a:hover { color: var(--c-teal); text-decoration: underline; }
-.update-card__summary { font-size: 15px; color: var(--c-ink-soft); margin: 0; }
 .post h2:first-child { margin-top: 0; }
 .post__sources { list-style: disc; padding-left: var(--sp-4); }
 .post__sources li { margin-bottom: var(--sp-2); }
@@ -2673,20 +2664,50 @@ a { color: inherit; }
 .archive-photo img { width: 100%; max-width: 560px; border: 2px solid var(--c-ink); }
 .archive-photo figcaption { font-size: 14px; color: var(--c-ink-soft); margin-top: var(--sp-2); }
 
+/* Contact form checkboxes and the Join Team Dorit page */
+.contact-form .contact-form__check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.contact-form .contact-form__check input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  margin: 1px 0 0;
+  padding: 0;
+  accent-color: var(--c-teal);
+}
+.contact-form__check--consent { margin-top: var(--sp-4); padding: var(--sp-3); background: var(--c-cream); border: 2px solid var(--c-ink); }
+.supporter-form__interests { border: 0; padding: 0; margin: var(--sp-3) 0 0; display: flex; flex-direction: column; gap: 6px; }
+.supporter-form__interests legend { font-weight: 700; font-size: 14px; color: var(--c-ink); margin-bottom: var(--sp-1); }
+.contact__inner--top { align-items: start; }
+.supporter-ways { display: flex; flex-direction: column; gap: var(--sp-4); margin-top: var(--sp-6); }
+.supporter-ways li { display: flex; gap: var(--sp-3); align-items: flex-start; color: var(--c-turquoise); }
+.supporter-ways h2 { font-weight: 800; font-size: 17px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-cream); margin: 0 0 4px; }
+.supporter-ways p { margin: 0; font-size: 16px; }
+.contact__details li svg { flex: 0 0 auto; }
+.contact__join { margin-top: var(--sp-5); }
+.contact__join a { color: var(--c-mustard); font-weight: 800; }
+
 /* Footer disclaimer */
 .site-footer__disclaimer { font-weight: 600; }
 .site-footer__legal a { color: var(--c-turquoise); }
 
 @media (max-width: 1023px) {
   .quick-links__grid, .contact-path__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .update-grid, .resources__grid { grid-template-columns: 1fr 1fr; }
+  .resources__grid { grid-template-columns: 1fr 1fr; }
   .facts__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 767px) {
-  .letter, .home-updates, .updates-list, .home-schools, .contact-path { padding: var(--sp-7) 0; }
+  .letter, .home-schools, .contact-path { padding: var(--sp-7) 0; }
   .letter__inner, .home-schools__inner, .commitment__body { grid-template-columns: 1fr; gap: var(--sp-5); }
   .letter__portrait { position: static; max-width: 280px; }
-  .quick-links__grid, .update-grid, .resources__grid, .contact-path__steps, .contact-form__row { grid-template-columns: 1fr; }
+  .quick-links__grid, .resources__grid, .contact-path__steps, .contact-form__row { grid-template-columns: 1fr; }
   .commitment { padding: var(--sp-5) var(--sp-4); }
   /* Longer trustee headline: let it wrap instead of overflowing. */
   .hero__headline { white-space: normal; font-size: clamp(44px, 12vw, 60px); }

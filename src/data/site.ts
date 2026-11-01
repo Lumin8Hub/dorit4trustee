@@ -9,11 +9,13 @@ export const SITE = {
   areaOfficial: "King and Vaughan Ward 1",
   areaShort: "King & Vaughan Ward 1",
   origin: "https://dorit4trustee.com",
-  /** Personal-site inbox. */
-  email: "info@dorit4trustee.com",
-  /** Official board contact. Fill in once YRDSB issues them (term begins Nov 15, 2026). */
+  /**
+   * Official board email. Dorit's direction (Nov 1, 2026): anything board-related goes to her
+   * YRDSB address, never through personal channels. Until it is issued, the site lists NO email
+   * address or phone number and inbound messages come through the contact form only.
+   * Set this once YRDSB issues it; the Contact page then shows it for board matters.
+   */
   yrdsbEmail: null as string | null,
-  yrdsbPhone: null as string | null,
   termStart: "November 15, 2026",
   termEnd: "November 14, 2030",
   /** Board operating budget, as cited by Trustee Robert Kolosowski (Finance Chair). */
@@ -25,8 +27,10 @@ export const SITE = {
 export const SOCIAL_LINKS = [
   { label: "Facebook", href: "https://www.facebook.com/Dorit4Trustee" },
   { label: "Instagram", href: "https://www.instagram.com/dorit4trustee/" },
-  { label: "Nextdoor", href: "https://ca.nextdoor.com/page/dorit-smali-for-trustee-vaughan-on/" },
 ];
+
+/** Board news lives on YRDSB's own newsroom; this site doesn't republish it. */
+export const BOARD_NEWS_URL = "https://www2.yrdsb.ca/newsroom/news";
 
 /** Certified result. Source: Township of King Certificate of Election Results, Oct 28, 2026. */
 export const ELECTION_RESULT = {

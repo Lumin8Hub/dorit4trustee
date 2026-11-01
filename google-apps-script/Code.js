@@ -8,6 +8,8 @@
 //    Timestamp | First Name | Last Name | Email | Phone | Source
 //    Create a second tab named "Lawn Signs" with:
 //    Timestamp | First Name | Last Name | Street Address | Town | Postal Code | Email | Phone | Source
+//    The "Supporters" tab (Join Team Dorit form, formType "supporter") is created
+//    automatically on the first sign-up with its own header row.
 //
 // 2. Open Extensions → Apps Script
 // 3. Paste this entire file into Code.gs (replace any default code)
@@ -57,6 +59,59 @@ function doPost(e) {
           "Time: " + timestamp,
           "",
           clip(data.message, 5000),
+        ].join("\n"),
+      });
+      return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(
+        ContentService.MimeType.JSON,
+      );
+    }
+
+    // Trustee-site "Join Team Dorit" sign-up: identified supporters for events and the
+    // next campaign. Written to the "Supporters" tab, plus an email notification.
+    if (data.formType === "supporter") {
+      const ss = SpreadsheetApp.getActiveSpreadsheet();
+      let supporters = ss.getSheetByName("Supporters");
+      if (!supporters) {
+        supporters = ss.insertSheet("Supporters");
+        supporters.appendRow([
+          "Timestamp", "First Name", "Last Name", "Email", "Phone", "Street Address",
+          "Community", "Postal Code", "School Board", "YRDSB Parent", "Interests",
+          "Consent to Contact", "Source",
+        ]);
+      }
+      const v = function (x, n) {
+        return safe(String(x || "").slice(0, n));
+      };
+      supporters.appendRow([
+        timestamp,
+        v(data.firstName, 80),
+        v(data.lastName, 80),
+        v(data.email, 200),
+        v(data.phone, 40),
+        v(data.address, 200),
+        v(data.community, 60),
+        v(data.postalCode, 10),
+        v(data.schoolSupport, 60),
+        v(data.parent, 5),
+        v(data.interests, 400),
+        v(data.consent, 5),
+        v(data.source || "unknown", 60),
+      ]);
+      MailApp.sendEmail({
+        to: NOTIFICATION_EMAIL,
+        subject: "New supporter: " + String(data.firstName || "") + " " + String(data.lastName || ""),
+        body: [
+          "New Join Team Dorit sign-up on dorit4trustee.com",
+          "",
+          "Name: " + (data.firstName || "") + " " + (data.lastName || ""),
+          "Email: " + (data.email || ""),
+          "Phone: " + (data.phone || "N/A"),
+          "Address: " + (data.address || "") + ", " + (data.community || "") + ", " + (data.postalCode || ""),
+          "School board: " + (data.schoolSupport || "Not given"),
+          "YRDSB parent: " + (data.parent || "No"),
+          "Interests: " + (data.interests || "None selected"),
+          "Consent to contact: " + (data.consent || "No"),
+          "Time: " + timestamp,
         ].join("\n"),
       });
       return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(

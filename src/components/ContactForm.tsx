@@ -3,15 +3,15 @@ import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { SCHOOLS } from "@/data/schools";
 import { PRIORITIES } from "@/data/priorities";
-import { SITE } from "@/data/site";
 
 const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
 
 const TOPICS = [
+  "Invite Dorit to an event",
+  "I'd like to help or volunteer",
   "A question about my child's school",
   ...PRIORITIES.map((p) => p.title),
   "Board budget or policy",
-  "Invite Dorit to a meeting or event",
   "Other",
 ];
 
@@ -48,12 +48,12 @@ export function ContactForm({ id = "contact-form" }: { id?: string }) {
         body: JSON.stringify(data),
       });
       toast.success("Thank you. Your message was sent.", {
-        description: `If you don't hear back within a few school days, email ${SITE.email}.`,
+        description: "Dorit reads every message and will get back to you.",
       });
       form.reset();
     } catch {
       toast.error("Your message could not be sent.", {
-        description: `Please email ${SITE.email} directly.`,
+        description: "Please try again in a few minutes.",
       });
     } finally {
       setSubmitting(false);
@@ -68,13 +68,7 @@ export function ContactForm({ id = "contact-form" }: { id?: string }) {
       <input id={`${id}-name`} name={`${id}-name`} autoComplete="name" required />
 
       <label htmlFor={`${id}-email`}>Email</label>
-      <input
-        id={`${id}-email`}
-        name={`${id}-email`}
-        type="email"
-        autoComplete="email"
-        required
-      />
+      <input id={`${id}-email`} name={`${id}-email`} type="email" autoComplete="email" required />
 
       <div className="contact-form__row">
         <div>

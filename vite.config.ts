@@ -44,6 +44,7 @@ export default defineConfig({
           { path: "/resources" },
           { path: "/community" },
           { path: "/contact" },
+          { path: "/get-involved" },
           { path: "/2026-campaign" },
           { path: "/privacy" },
           { path: "/accessibility" },
@@ -55,7 +56,6 @@ export default defineConfig({
           { path: "/voting" },
           { path: "/donate" },
           { path: "/lawn-sign" },
-          { path: "/get-involved" },
         ],
       }
     : undefined,
